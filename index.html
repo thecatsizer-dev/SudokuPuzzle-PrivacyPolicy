@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sudoku Puzzle - Privacy Policy</title>
+    <title>Privacy Policy - Sudoku Puzzle</title>
     <style>
         * {
             margin: 0;
@@ -12,10 +12,10 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
             color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #f5f7fa;
             padding: 20px;
         }
         
@@ -23,433 +23,957 @@
             max-width: 900px;
             margin: 0 auto;
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
             overflow: hidden;
         }
         
-        .header {
+        header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 40px 30px;
+            padding: 50px 40px;
             text-align: center;
         }
         
-        .header h1 {
+        header h1 {
             font-size: 2.5em;
             margin-bottom: 10px;
-            font-weight: 700;
         }
         
-        .header .subtitle {
+        header p {
             font-size: 1.1em;
             opacity: 0.9;
         }
         
-        .header .last-update {
-            margin-top: 15px;
-            font-size: 0.9em;
-            opacity: 0.8;
+        .metadata {
+            background: #f8f9fa;
+            padding: 25px 40px;
+            border-bottom: 2px solid #e9ecef;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            font-size: 0.95em;
         }
         
-        .content {
-            padding: 40px 30px;
+        .metadata-item {
+            color: #666;
         }
         
-        .section {
-            margin-bottom: 35px;
+        .metadata-item strong {
+            color: #333;
+            display: block;
+            margin-bottom: 5px;
         }
         
-        .section h2 {
-            font-size: 1.8em;
+        main {
+            padding: 50px 40px;
+        }
+        
+        h2 {
             color: #667eea;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
+            font-size: 1.9em;
+            margin: 50px 0 25px 0;
             border-bottom: 3px solid #667eea;
+            padding-bottom: 12px;
         }
         
-        .section h3 {
-            font-size: 1.3em;
+        h2:first-child {
+            margin-top: 0;
+        }
+        
+        h3 {
             color: #764ba2;
+            font-size: 1.3em;
+            margin: 30px 0 15px 0;
+        }
+        
+        h4 {
+            color: #555;
+            font-size: 1.05em;
             margin: 20px 0 10px 0;
         }
         
-        .section p {
-            margin-bottom: 15px;
-            text-align: justify;
+        p {
+            margin: 15px 0;
+            line-height: 1.8;
         }
         
-        .section ul, .section ol {
-            margin: 15px 0 15px 25px;
+        ul {
+            margin: 20px 0 20px 30px;
         }
         
-        .section li {
-            margin-bottom: 10px;
+        li {
+            margin: 10px 0;
         }
         
-        .highlight-box {
-            background: #f0f4ff;
-            border-left: 4px solid #667eea;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 8px;
-        }
-        
-        .highlight-box strong {
-            color: #667eea;
-        }
-        
-        .data-table {
+        table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin: 25px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         
-        .data-table th, .data-table td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #e0e0e0;
-        }
-        
-        .data-table th {
+        table th {
             background: #667eea;
             color: white;
+            padding: 15px;
+            text-align: left;
             font-weight: 600;
         }
         
-        .data-table tr:hover {
-            background: #f5f5f5;
+        table td {
+            border: 1px solid #e9ecef;
+            padding: 12px 15px;
         }
         
-        .footer {
+        table tr:nth-child(even) {
             background: #f8f9fa;
-            padding: 30px;
-            text-align: center;
-            color: #666;
-            border-top: 1px solid #e0e0e0;
         }
         
-        .footer a {
+        table tr:hover {
+            background: #f0f2ff;
+        }
+        
+        .box-highlight {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 6px;
+        }
+        
+        .box-success {
+            background: #d4edda;
+            border-left: 5px solid #28a745;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 6px;
+        }
+        
+        .box-warning {
+            background: #f8d7da;
+            border-left: 5px solid #dc3545;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 6px;
+        }
+        
+        .contact-box {
+            background: linear-gradient(135deg, rgba(102,126,234,0.08) 0%, rgba(118,75,162,0.08) 100%);
+            border: 2px solid #667eea;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 25px 0;
+        }
+        
+        .contact-box p {
+            margin: 10px 0;
+        }
+        
+        .contact-box strong {
+            color: #667eea;
+        }
+        
+        a {
             color: #667eea;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 500;
         }
         
-        .footer a:hover {
+        a:hover {
             text-decoration: underline;
         }
         
+        footer {
+            background: #f8f9fa;
+            padding: 40px;
+            border-top: 2px solid #e9ecef;
+            text-align: center;
+            color: #666;
+            font-size: 0.95em;
+        }
+        
+        .emoji {
+            margin-right: 8px;
+        }
+        
         @media (max-width: 768px) {
-            body {
+            header h1 {
+                font-size: 1.8em;
+            }
+            
+            header, main, footer, .metadata {
+                padding: 25px;
+            }
+            
+            table {
+                font-size: 0.9em;
+            }
+            
+            table th, table td {
                 padding: 10px;
-            }
-            
-            .header h1 {
-                font-size: 2em;
-            }
-            
-            .content {
-                padding: 25px 20px;
-            }
-            
-            .section h2 {
-                font-size: 1.5em;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>🎮 Sudoku Puzzle</h1>
-            <div class="subtitle">Privacy Policy</div>
-            <div class="last-update">Last Updated: November 25, 2025</div>
-        </div>
+        <header>
+            <h1>🔒 Privacy Policy</h1>
+            <p>Sudoku Puzzle - Catsizer Lab</p>
+        </header>
         
-        <div class="content">
-            <!-- INTRODUCTION -->
-            <div class="section">
-                <h2>1. Introduction</h2>
-                <p>
-                    Welcome to <strong>Sudoku Puzzle</strong> ("we," "our," or "the App"), developed by <strong>CatSizer Lab</strong>. 
-                    We are committed to protecting your privacy and ensuring transparency about how we handle your data.
-                </p>
-                <p>
-                    This Privacy Policy explains what information we collect, how we use it, and your rights regarding your personal data. 
-                    By using Sudoku Puzzle, you agree to the practices described in this policy.
-                </p>
-                <div class="highlight-box">
-                    <strong>Key Principle:</strong> We collect only the minimum data necessary to provide our services. 
-                    We do NOT sell your personal information to third parties.
-                </div>
+        <div class="metadata">
+            <div class="metadata-item">
+                <strong>Effective Date:</strong>
+                December 19, 2024
             </div>
-
-            <!-- DATA COLLECTION -->
-            <div class="section">
-                <h2>2. Information We Collect</h2>
-                
-                <h3>2.1 Information You Provide Directly</h3>
-                <ul>
-                    <li><strong>Google Play Games Profile:</strong> When you connect to Google Play Games Services, we access your Player ID (anonymized), display name, and avatar (if available).</li>
-                    <li><strong>Friend Codes:</strong> You can generate and share a unique friend code (8-digit format) to connect with other players.</li>
-                    <li><strong>Game Preferences:</strong> Theme selection, language, sound/vibration settings, and difficulty preferences are stored locally on your device.</li>
-                </ul>
-                
-                <h3>2.2 Automatically Collected Information</h3>
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Data Type</th>
-                            <th>Purpose</th>
-                            <th>Storage Location</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Game Statistics</td>
-                            <td>Track wins, playtime, achievements</td>
-                            <td>Local + Google Play Saved Games</td>
-                        </tr>
-                        <tr>
-                            <td>Multiplayer Session Data</td>
-                            <td>Match opponents, sync game state</td>
-                            <td>Temporary (server-side, not stored)</td>
-                        </tr>
-                        <tr>
-                            <td>Leaderboard Scores</td>
-                            <td>Global/friend rankings</td>
-                            <td>Google Play Games Services</td>
-                        </tr>
-                        <tr>
-                            <td>In-Progress Game Saves</td>
-                            <td>Resume your game later</td>
-                            <td>Local + Cloud Sync (Google Play)</td>
-                        </tr>
-                    </tbody>
-                </table>
-                
-                <h3>2.3 Third-Party Services</h3>
-                <ul>
-                    <li><strong>Google Play Games Services:</strong> Handles authentication, leaderboards, achievements, and cloud saves. <a href="https://policies.google.com/privacy" target="_blank">Google Privacy Policy</a></li>
-                    <li><strong>Google AdMob:</strong> Displays rewarded video ads. AdMob may collect device identifiers and usage data. <a href="https://policies.google.com/technologies/ads" target="_blank">AdMob Privacy Policy</a></li>
-                    <li><strong>Render.com (Multiplayer Server):</strong> Hosts our real-time multiplayer server. Session data (player ID, name) is temporary and not stored permanently.</li>
-                </ul>
+            <div class="metadata-item">
+                <strong>Last Updated:</strong>
+                December 19, 2024
             </div>
-
-            <!-- DATA USAGE -->
-            <div class="section">
-                <h2>3. How We Use Your Information</h2>
-                <p>We use the collected information to:</p>
-                <ol>
-                    <li><strong>Provide Core Gameplay:</strong> Solo mode, multiplayer matchmaking, game saves.</li>
-                    <li><strong>Social Features:</strong> Friend codes, leaderboards, achievements.</li>
-                    <li><strong>Personalization:</strong> Save your theme, language, and preferences.</li>
-                    <li><strong>Cloud Synchronization:</strong> Sync progress across devices via Google Play Games.</li>
-                    <li><strong>Rewarded Ads:</strong> Show optional ads to unlock in-game hints.</li>
-                    <li><strong>Improve the App:</strong> Identify bugs, optimize performance (no analytics tracking tools used).</li>
-                </ol>
-                
-                <div class="highlight-box">
-                    <strong>We DO NOT:</strong>
-                    <ul style="margin-top: 10px;">
-                        <li>Sell your personal information</li>
-                        <li>Use analytics or tracking tools (no Firebase Analytics, no third-party trackers)</li>
-                        <li>Access your contacts, photos, or other sensitive device data</li>
-                        <li>Send marketing emails or notifications without consent</li>
-                    </ul>
-                </div>
+            <div class="metadata-item">
+                <strong>Email:</strong>
+                contact.thecatsizerlab@gmail.com
             </div>
-
-            <!-- DATA SHARING -->
-            <div class="section">
-                <h2>4. Data Sharing and Disclosure</h2>
-                <p>We only share your data in the following limited circumstances:</p>
-                
-                <h3>4.1 With Your Consent</h3>
-                <ul>
-                    <li><strong>Google Play Games:</strong> Your public profile (name, avatar) is visible to other players in leaderboards and multiplayer matches.</li>
-                    <li><strong>Friend Codes:</strong> When you share your friend code, other players can send you friend requests.</li>
-                </ul>
-                
-                <h3>4.2 Service Providers</h3>
-                <ul>
-                    <li><strong>Google (Play Games + AdMob):</strong> Processes authentication, cloud saves, leaderboards, and ad delivery.</li>
-                    <li><strong>Render.com:</strong> Hosts our multiplayer server (session data only, no permanent storage).</li>
-                </ul>
-                
-                <h3>4.3 Legal Requirements</h3>
-                <p>We may disclose information if required by law or to protect our rights, safety, or property.</p>
-            </div>
-
-            <!-- DATA SECURITY -->
-            <div class="section">
-                <h2>5. Data Security</h2>
-                <p>We implement industry-standard security measures:</p>
-                <ul>
-                    <li><strong>Encryption:</strong> All network communication uses HTTPS/WSS (WebSocket Secure).</li>
-                    <li><strong>Google Play Games:</strong> Authentication and cloud saves use Google's secure infrastructure.</li>
-                    <li><strong>Local Storage:</strong> Data stored on your device is protected by Android's app sandboxing.</li>
-                    <li><strong>No Sensitive Data:</strong> We do NOT collect payment information, social security numbers, or health data.</li>
-                </ul>
-                <p>
-                    <strong>Important:</strong> While we take security seriously, no method of transmission over the Internet is 100% secure. 
-                    Use strong device passwords and keep your software updated.
-                </p>
-            </div>
-
-            <!-- DATA RETENTION -->
-            <div class="section">
-                <h2>6. Data Retention</h2>
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Data Type</th>
-                            <th>Retention Period</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Local Game Progress</td>
-                            <td>Until you uninstall the app or clear data</td>
-                        </tr>
-                        <tr>
-                            <td>Google Play Saved Games</td>
-                            <td>Managed by Google Play Games (you can delete via Google account)</td>
-                        </tr>
-                        <tr>
-                            <td>Multiplayer Session Data</td>
-                            <td>Temporary (deleted immediately after match ends)</td>
-                        </tr>
-                        <tr>
-                            <td>Leaderboard Scores</td>
-                            <td>Retained by Google Play Games (visible until you delete your account)</td>
-                        </tr>
-                        <tr>
-                            <td>AdMob Data</td>
-                            <td>Managed by Google AdMob (see Google's retention policy)</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- CHILDREN'S PRIVACY -->
-            <div class="section">
-                <h2>7. Children's Privacy</h2>
-                <p>
-                    Sudoku Puzzle is designed for general audiences and does NOT knowingly collect personal information from children under 13 
-                    (or the applicable age in your jurisdiction) without parental consent.
-                </p>
-                <ul>
-                    <li><strong>COPPA Compliance (US):</strong> We do not target children under 13.</li>
-                    <li><strong>Google Play Games:</strong> Users must have a Google account, which requires age verification by Google.</li>
-                    <li><strong>Parental Controls:</strong> Parents can manage their child's Google account and restrict multiplayer features.</li>
-                </ul>
-                <p>
-                    If you believe we have inadvertently collected information from a child under 13, please contact us immediately at 
-                    <strong>privacy@catsizerlab.com</strong>.
-                </p>
-            </div>
-
-            <!-- YOUR RIGHTS -->
-            <div class="section">
-                <h2>8. Your Privacy Rights</h2>
-                <p>Depending on your location, you may have the following rights:</p>
-                
-                <h3>8.1 General Rights</h3>
-                <ul>
-                    <li><strong>Access:</strong> Request a copy of your data stored by us.</li>
-                    <li><strong>Deletion:</strong> Delete your local data by clearing app storage or uninstalling. To delete Google Play data, manage your Google account settings.</li>
-                    <li><strong>Opt-Out of Ads:</strong> You can skip rewarded ads (you won't receive the in-game rewards).</li>
-                    <li><strong>Disconnect Google Play:</strong> Sign out from the app settings to disconnect your Google account.</li>
-                </ul>
-                
-                <h3>8.2 GDPR Rights (EU/EEA)</h3>
-                <p>If you are in the European Union or European Economic Area, you have additional rights:</p>
-                <ul>
-                    <li><strong>Right to Rectification:</strong> Correct inaccurate data (e.g., update your Google Play profile).</li>
-                    <li><strong>Right to Erasure:</strong> Request deletion of your personal data.</li>
-                    <li><strong>Right to Restriction:</strong> Limit how we process your data.</li>
-                    <li><strong>Right to Data Portability:</strong> Receive your data in a structured format.</li>
-                    <li><strong>Right to Object:</strong> Object to certain processing activities.</li>
-                </ul>
-                
-                <h3>8.3 CCPA Rights (California, USA)</h3>
-                <p>California residents have the right to:</p>
-                <ul>
-                    <li>Know what personal information is collected and how it's used.</li>
-                    <li>Request deletion of personal information.</li>
-                    <li>Opt-out of the sale of personal information (we do NOT sell data).</li>
-                    <li>Non-discrimination for exercising your rights.</li>
-                </ul>
-                
-                <div class="highlight-box">
-                    <strong>To Exercise Your Rights:</strong><br>
-                    Contact us at <strong>privacy@catsizerlab.com</strong> or use the in-app "Data & Privacy" settings.
-                </div>
-            </div>
-
-            <!-- INTERNATIONAL TRANSFERS -->
-            <div class="section">
-                <h2>9. International Data Transfers</h2>
-                <p>
-                    Sudoku Puzzle is available globally. Your data may be transferred to and processed in countries outside your jurisdiction, 
-                    including the United States (where our multiplayer server is hosted via Render.com) and Ireland (where Google servers are located).
-                </p>
-                <p>
-                    We ensure appropriate safeguards are in place, including:
-                </p>
-                <ul>
-                    <li>Google's EU-US Data Privacy Framework certification.</li>
-                    <li>Standard contractual clauses with service providers.</li>
-                    <li>Encryption during data transmission.</li>
-                </ul>
-            </div>
-
-            <!-- CHANGES TO POLICY -->
-            <div class="section">
-                <h2>10. Changes to This Privacy Policy</h2>
-                <p>
-                    We may update this Privacy Policy from time to time to reflect changes in our practices or legal requirements. 
-                    When we make significant changes, we will:
-                </p>
-                <ul>
-                    <li>Update the "Last Updated" date at the top of this page.</li>
-                    <li>Notify you via an in-app notification or email (if available).</li>
-                    <li>Request your consent if required by law.</li>
-                </ul>
-                <p>
-                    We encourage you to review this policy periodically. Continued use of the app after changes constitutes acceptance of the updated policy.
-                </p>
-            </div>
-
-            <!-- CONTACT -->
-            <div class="section">
-                <h2>11. Contact Us</h2>
-                <p>
-                    If you have any questions, concerns, or requests regarding this Privacy Policy or your data, please contact us:
-                </p>
-                <div class="highlight-box">
-                    <strong>CatSizer Lab</strong><br>
-                    Email: <a href="mailto:privacy@catsizerlab.com">privacy@catsizerlab.com</a><br>
-                    Support: <a href="mailto:support@catsizerlab.com">support@catsizerlab.com</a><br>
-                    In-App: Settings → "Help & Privacy" → "Contact Support"
-                </div>
-                <p>
-                    <strong>Response Time:</strong> We aim to respond to all inquiries within 30 days (or as required by applicable law).
-                </p>
+            <div class="metadata-item">
+                <strong>Location:</strong>
+                Zigliara, South Corsica, France
             </div>
         </div>
         
-        <div class="footer">
-            <p><strong>Sudoku Puzzle</strong> by CatSizer Lab</p>
-            <p>© 2025 All Rights Reserved</p>
-            <p style="margin-top: 10px;">
-                <a href="mailto:support@catsizerlab.com">Support</a> | 
-                <a href="mailto:privacy@catsizerlab.com">Privacy</a> | 
-                <a href="#">Terms of Service</a>
-            </p>
-        </div>
+        <main>
+            <h2><span class="emoji">📋</span>1. Introduction</h2>
+            <p>Sudoku Puzzle ("the Application") is developed by Catsizer Lab and available on Google Play Store. We respect your privacy and are committed to processing your personal data transparently and securely in accordance with GDPR and applicable data protection laws worldwide.</p>
+            <p>This privacy policy explains how we collect, use, share, and protect your personal data when you use our Application.</p>
+            
+            <h2><span class="emoji">👤</span>2. Data Controller</h2>
+            <div class="contact-box">
+                <p><strong>Catsizer Lab</strong></p>
+                <p>📍 Zigliara, South Corsica, France</p>
+                <p>📧 Email: <a href="mailto:contact.thecatsizerlab@gmail.com">contact.thecatsizerlab@gmail.com</a></p>
+                <p>For any data-related inquiries, please contact us at the address above.</p>
+            </div>
+            
+            <h2><span class="emoji">📊</span>3. Data We Collect</h2>
+            
+            <h3>3.1 Data Collected Directly from You</h3>
+            
+            <h4><span class="emoji">🎮</span>Google Play Games Services (GPGS)</h4>
+            <ul>
+                <li>Unique player identifier (Player ID)</li>
+                <li>Display name</li>
+                <li>Profile picture (optional)</li>
+                <li>Game progression data synchronized via Google Cloud</li>
+            </ul>
+            <p><strong>Legal Basis:</strong> Consent (explicit upon connection) | <strong>Purpose:</strong> Authentication, cloud sync, leaderboards, achievements</p>
+            
+            <h4><span class="emoji">🎯</span>Game Data</h4>
+            <ul>
+                <li>Game scores (solo and multiplayer)</li>
+                <li>Match history (duration, error count, game mode)</li>
+                <li>Progression through levels</li>
+                <li>Selected difficulty</li>
+                <li>Elapsed time in games</li>
+                <li>Number of correct placements</li>
+                <li>Combo statistics</li>
+            </ul>
+            <p><strong>Legal Basis:</strong> Service contract | <strong>Purpose:</strong> Save progression, populate leaderboards, improve gameplay</p>
+            
+            <h4><span class="emoji">👥</span>Multiplayer Data</h4>
+            <ul>
+                <li>Opponent's display name</li>
+                <li>Real-time game progression</li>
+                <li>Match statistics (correct moves, errors, combo)</li>
+                <li>Match results</li>
+                <li>Energy and power-ups used</li>
+                <li>Friends list and friend codes</li>
+                <li>Pending friend invitations</li>
+            </ul>
+            <p><strong>Legal Basis:</strong> Service contract | <strong>Purpose:</strong> Real-time multiplayer sync, leaderboards, game balancing</p>
+            
+            <h4><span class="emoji">⚙️</span>Preference Data</h4>
+            <ul>
+                <li>Selected visual theme</li>
+                <li>Language preference</li>
+                <li>Audio settings (sound enabled/disabled)</li>
+                <li>Vibration preferences</li>
+                <li>Premium theme purchase history</li>
+            </ul>
+            <p><strong>Legal Basis:</strong> Service contract | <strong>Purpose:</strong> Personalize user experience</p>
+            
+            <h3>3.2 Data Collected Automatically</h3>
+            
+            <h4><span class="emoji">🖥️</span>Technical Data</h4>
+            <ul>
+                <li>Device type and model</li>
+                <li>Android OS version</li>
+                <li>Unique identifiers (Android Advertising ID)</li>
+                <li>IP address</li>
+                <li>Region and timezone</li>
+                <li>Storage capacity and remaining storage</li>
+                <li>Device memory information</li>
+            </ul>
+            <p><strong>Legal Basis:</strong> Legitimate interest (technical maintenance, security, analytics) | <strong>Purpose:</strong> Performance optimization, fraud prevention, debugging</p>
+            
+            <h4><span class="emoji">📱</span>Connection Data</h4>
+            <ul>
+                <li>Session timestamps</li>
+                <li>Session duration</li>
+                <li>Game events (matches started, completed, abandoned)</li>
+                <li>Ad interaction data (impressions, clicks, rewarded ad views)</li>
+                <li>Connection type (WiFi vs cellular)</li>
+                <li>App launch frequency</li>
+            </ul>
+            <p><strong>Legal Basis:</strong> Legitimate interest (analytics) | <strong>Purpose:</strong> Service improvement, usage analysis</p>
+            
+            <h4><span class="emoji">⚠️</span>Crash and Error Data</h4>
+            <ul>
+                <li>Automatic error reports</li>
+                <li>Stack traces</li>
+                <li>Application state at crash time</li>
+                <li>Associated user identifier</li>
+                <li>Console logs</li>
+            </ul>
+            <p><strong>Legal Basis:</strong> Legitimate interest (technical maintenance) | <strong>Purpose:</strong> Bug resolution, app stability</p>
+            
+            <h3>3.3 Payment Data</h3>
+            
+            <h4><span class="emoji">💳</span>In-App Purchase Transactions</h4>
+            <ul>
+                <li>Products purchased (premium themes, hint packages)</li>
+                <li>Purchase amount</li>
+                <li>Currency</li>
+                <li>Transaction date and time</li>
+                <li>Transaction status (completed, pending, failed)</li>
+            </ul>
+            <p><strong>Legal Basis:</strong> Service contract | <strong>Purpose:</strong> Purchase management, product attribution, fraud prevention</p>
+            
+            <div class="box-success">
+                <strong>✅ Important:</strong> Your payment information is never shared with Catsizer Lab. All payments are processed securely through Google Play Billing, which complies with PCI DSS standards.
+            </div>
+            
+            <h3>3.4 Third-Party Data</h3>
+            
+            <h4><span class="emoji">📢</span>Google AdMob (Advertising)</h4>
+            <p>Advertisements displayed in the Application are managed by Google through AdMob.</p>
+            <p><strong>Data collected by Google:</strong></p>
+            <ul>
+                <li>Android Advertising ID</li>
+                <li>Inferred interest categories</li>
+                <li>Ad view history</li>
+                <li>Ad clicks</li>
+                <li>App usage patterns</li>
+            </ul>
+            <p><strong>Legal Basis:</strong> Consent (compliant with Google policy) | <strong>Purpose:</strong> Personalized ad delivery, app monetization</p>
+            <p><strong>Manage Ad Preferences:</strong> Go to Settings > Google > Manage your Google Account > Data & Privacy > Ad Settings</p>
+            
+            <h4><span class="emoji">🏆</span>Google Play Games Services (Leaderboards & Achievements)</h4>
+            <ul>
+                <li>Public scores on leaderboards</li>
+                <li>Unlocked achievement badges</li>
+                <li>Public profile information</li>
+            </ul>
+            <p><strong>Legal Basis:</strong> Service contract | <strong>Purpose:</strong> Leaderboards, social features</p>
+            
+            <h2><span class="emoji">🎯</span>4. How We Use Your Data</h2>
+            
+            <h3>4.1 Primary Purposes</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Purpose</th>
+                        <th>Data Used</th>
+                        <th>Legal Basis</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Provide game service</td>
+                        <td>Game data, player profile</td>
+                        <td>Contract</td>
+                    </tr>
+                    <tr>
+                        <td>Cloud synchronization</td>
+                        <td>Progression data</td>
+                        <td>Contract</td>
+                    </tr>
+                    <tr>
+                        <td>Leaderboards & Achievements</td>
+                        <td>Scores, name, stats</td>
+                        <td>Contract</td>
+                    </tr>
+                    <tr>
+                        <td>Performance optimization</td>
+                        <td>Technical data, crash logs</td>
+                        <td>Legitimate Interest</td>
+                    </tr>
+                    <tr>
+                        <td>Security & fraud prevention</td>
+                        <td>IP, device ID, transactions</td>
+                        <td>Legitimate Interest</td>
+                    </tr>
+                    <tr>
+                        <td>Personalized ads</td>
+                        <td>Advertising ID, interests</td>
+                        <td>Consent (Google)</td>
+                    </tr>
+                    <tr>
+                        <td>Technical maintenance</td>
+                        <td>All relevant logs</td>
+                        <td>Legitimate Interest</td>
+                    </tr>
+                    <tr>
+                        <td>Legal compliance</td>
+                        <td>Relevant data</td>
+                        <td>Legal Obligation</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>4.2 Data Sharing</h3>
+            <p>Your data is <strong>NEVER sold</strong> to third parties.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Third Party</th>
+                        <th>Data Shared</th>
+                        <th>Reason</th>
+                        <th>Data Processing Agreement</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Google Play Games</strong></td>
+                        <td>Player ID, name, scores</td>
+                        <td>Authentication & leaderboards</td>
+                        <td>✅ Yes (Google ToS)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Google AdMob</strong></td>
+                        <td>Advertising ID</td>
+                        <td>Ad personalization</td>
+                        <td>✅ Yes (Google ToS)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Game Server (Fly.io)</strong></td>
+                        <td>Multiplayer stats</td>
+                        <td>Real-time sync</td>
+                        <td>✅ Yes (encrypted)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Google Play Billing</strong></td>
+                        <td>Transaction data</td>
+                        <td>Payment processing</td>
+                        <td>✅ Yes (PCI DSS)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Legal Authorities</strong></td>
+                        <td>Relevant data</td>
+                        <td>Legal obligation upon request</td>
+                        <td>N/A</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h2><span class="emoji">⏳</span>5. Data Retention</h2>
+            
+            <h3>5.1 Game Data Retention</h3>
+            <ul>
+                <li><strong>Progression History:</strong> Retained as long as GPGS account exists + 12 months after deletion</li>
+                <li><strong>Leaderboard Scores:</strong> 90 days after inactivity</li>
+                <li><strong>Match Statistics:</strong> 2 years</li>
+                <li><strong>Technical Logs:</strong> 30 days</li>
+            </ul>
+            
+            <h3>5.2 Payment Data Retention</h3>
+            <ul>
+                <li><strong>Completed Transactions:</strong> 7 years (tax compliance requirement)</li>
+                <li><strong>Failed Transactions:</strong> 30 days</li>
+                <li><strong>Purchase History:</strong> Indefinite (accessible via Google Play Store)</li>
+            </ul>
+            
+            <h3>5.3 Profile & Preference Data</h3>
+            <ul>
+                <li><strong>GPGS Data:</strong> As long as your Google account exists</li>
+                <li><strong>Preference Settings:</strong> As long as GPGS account exists</li>
+                <li><strong>Cookies/Analytics:</strong> 2 years (automatic reset)</li>
+            </ul>
+            
+            <h2><span class="emoji">🔐</span>6. Data Security</h2>
+            
+            <h3>6.1 Technical Measures</h3>
+            <ul>
+                <li><strong>Encryption in Transit:</strong> HTTPS/TLS 1.2+ for all transfers</li>
+                <li><strong>Encryption at Rest:</strong> Local data encrypted via Hive encryption</li>
+                <li><strong>Server Isolation:</strong> Fly.io infrastructure with network isolation</li>
+                <li><strong>No Payment Storage:</strong> Payment data remains with Google (never stored locally)</li>
+                <li><strong>Input Validation:</strong> Protection against SQL injection, XSS attacks</li>
+            </ul>
+            
+            <h3>6.2 Organizational Measures</h3>
+            <ul>
+                <li>Access to data limited to authorized personnel only</li>
+                <li>Confidentiality agreements with all service providers</li>
+                <li>Regular security audits</li>
+                <li>Automated dependency updates and security patches</li>
+            </ul>
+            
+            <div class="box-warning">
+                <strong>⚠️ Disclaimer:</strong> While we implement industry-standard security measures, no system is 100% secure. You acknowledge that Internet data transfer carries inherent risks.
+            </div>
+            
+            <h2><span class="emoji">✋</span>7. Your Privacy Rights</h2>
+            
+            <h3>7.1 Right of Access (GDPR Article 15)</h3>
+            <p>You can request access to your personal data.</p>
+            <p><strong>How to Request:</strong></p>
+            <ul>
+                <li>Email: <a href="mailto:contact.thecatsizerlab@gmail.com">contact.thecatsizerlab@gmail.com</a></li>
+                <li>Response Time: 30 days</li>
+            </ul>
+            <p><strong>Data Accessible Directly:</strong></p>
+            <ul>
+                <li>GPGS Profile: Google Play Games > Settings</li>
+                <li>Purchase History: Google Play Store > Account > Payments and Subscriptions</li>
+                <li>Google Privacy Settings: myaccount.google.com</li>
+            </ul>
+            
+            <h3>7.2 Right of Correction (GDPR Article 16)</h3>
+            <p>You can correct inaccurate data about yourself.</p>
+            <ul>
+                <li>Edit your GPGS profile directly in Google Play Games</li>
+                <li>Update preferences within the Application settings</li>
+            </ul>
+            
+            <h3>7.3 Right to Erasure (GDPR Article 17)</h3>
+            <p>You can request deletion of your personal data.</p>
+            <p><strong>Delete via Application:</strong></p>
+            <ol>
+                <li>Open Settings > Account</li>
+                <li>Click "Delete Account"</li>
+                <li>Confirm (this action is irreversible)</li>
+            </ol>
+            <p><strong>What Gets Deleted:</strong></p>
+            <ul>
+                <li>All game scores</li>
+                <li>Progression data</li>
+                <li>Game profile</li>
+                <li>GPGS data remains managed by Google</li>
+            </ul>
+            <p><strong>Processing Time:</strong> 30 days</p>
+            
+            <h3>7.4 Right to Data Portability (GDPR Article 20)</h3>
+            <p>You can request your data in a structured, portable format.</p>
+            <p><strong>How:</strong> Email a request to contact.thecatsizerlab@gmail.com with proof of identity</p>
+            
+            <h3>7.5 Right to Object (GDPR Article 21)</h3>
+            <ul>
+                <li><strong>Personalized Ads:</strong> Modify your Google Ads settings</li>
+                <li><strong>Analytics:</strong> Opt-out via device privacy settings</li>
+                <li><strong>Marketing:</strong> Unsubscribe from marketing lists (if applicable)</li>
+            </ul>
+            
+            <h3>7.6 Right to Restrict Processing (GDPR Article 18)</h3>
+            <p>You can request to limit how your data is processed while addressing a complaint.</p>
+            
+            <h2><span class="emoji">⚖️</span>8. Legal Compliance</h2>
+            
+            <h3>8.1 GDPR (European Union)</h3>
+            <p>Sudoku Puzzle complies with the General Data Protection Regulation (GDPR):</p>
+            <ul>
+                <li><strong>Data Controller:</strong> Catsizer Lab</li>
+                <li><strong>Legal Basis:</strong> Consent + Contract + Legitimate Interest</li>
+                <li><strong>Consent Process:</strong> Modal displayed on first launch</li>
+                <li><strong>Right to Withdraw:</strong> Changeable anytime in Settings > Privacy</li>
+                <li><strong>Data Processing Agreement:</strong> Available upon request</li>
+            </ul>
+            
+            <h3>8.2 CCPA (California, USA)</h3>
+            <p>For California residents, you have additional rights:</p>
+            <ul>
+                <li><strong>Right to Know:</strong> Demand information on data collection</li>
+                <li><strong>Right to Delete:</strong> Request data deletion (with exceptions)</li>
+                <li><strong>Right to Opt-Out:</strong> Deny "sale" of personal information (see Section 9)</li>
+                <li><strong>Right to Non-Discrimination:</strong> No penalties for exercising your rights</li>
+            </ul>
+            <p><strong>CCPA Request Process:</strong> Send verified request to contact.thecatsizerlab@gmail.com with:</p>
+            <ul>
+                <li>Proof of identity</li>
+                <li>Proof of California residence</li>
+                <li>Detailed description of requested data</li>
+            </ul>
+            <p><strong>Response Time:</strong> 45 days</p>
+            
+            <h3>8.3 France - Loi Informatique et Libertés</h3>
+            <p>Sudoku Puzzle complies with French Law n°78-17 of January 6, 1978:</p>
+            <ul>
+                <li>Data processing declarations compliant</li>
+                <li>Right to object to processing</li>
+                <li>Right of access to personal data</li>
+                <li>DPO contact available</li>
+            </ul>
+            
+            <h3>8.4 Other Jurisdictions</h3>
+            <ul>
+                <li><strong>UK:</strong> Compliant with UK GDPR</li>
+                <li><strong>Switzerland:</strong> Compliant with Federal Data Protection Act (LPD)</li>
+                <li><strong>Canada:</strong> Compliant with PIPEDA</li>
+                <li><strong>Australia:</strong> Compliant with Privacy Act 1988</li>
+            </ul>
+            
+            <h2><span class="emoji">🎯</span>9. Consent & Preference Management</h2>
+            
+            <h3>9.1 Initial Consent</h3>
+            <p>A consent modal is displayed on the first app launch containing:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>✅ Personalized Ads</td>
+                        <td>Allow AdMob to show targeted advertisements</td>
+                    </tr>
+                    <tr>
+                        <td>✅ Analytics</td>
+                        <td>Allow collection of gameplay analytics</td>
+                    </tr>
+                    <tr>
+                        <td>✅ Game Data</td>
+                        <td>Allow cloud synchronization of progression</td>
+                    </tr>
+                    <tr>
+                        <td>🔗 Link to Policy</td>
+                        <td>Direct access to this privacy policy</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><strong>Actions:</strong></p>
+            <ul>
+                <li>Accept All (recommended for full experience)</li>
+                <li>Reject All (app functional, no personalization)</li>
+                <li>Customize (granular control per category)</li>
+            </ul>
+            
+            <h3>9.2 Managing Your Preferences</h3>
+            <p>Modify consent anytime via: <strong>Settings > Privacy & Security</strong></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Setting</th>
+                        <th>Impact if Disabled</th>
+                        <th>Can Disable?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Personalized Ads</td>
+                        <td>Generic ads instead of targeted</td>
+                        <td>✅ Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Game Analytics</td>
+                        <td>No gameplay data collection</td>
+                        <td>✅ Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Cloud Sync</td>
+                        <td>Local storage only</td>
+                        <td>✅ Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Push Notifications</td>
+                        <td>Silent mode</td>
+                        <td>✅ Yes</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>9.3 Withdraw Consent</h3>
+            <p>You can withdraw consent at any time by:</p>
+            <ol>
+                <li>Changing preferences in the app settings</li>
+                <li>Emailing us at contact.thecatsizerlab@gmail.com</li>
+                <li>Disabling services in Google Privacy Dashboard</li>
+            </ol>
+            <p>Withdrawal is effective immediately. Previously collected data remains processed per this policy.</p>
+            
+            <h2><span class="emoji">🍪</span>10. Cookies & Tracking Technologies</h2>
+            
+            <h3>10.1 Local Storage</h3>
+            <p>The app uses <strong>Hive</strong> (encrypted database) to store locally:</p>
+            <ul>
+                <li>User preferences</li>
+                <li>Game progression (encrypted)</li>
+                <li>Session tokens</li>
+                <li>Consent status</li>
+            </ul>
+            <p>Technically these are not "cookies" but persistent local files.</p>
+            
+            <h3>10.2 Firebase & Google Analytics</h3>
+            <p>If Analytics is enabled, Google Firebase collects:</p>
+            <ul>
+                <li>Game events (match start, victory, abandonment)</li>
+                <li>Crash reports (automatic)</li>
+                <li>App performance metrics</li>
+                <li>User properties (cohorts)</li>
+            </ul>
+            <p><strong>Storage:</strong> Anonymized, retained 14 months by Google</p>
+            <p><strong>Opt-Out:</strong></p>
+            <ul>
+                <li>Settings > Privacy > Disable Analytics</li>
+                <li>Device Settings > Google > Manage Account > Privacy > Analytics</li>
+            </ul>
+            
+            <h3>10.3 Google Advertising ID</h3>
+            <p>Google assigns you a unique advertising ID for:</p>
+            <ul>
+                <li>Targeted ads in AdMob</li>
+                <li>Ad frequency limiting</li>
+                <li>Campaign performance measurement</li>
+            </ul>
+            <p><strong>Manage:</strong> Settings > Google > Manage Account > Privacy > Ad Settings</p>
+            <p><strong>Reset:</strong> Settings > Google > Privacy > Reset Advertising ID</p>
+            
+            <h3>10.4 Tracking Links (UTM)</h3>
+            <p>Promotional links may include UTM parameters to measure campaign effectiveness.</p>
+            
+            <h2><span class="emoji">👶</span>11. Children's Privacy (COPPA & GDPR)</h2>
+            
+            <h3>11.1 Age Requirements</h3>
+            <ul>
+                <li><strong>US (COPPA):</strong> ≥ 13 years old</li>
+                <li><strong>Europe (GDPR):</strong> ≥ 16 years old (varies by country)</li>
+                <li><strong>France:</strong> ≥ 13 years old</li>
+            </ul>
+            
+            <h3>11.2 Minors' Data Protection</h3>
+            <p>If you are under the age of digital consent in your jurisdiction:</p>
+            <ul>
+                <li>Your data receives <strong>enhanced protection</strong></li>
+                <li>Parent/guardian consent is required</li>
+                <li>Data collection is minimized</li>
+                <li>No profile-based ad targeting</li>
+                <li>Data deletion upon reaching majority (on request)</li>
+            </ul>
+            
+            <h3>11.3 Parental Controls</h3>
+            <p>Parents/guardians can:</p>
+            <ol>
+                <li><strong>Restrict IAP:</strong> Google Play > Parental Controls > Require Authentication</li>
+                <li><strong>Limit Ads:</strong> Disable personalized advertising</li>
+                <li><strong>View History:</strong> Google Play Family Library</li>
+                <li><strong>Delete Account:</strong> Request via email with proof</li>
+            </ol>
+            
+            <h3>11.4 Report Inappropriate Content</h3>
+            <p>If you find content unsuitable for children: contact.thecatsizerlab@gmail.com with screenshot</p>
+            
+            <h2><span class="emoji">🌍</span>12. International Data Transfers</h2>
+            
+            <h3>12.1 Server Locations</h3>
+            <ul>
+                <li><strong>Europe:</strong> Google Cloud (Frankfurt/Ireland)</li>
+                <li><strong>Outside EU:</strong> Data shared with Google (USA-based)</li>
+                <li><strong>Fly.io:</strong> Decentralized CDN infrastructure</li>
+            </ul>
+            
+            <h3>12.2 Legal Safeguards</h3>
+            <p>For transfers outside EU to USA, we rely on:</p>
+            <ul>
+                <li><strong>Standard Contractual Clauses (SCCs):</strong> EU-USA model</li>
+                <li><strong>Google Data Processing Terms:</strong> SCC-compliant</li>
+                <li><strong>Adequacy Decisions:</strong> Switzerland/UK/Canada recognized</li>
+            </ul>
+            
+            <h3>12.3 Your Control</h3>
+            <p>You can request:</p>
+            <ul>
+                <li>Copy of contractual safeguards</li>
+                <li>Information on specific transfers</li>
+                <li>Limitation of transfers (may impact service)</li>
+            </ul>
+            
+            <h2><span class="emoji">📝</span>13. Policy Changes</h2>
+            
+            <h3>13.1 Right to Modify</h3>
+            <p>We may update this policy for:</p>
+            <ul>
+                <li>Legal compliance changes</li>
+                <li>Error corrections</li>
+                <li>Practice changes</li>
+                <li>Clarifications</li>
+            </ul>
+            
+            <h3>13.2 Notification</h3>
+            <ul>
+                <li><strong>Major Changes:</strong> In-app notification 30 days before</li>
+                <li><strong>Minor Changes:</strong> Published on this page with date</li>
+                <li><strong>Acceptance:</strong> New consent required for major changes</li>
+            </ul>
+            
+            <h3>13.3 Version History</h3>
+            <table class="version-table">
+                <thead>
+                    <tr>
+                        <th>Version</th>
+                        <th>Date</th>
+                        <th>Changes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1.0</td>
+                        <td>December 19, 2024</td>
+                        <td>Initial publication</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h2><span class="emoji">📞</span>14. Contact & Complaints</h2>
+            
+            <h3>14.1 Questions or Issues</h3>
+            <div class="contact-box">
+                <p><strong>Email:</strong> <a href="mailto:contact.thecatsizerlab@gmail.com">contact.thecatsizerlab@gmail.com</a></p>
+                <p><strong>Response Time:</strong> 7 business days</p>
+                <p><strong>Required Information:</strong></p>
+                <ul style="margin-top: 10px;">
+                    <li>Subject (data access, concern, rights exercise)</li>
+                    <li>Detailed description</li>
+                    <li>Supporting documents if applicable</li>
+                </ul>
+            </div>
+            
+            <h3>14.2 File a Complaint with Authorities</h3>
+            <p>If you believe we violate your rights, you can lodge complaints with:</p>
+            <ul>
+                <li><strong>CNIL (France):</strong> <a href="https://www.cnil.fr" target="_blank">www.cnil.fr</a></li>
+                <li><strong>Your Country's DPA:</strong> Contact your local data protection authority</li>
+                <li><strong>CCPA (California):</strong> California Attorney General</li>
+                <li><strong>OAIC (Australia):</strong> <a href="https://www.oaic.gov.au" target="_blank">www.oaic.gov.au</a></li>
+            </ul>
+            
+            <h3>14.3 Complaint Procedure</h3>
+            <p><strong>Before escalating to authorities:</strong></p>
+            <ol>
+                <li>Contact us directly (see 14.1)</li>
+                <li>Allow 30 days for resolution</li>
+                <li>Provide evidence of resolution attempts</li>
+            </ol>
+            
+            <h2><span class="emoji">ℹ️</span>15. Additional Information</h2>
+            
+            <h3>15.1 Sensitive Data</h3>
+            <p>We <strong>NEVER</strong> collect:</p>
+            <ul>
+                <li>❌ Biometric data</li>
+                <li>❌ Health data</li>
+                <li>❌ Genetic data</li>
+                <li>❌ Religious/political beliefs</li>
+                <li>❌ Sexual orientation data</li>
+                <li>❌ National ID numbers</li>
+            </ul>
+            
+            <h3>15.2 Profiling & Automated Decisions</h3>
+            <ul>
+                <li><strong>Multiplayer Matching:</strong> Algorithm by level/rank (no profiling)</li>
+                <li><strong>Theme Recommendations:</strong> Usage statistics only</li>
+                <li><strong>Ads:</strong> Google targeting (you control)</li>
+                <li><strong>No automated decisions</strong> affecting your rights</li>
+            </ul>
+            
+            <h3>15.3 External Links</h3>
+            <p>This policy does NOT cover:</p>
+            <ul>
+                <li>Google Play Store</li>
+                <li>Google Services (Gmail, YouTube, etc.)</li>
+                <li>External websites</li>
+            </ul>
+            <p>Please review their privacy policies separately.</p>
+            
+            
+            <h2><span class="emoji">⚡</span>16. Final Provisions</h2>
+            
+            <h3>16.1 Complete Agreement</h3>
+            <p>This policy is the complete agreement between you and Catsizer Lab regarding personal data processing. It supersedes all previous versions.</p>
+            
+            <h3>16.2 Severability</h3>
+            <p>If any provision is invalid, remaining clauses remain enforceable.</p>
+            
+            <h3>16.3 No Waiver</h3>
+            <p>Non-exercise of a right does not constitute waiver of that right.</p>
+            
+            <h3>16.4 Governing Law</h3>
+            <ul>
+                <li><strong>Jurisdiction:</strong> Zigliara, South Corsica, France</li>
+                <li><strong>Governing Law:</strong> French Law + GDPR</li>
+                <li><strong>Competent Courts:</strong> District Courts of Ajaccio, Corsica</li>
+            </ul>
+            
+            <h3>16.5 Prescription Period</h3>
+            <p>GDPR rights must be exercised within 3 years of becoming aware of the violation.</p>
+            
+            <h2><span class="emoji">📚</span>17. Glossary</h2>
+            
+            <div style="margin: 30px 0;">
+                <div style="margin: 15px 0; padding: 15px; background: #f8f9fa; border-radius: 6px;">
+                    <strong style="color: #667eea;">GDPR</strong><br>
+                    General Data Protection Regulation (European Union data protection law)
+                </div>
+                <div style="margin: 15px 0; padding: 15px; background: #f8f9fa; border-radius: 6px;">
+                    <strong style="color: #667eea;">CCPA</strong><br>
+                    California Consumer Privacy Act (US state law)
+                </div>
+                <div style="margin: 15px 0; padding: 15px; background: #f8f9fa; border-radius: 6px;">
+                    <strong style="color: #667eea;">COPPA</strong><br>
+                    Children's Online Privacy Protection Act (US federal law)
+                </div>
+                <div style="margin: 15px 0; padding: 15px; background: #f8f9fa; border-radius: 6px;">
+                    <strong style="color: #667eea;">DPO</strong><br>
+                    Data Protection Officer
+                </div>
+                <div style="margin: 15px 0; padding: 15px; background: #f8f9fa; border-radius: 6px;">
+                    <strong style="color: #667eea;">SCC</strong><br>
+                    Standard Contractual Clauses (for international data transfers)
+                </div>
+                <div style="margin: 15px 0; padding: 15px; background: #f8f9fa; border-radius: 6px;">
+                    <strong style="color: #667eea;">IAP</strong><br>
+                    In-App Purchase
+                </div>
+                <div style="margin: 15px 0; padding: 15px; background: #f8f9fa; border-radius: 6px;">
+                    <strong style="color: #667eea;">GPGS</strong><br>
+                    Google Play Games Services
+                </div>
+                <div style="margin: 15px 0; padding: 15px; background: #f8f9fa; border-radius: 6px;">
+                    <strong style="color: #667eea;">Hive</strong><br>
+                    Encrypted local database for Flutter applications
+                </div>
+                <div style="margin: 15px 0; padding: 15px; background: #f8f9fa; border-radius: 6px;">
+                    <strong style="color: #667eea;">Fly.io</strong><br>
+                    Backend hosting platform with global CDN
+                </div>
+                <div style="margin: 15px 0; padding: 15px; background: #f8f9fa; border-radius: 6px;">
+                    <strong style="color: #667eea;">Consent</strong><br>
+                    Explicit user agreement to data processing
+                </div>
+            </div>
+            
+            <h2 style="margin-top: 50px;"><span class="emoji">❤️</span>Thank You</h2>
+            <p>Thank you for taking the time to read our privacy policy. Your trust is important to us.</p>
+        </main>
+        
+        <footer>
+            <p><strong>Sudoku Puzzle - Privacy Policy</strong></p>
+            <p>Last Updated: December 19, 2024</p>
+            <p>For inquiries: <a href="mailto:contact.thecatsizerlab@gmail.com">contact.thecatsizerlab@gmail.com</a></p>
+            <p>© 2024 Catsizer Lab. All rights reserved.</p>
+        </footer>
     </div>
 </body>
 </html>
