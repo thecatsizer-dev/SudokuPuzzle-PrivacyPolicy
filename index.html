@@ -256,6 +256,13 @@
                 <p>📧 Email: <a href="mailto:contact.thecatsizerlab@gmail.com">contact.thecatsizerlab@gmail.com</a></p>
                 <p>For any data-related inquiries, please contact us at the address above.</p>
             </div>
+            <h3>2.2 App Package Information</h3>
+<ul>
+    <li><strong>App Package Name:</strong> com.catsizerlab.sudoku</li>
+    <li><strong>Google Play Store Link:</strong> <a href="https://play.google.com/store/apps/details?id=com.catsizerlab.sudoku" target="_blank">View on Google Play</a></li>
+    <li><strong>Minimum Android Version:</strong> Android 7.0 (API 24)</li>
+    <li><strong>Target Android Version:</strong> Android 14/15 (API 34/35)</li>
+</ul>
             
             <h2><span class="emoji">📊</span>3. Data We Collect</h2>
             
@@ -378,6 +385,40 @@
                 <li>Public profile information</li>
             </ul>
             <p><strong>Legal Basis:</strong> Service contract | <strong>Purpose:</strong> Leaderboards, social features</p>
+            <h4><span class="emoji">🔐</span>Android Permissions</h4>
+<p>The Application requests the following Android permissions:</p>
+<table>
+    <thead>
+        <tr>
+            <th>Permission</th>
+            <th>Purpose</th>
+            <th>Required</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>INTERNET</code></td>
+            <td>Connect to leaderboard servers, daily challenges, multiplayer</td>
+            <td>✅ Yes</td>
+        </tr>
+        <tr>
+            <td><code>ACCESS_NETWORK_STATE</code></td>
+            <td>Check network availability before server requests</td>
+            <td>✅ Yes</td>
+        </tr>
+        <tr>
+            <td><code>VIBRATE</code></td>
+            <td>Haptic feedback (can be disabled in settings)</td>
+            <td>❌ No</td>
+        </tr>
+        <tr>
+            <td><code>BILLING</code></td>
+            <td>In-App Purchases (Google Play Billing)</td>
+            <td>✅ Yes</td>
+        </tr>
+    </tbody>
+</table>
+<p><strong>Note:</strong> All permissions are requested at runtime and can be revoked in Android Settings > Apps > Sudoku Puzzle > Permissions.</p>
             <h3>3.5 Daily Challenge Data</h3>
 
 <h4><span class="emoji">📅</span>Daily Puzzle Progress</h4>
