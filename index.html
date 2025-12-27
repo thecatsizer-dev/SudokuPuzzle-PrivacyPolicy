@@ -106,6 +106,10 @@
             margin: 10px 0;
         }
         
+        ol {
+            margin: 20px 0 20px 30px;
+        }
+        
         table {
             width: 100%;
             border-collapse: collapse;
@@ -199,6 +203,14 @@
             margin-right: 8px;
         }
         
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
         @media (max-width: 768px) {
             header h1 {
                 font-size: 1.8em;
@@ -232,7 +244,7 @@
             </div>
             <div class="metadata-item">
                 <strong>Last Updated:</strong>
-                December 19, 2024
+                December 27, 2024
             </div>
             <div class="metadata-item">
                 <strong>Email:</strong>
@@ -256,13 +268,14 @@
                 <p>📧 Email: <a href="mailto:contact.thecatsizerlab@gmail.com">contact.thecatsizerlab@gmail.com</a></p>
                 <p>For any data-related inquiries, please contact us at the address above.</p>
             </div>
+            
             <h3>2.2 App Package Information</h3>
-<ul>
-    <li><strong>App Package Name:</strong> com.catsizerlab.sudoku</li>
-    <li><strong>Google Play Store Link:</strong> <a href="https://play.google.com/store/apps/details?id=com.catsizerlab.sudoku" target="_blank">View on Google Play</a></li>
-    <li><strong>Minimum Android Version:</strong> Android 7.0 (API 24)</li>
-    <li><strong>Target Android Version:</strong> Android 14/15 (API 34/35)</li>
-</ul>
+            <ul>
+                <li><strong>App Package Name:</strong> com.catsizerlab.sudoku</li>
+                <li><strong>Google Play Store Link:</strong> <a href="https://play.google.com/store/apps/details?id=com.catsizerlab.sudoku" target="_blank">View on Google Play</a></li>
+                <li><strong>Minimum Android Version:</strong> Android 7.0 (API 24)</li>
+                <li><strong>Target Android Version:</strong> Android 14/15 (API 34/35)</li>
+            </ul>
             
             <h2><span class="emoji">📊</span>3. Data We Collect</h2>
             
@@ -311,6 +324,80 @@
             </ul>
             <p><strong>Legal Basis:</strong> Service contract | <strong>Purpose:</strong> Personalize user experience</p>
             
+            <h4><span class="emoji">🔊</span>Audio Preferences</h4>
+            <ul>
+                <li>Sound enabled/disabled state</li>
+                <li>Music volume level (0.0-1.0)</li>
+                <li>Sound effects volume level (0.0-1.0)</li>
+                <li>Last played music track</li>
+            </ul>
+            <p><strong>Storage:</strong> Device local storage (SharedPreferences)</p>
+            <p><strong>Legal Basis:</strong> Service contract</p>
+            <p><strong>Purpose:</strong> Remember your audio settings across sessions</p>
+            
+            <h4><span class="emoji">☁️</span>Cloud Game Save (GPGS)</h4>
+            <ul>
+                <li>Current grid state (9x9 array of numbers)</li>
+                <li>Initial puzzle grid (unmodified)</li>
+                <li>Solution grid (complete puzzle)</li>
+                <li>Difficulty level (easy/medium/hard/expert)</li>
+                <li>Elapsed time (in seconds)</li>
+                <li>Error count</li>
+                <li>Continues used (if game restarted after loss)</li>
+                <li>Current score</li>
+                <li>Cell notes (9x9 array of note arrays)</li>
+                <li>Hints remaining</li>
+            </ul>
+            <p><strong>Storage:</strong> Google Play Games Saved Games</p>
+            <p><strong>Legal Basis:</strong> Service contract (cloud sync)</p>
+            <p><strong>Purpose:</strong> Resume game across devices</p>
+            <p><strong>Retention:</strong> As long as GPGS account exists</p>
+            <p><strong>Sync:</strong> Automatic when GPGS is connected</p>
+            
+            <div class="box-highlight">
+                <strong>🔒 Privacy:</strong> Cloud saves are encrypted by Google Play Games and only accessible by your account.
+            </div>
+            
+            <h4><span class="emoji">🏅</span>Achievement Progress Tracking (Local)</h4>
+            <ul>
+                <li>Win counters (per difficulty + total)</li>
+                <li>Flawless games count (0 errors)</li>
+                <li>Hints usage statistics</li>
+                <li>Notes usage frequency</li>
+                <li>Correct placement accuracy</li>
+                <li>Win streak counters (current + best)</li>
+                <li>Error-free grids completed</li>
+                <li>Daily challenge participation streak</li>
+                <li>Multiplayer victories</li>
+            </ul>
+            <p><strong>Storage:</strong> Device local storage (SharedPreferences - encrypted)</p>
+            <p><strong>Legal Basis:</strong> Service contract</p>
+            <p><strong>Purpose:</strong> Track achievement unlock progress</p>
+            <p><strong>Sync:</strong> Synced with Google Play Games when achievements are unlocked</p>
+            <p><strong>Retention:</strong> As long as app is installed</p>
+            
+            <h4><span class="emoji">📊</span>Player Profile Statistics</h4>
+            <ul>
+                <li>Total games played (solo + multiplayer)</li>
+                <li>Games won/lost (per game mode)</li>
+                <li>Win rate percentage (automatically calculated)</li>
+                <li>Last game timestamp</li>
+                <li>Profile creation date</li>
+            </ul>
+            <p><strong>Legal Basis:</strong> Service contract</p>
+            <p><strong>Purpose:</strong> Display player performance statistics</p>
+            <p><strong>Visibility:</strong> Private (only visible to you)</p>
+            <p><strong>Retention:</strong> As long as GPGS account exists + 90 days after deletion</p>
+            
+            <div class="box-success">
+                <strong>📢 Note on Privacy Policy Access:</strong> The full privacy policy is permanently accessible via:
+                <ul style="margin-top: 10px;">
+                    <li>Direct link in consent modal (first launch)</li>
+                    <li>Settings > Privacy & Security > View Privacy Policy</li>
+                    <li>Permanent URL: <a href="https://thecatsizer-dev.github.io/SudokuPuzzle-PrivacyPolicy/" target="_blank">https://thecatsizer-dev.github.io/SudokuPuzzle-PrivacyPolicy/</a></li>
+                </ul>
+            </div>
+            
             <h3>3.2 Data Collected Automatically</h3>
             
             <h4><span class="emoji">🖥️</span>Technical Data</h4>
@@ -346,22 +433,67 @@
             </ul>
             <p><strong>Legal Basis:</strong> Legitimate interest (technical maintenance) | <strong>Purpose:</strong> Bug resolution, app stability</p>
             
-          <h3>3.3 Payment Data</h3>
-
-<h4><span class="emoji">💳</span>In-App Purchase Transactions</h4>
-<ul>
-    <li>Products purchased (premium lifetime, theme bundle, individual themes)</li>
-    <li>Purchase tokens (Google Play verification data)</li>
-    <li>Purchase amount and currency</li>
-    <li>Transaction date and time</li>
-    <li>Transaction status (completed, pending, failed, restored)</li>
-    <li>Product IDs (premium_lifetime, theme_spring_premium, theme_tropical_premium, theme_midnight_premium, theme_rainy_premium, theme_desert_premium, theme_golden_premium, theme_cherry_premium, theme_sky_premium, theme_rice_premium, theme_bundle_premium)</li>
-</ul>
-<p><strong>Legal Basis:</strong> Service contract | <strong>Purpose:</strong> Purchase management, product attribution, fraud prevention</p>
-
-<div class="box-success">
-    <strong>✅ Important:</strong> Your payment information is never shared with Catsizer Lab. All payments are processed securely through Google Play Billing, which complies with PCI DSS standards. Purchase tokens are sent to our server exclusively for validation purposes.
-</div>
+            <h4><span class="emoji">🔐</span>Android Permissions</h4>
+            <p>The Application requests the following Android permissions:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Permission</th>
+                        <th>Purpose</th>
+                        <th>Required</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>INTERNET</code></td>
+                        <td>Connect to leaderboard servers, daily challenges, multiplayer</td>
+                        <td>✅ Yes</td>
+                    </tr>
+                    <tr>
+                        <td><code>ACCESS_NETWORK_STATE</code></td>
+                        <td>Check network availability before server requests</td>
+                        <td>✅ Yes</td>
+                    </tr>
+                    <tr>
+                        <td><code>VIBRATE</code></td>
+                        <td>Haptic feedback on correct/incorrect moves (can be disabled in Settings)</td>
+                        <td>✅ Yes (declared in manifest)</td>
+                    </tr>
+                    <tr>
+                        <td><code>BILLING</code></td>
+                        <td>In-App Purchases (Google Play Billing)</td>
+                        <td>✅ Yes</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><strong>Note:</strong> All permissions are requested at runtime and can be revoked in Android Settings > Apps > Sudoku Puzzle > Permissions.</p>
+            
+            <h3>3.3 Payment Data</h3>
+            
+            <h4><span class="emoji">💳</span>In-App Purchase Transactions</h4>
+            <ul>
+                <li>Products purchased (premium lifetime, theme bundle, individual themes)</li>
+                <li>Purchase tokens (Google Play verification data)</li>
+                <li>Purchase amount and currency</li>
+                <li>Transaction date and time</li>
+                <li>Transaction status (completed, pending, failed, restored)</li>
+                <li>Product IDs (premium_lifetime, theme_spring_premium, theme_tropical_premium, theme_midnight_premium, theme_rainy_premium, theme_desert_premium, theme_golden_premium, theme_cherry_premium, theme_sky_premium, theme_rice_premium, theme_bundle_premium)</li>
+            </ul>
+            <p><strong>Legal Basis:</strong> Service contract | <strong>Purpose:</strong> Purchase management, product attribution, fraud prevention</p>
+            
+            <div class="box-success">
+                <strong>✅ Important:</strong> Your payment information is never shared with Catsizer Lab. All payments are processed securely through Google Play Billing, which complies with PCI DSS standards. Purchase tokens are sent to our server exclusively for validation purposes.
+            </div>
+            
+            <h4><span class="emoji">🔄</span>Purchase Restoration</h4>
+            <ul>
+                <li>Purchase restoration requests (timestamp)</li>
+                <li>Server-side purchase validation (Google Play receipt verification)</li>
+                <li>Backup purchase records (in case of Google Play sync failure)</li>
+                <li>Restoration attempts (frequency, device changes)</li>
+            </ul>
+            <p><strong>Purpose:</strong> Ensure purchases are not lost on device change/reinstall</p>
+            <p><strong>Security:</strong> Dual validation (Google Play + server-side)</p>
             
             <h3>3.4 Third-Party Data</h3>
             
@@ -378,6 +510,34 @@
             <p><strong>Legal Basis:</strong> Consent (compliant with Google policy) | <strong>Purpose:</strong> Personalized ad delivery, app monetization</p>
             <p><strong>Manage Ad Preferences:</strong> Go to Settings > Google > Manage your Google Account > Data & Privacy > Ad Settings</p>
             
+            <h4><span class="emoji">🎬</span>Rewarded Video Ads</h4>
+            <ul>
+                <li>Ad impression timestamps</li>
+                <li>Ad completion status (watched fully vs skipped)</li>
+                <li>Rewards earned (continue game, bonus hints)</li>
+                <li>Ad unit IDs shown</li>
+                <li>Frequency capping data</li>
+            </ul>
+            <p><strong>Legal Basis:</strong> Consent (Google ToS)</p>
+            <p><strong>Purpose:</strong> Provide optional rewards in exchange for ad views</p>
+            <p><strong>Provider:</strong> Google AdMob</p>
+            <p><strong>Control:</strong> You can refuse to watch ads (feature unavailable without viewing)</p>
+            
+            <h4><span class="emoji">⏱️</span>Interstitial Ad Frequency Control</h4>
+            <ul>
+                <li>Last ad display timestamp (stored locally)</li>
+                <li>Games played since last ad (counter)</li>
+                <li>Cooldown timer (3 minutes minimum between ads)</li>
+                <li>Ad display frequency (1 ad per 3 games completed)</li>
+            </ul>
+            <p><strong>Storage:</strong> Device local storage (SharedPreferences)</p>
+            <p><strong>Purpose:</strong> Limit ad annoyance, respect user experience</p>
+            <p><strong>Control:</strong> Premium subscription removes all interstitial ads</p>
+            
+            <div class="box-success">
+                <strong>✅ User-Friendly:</strong> Ads are limited to once every 3 minutes AND after 3 completed games to avoid disrupting gameplay.
+            </div>
+            
             <h4><span class="emoji">🏆</span>Google Play Games Services (Leaderboards & Achievements)</h4>
             <ul>
                 <li>Public scores on leaderboards</li>
@@ -385,142 +545,231 @@
                 <li>Public profile information</li>
             </ul>
             <p><strong>Legal Basis:</strong> Service contract | <strong>Purpose:</strong> Leaderboards, social features</p>
-            <h4><span class="emoji">🔐</span>Android Permissions</h4>
-<p>The Application requests the following Android permissions:</p>
-<table>
-    <thead>
-        <tr>
-            <th>Permission</th>
-            <th>Purpose</th>
-            <th>Required</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><code>INTERNET</code></td>
-            <td>Connect to leaderboard servers, daily challenges, multiplayer</td>
-            <td>✅ Yes</td>
-        </tr>
-        <tr>
-            <td><code>ACCESS_NETWORK_STATE</code></td>
-            <td>Check network availability before server requests</td>
-            <td>✅ Yes</td>
-        </tr>
-        <tr>
-            <td><code>VIBRATE</code></td>
-            <td>Haptic feedback (can be disabled in settings)</td>
-            <td>❌ No</td>
-        </tr>
-        <tr>
-            <td><code>BILLING</code></td>
-            <td>In-App Purchases (Google Play Billing)</td>
-            <td>✅ Yes</td>
-        </tr>
-    </tbody>
-</table>
-<p><strong>Note:</strong> All permissions are requested at runtime and can be revoked in Android Settings > Apps > Sudoku Puzzle > Permissions.</p>
+            
+            <h4><span class="emoji">📊</span>Private Statistics Leaderboards (GPGS)</h4>
+            <p>In addition to public leaderboards, we maintain private leaderboards for internal tracking:</p>
+            <ul>
+                <li>Total playtime (cumulative seconds)</li>
+                <li>Games played (all modes combined)</li>
+                <li>Total wins (all difficulties)</li>
+            </ul>
+            <p><strong>Visibility:</strong> Private (only visible to you via GPGS)</p>
+            <p><strong>Status:</strong> These leaderboards are coded in the app but currently disabled in the Google Play Console (for internal use only)</p>
+            <p><strong>Google Play IDs:</strong></p>
+            <ul>
+                <li>CgkIzuudz8UbEAIQAg (playtime)</li>
+                <li>CgkIzuudz8UbEAIQAw (games played)</li>
+                <li>CgkIzuudz8UbEAIQBA (total wins)</li>
+            </ul>
+            
             <h3>3.5 Daily Challenge Data</h3>
-
-<h4><span class="emoji">📅</span>Daily Puzzle Progress</h4>
-<ul>
-    <li>Daily puzzle completion status (completed date stored locally)</li>
-    <li>Best daily scores per challenge date</li>
-    <li>Completion times (in seconds)</li>
-    <li>Number of hints used per challenge (0-2)</li>
-    <li>Submission timestamps</li>
-</ul>
-<p><strong>Legal Basis:</strong> Service contract | <strong>Purpose:</strong> Daily challenge leaderboards, player engagement tracking</p>
-<p><strong>Storage:</strong> PostgreSQL database (Neon) via Fly.io servers (USA)</p>
-<p><strong>Retention:</strong> Indefinite (for leaderboard integrity and historical rankings)</p>
-
-<h4><span class="emoji">🏆</span>Daily Leaderboards</h4>
-<ul>
-    <li>Public rankings (today + all-time)</li>
-    <li>Player names associated with scores</li>
-    <li>Total days participated</li>
-    <li>Average completion times</li>
-</ul>
-<p><strong>Visibility:</strong> All daily challenge scores are publicly visible in leaderboards</p>
-
-<div class="box-highlight">
-    <strong>📢 Public Data Notice:</strong> When you complete a Daily Challenge, your player name, score, and completion time will be publicly visible in the global leaderboard. This data is shared with all users of the application.
-</div>
-
-<h3>3.6 Friends System Data</h3>
-
-<h4><span class="emoji">👥</span>Friend Connections</h4>
-<ul>
-    <li>Unique friend code (8-digit format: XXXX-XXXX)</li>
-    <li>Friend list (player IDs + display names)</li>
-    <li>Friend invitations sent/received (status: pending, accepted, declined)</li>
-    <li>Friendship timestamps (creation date)</li>
-    <li>Last synchronization time</li>
-</ul>
-<p><strong>Legal Basis:</strong> Consent + Service contract | <strong>Purpose:</strong> Social features, friend-to-friend matching</p>
-
-<h4><span class="emoji">🔐</span>Friend Code Generation</h4>
-<p>Your friend code is generated using a deterministic, non-reversible hash algorithm based on your Player ID. This means:</p>
-<ul>
-    <li>The code cannot be traced back to your Player ID</li>
-    <li>It remains the same across all your sessions</li>
-    <li>No personally identifiable information is embedded in the code</li>
-</ul>
-
-<h4><span class="emoji">⚡</span>Friend Invitations</h4>
-<ul>
-    <li>Sender information (Player ID, name, friend code)</li>
-    <li>Recipient friend code (8-digit code)</li>
-    <li>Invitation status (pending, accepted, declined)</li>
-    <li>Game mode and difficulty requested (if challenge)</li>
-</ul>
-<p><strong>Retention:</strong> 60 seconds (auto-expire if not responded), then permanently deleted</p>
-<p><strong>Storage:</strong> PostgreSQL database (Neon) via Fly.io servers (USA)</p>
-
-<div class="box-success">
-    <strong>✅ Privacy by Design:</strong> Friend invitations automatically expire after 60 seconds and are permanently deleted from our servers. Only accepted friendships are retained.
-</div>
-
-<h3>3.7 Challenge System Data</h3>
-
-<h4><span class="emoji">⚔️</span>Player-to-Player Challenges</h4>
-<ul>
-    <li>Challenge sender/receiver information (Player ID, name)</li>
-    <li>Game mode requested (classic, powerup, timeAttack)</li>
-    <li>Difficulty level requested (easy, medium, hard, expert)</li>
-    <li>Challenge acceptance/decline status</li>
-    <li>Challenge timestamps (sent, responded)</li>
-</ul>
-<p><strong>Legal Basis:</strong> Service contract | <strong>Purpose:</strong> Facilitate direct player-to-player matches</p>
-<p><strong>Retention:</strong> 60 seconds maximum (auto-expire), then permanently deleted</p>
-<p><strong>Storage:</strong> Temporary in-memory storage (server RAM), no persistent database storage</p>
-
-<div class="box-highlight">
-    <strong>⏰ Auto-Cleanup:</strong> All challenge data is automatically deleted after 60 seconds, whether accepted, declined, or ignored. No long-term storage is performed.
-</div>
-
-<h3>3.8 Authentication Tokens</h3>
-
-<h4><span class="emoji">🔑</span>JWT Authentication</h4>
-<ul>
-    <li>JWT tokens (JSON Web Tokens) containing:
-        <ul>
-            <li>Player ID (encrypted)</li>
-            <li>Player Name (encrypted)</li>
-            <li>Expiration timestamp (30 days)</li>
-        </ul>
-    </li>
-    <li>Token generation timestamp</li>
-    <li>Token stored locally (SharedPreferences - encrypted)</li>
-</ul>
-<p><strong>Legal Basis:</strong> Service contract + Security (legitimate interest)</p>
-<p><strong>Purpose:</strong> Secure API authentication for leaderboards, daily challenges, friends system</p>
-<p><strong>Expiration:</strong> 30 days (automatic renewal on reconnection)</p>
-<p><strong>Storage Location:</strong> Device local storage (encrypted) + server-side validation</p>
-<p><strong>Security:</strong> Tokens are signed using industry-standard HS256 algorithm with a 32+ character secret key</p>
-
-<div class="box-success">
-    <strong>🔒 Token Security:</strong> JWT tokens are encrypted and cannot be reverse-engineered to extract your Player ID or personal information. They automatically expire after 30 days for security.
-</div>
+            
+            <h4><span class="emoji">📅</span>Daily Puzzle Progress</h4>
+            <ul>
+                <li>Daily puzzle completion status (completed date stored locally)</li>
+                <li>Best daily scores per challenge date</li>
+                <li>Completion times (in seconds)</li>
+                <li>Number of hints used per challenge (0-2)</li>
+                <li>Submission timestamps</li>
+            </ul>
+            <p><strong>Legal Basis:</strong> Service contract | <strong>Purpose:</strong> Daily challenge leaderboards, player engagement tracking</p>
+            <p><strong>Storage:</strong> PostgreSQL database (Neon) via Fly.io servers (USA)</p>
+            <p><strong>Retention:</strong> Indefinite (for leaderboard integrity and historical rankings)</p>
+            
+            <h4><span class="emoji">🏆</span>Daily Leaderboards</h4>
+            <ul>
+                <li>Public rankings (today + all-time)</li>
+                <li>Player names associated with scores</li>
+                <li>Total days participated</li>
+                <li>Average completion times</li>
+            </ul>
+            <p><strong>Visibility:</strong> All daily challenge scores are publicly visible in leaderboards</p>
+            
+            <div class="box-highlight">
+                <strong>📢 Public Data Notice:</strong> When you complete a Daily Challenge, your player name, score, and completion time will be publicly visible in the global leaderboard. This data is shared with all users of the application.
+            </div>
+            
+            <h3>3.6 Friends System Data</h3>
+            
+            <h4><span class="emoji">👥</span>Friend Connections</h4>
+            <ul>
+                <li>Unique friend code (8-digit numeric format: XXXX-XXXX, e.g., 1234-5678)</li>
+                <li>Friend code validation (must match format <code>^\d{4}-\d{4}$</code>)</li>
+                <li>Friend list (player IDs + display names)</li>
+                <li>Friend invitations sent/received (status: pending, accepted, declined)</li>
+                <li>Friendship timestamps (creation date)</li>
+                <li>Last synchronization time</li>
+            </ul>
+            <p><strong>Legal Basis:</strong> Consent + Service contract | <strong>Purpose:</strong> Social features, friend-to-friend matching</p>
+            
+            <h4><span class="emoji">🔐</span>Friend Code Generation</h4>
+            <p>Your friend code is generated using a deterministic, non-reversible hash algorithm based on your Player ID. This means:</p>
+            <ul>
+                <li>The code cannot be traced back to your Player ID</li>
+                <li>It remains the same across all your sessions</li>
+                <li>No personally identifiable information is embedded in the code</li>
+            </ul>
+            
+            <h4><span class="emoji">⚡</span>Friend Invitations</h4>
+            <ul>
+                <li>Sender information (Player ID, name, friend code)</li>
+                <li>Recipient friend code (8-digit code)</li>
+                <li>Invitation status (pending, accepted, declined)</li>
+                <li>Game mode and difficulty requested (if challenge)</li>
+            </ul>
+            <p><strong>Retention:</strong> 60 seconds (auto-expire if not responded), then permanently deleted</p>
+            <p><strong>Storage:</strong> PostgreSQL database (Neon) via Fly.io servers (USA)</p>
+            
+            <div class="box-success">
+                <strong>✅ Privacy by Design:</strong> Friend invitations automatically expire after 60 seconds and are permanently deleted from our servers. Only accepted friendships are retained.
+            </div>
+            
+            <div class="box-highlight">
+                <strong>⚠️ Important:</strong> Friend codes and friendships are tied to your Google Play Games account. If you delete your GPGS account, all associated friend data will be deleted within 12 months.
+            </div>
+            
+            <h3>3.7 Challenge System Data</h3>
+            
+            <h4><span class="emoji">⚔️</span>Player-to-Player Challenges</h4>
+            <ul>
+                <li>Challenge sender/receiver information (Player ID, name)</li>
+                <li>Game mode requested (classic, powerup, timeAttack)</li>
+                <li>Difficulty level requested (easy, medium, hard, expert)</li>
+                <li>Challenge acceptance/decline status</li>
+                <li>Challenge timestamps (sent, responded)</li>
+            </ul>
+            <p><strong>Legal Basis:</strong> Service contract | <strong>Purpose:</strong> Facilitate direct player-to-player matches</p>
+            <p><strong>Retention:</strong> 60 seconds maximum (auto-expire), then permanently deleted</p>
+            <p><strong>Storage:</strong> Temporary in-memory storage (server RAM), no persistent database storage</p>
+            
+            <div class="box-highlight">
+                <strong>⏰ Auto-Cleanup:</strong> All challenge data is automatically deleted after 60 seconds, whether accepted, declined, or ignored. No long-term storage is performed.
+            </div>
+            
+           <h3>3.8 Authentication Tokens</h3>
+            
+            <h4><span class="emoji">🔑</span>JWT Authentication</h4>
+            <ul>
+                <li>JWT tokens (JSON Web Tokens) containing:
+                    <ul>
+                        <li>Player ID (encrypted)</li>
+                        <li>Player Name (encrypted)</li>
+                        <li>Expiration timestamp (30 days)</li>
+                    </ul>
+                </li>
+                <li>Token generation timestamp</li>
+                <li>Token stored locally (SharedPreferences - encrypted)</li>
+            </ul>
+            <p><strong>Legal Basis:</strong> Service contract + Security (legitimate interest)</p>
+            <p><strong>Purpose:</strong> Secure API authentication for leaderboards, daily challenges, friends system</p>
+            <p><strong>Expiration:</strong> 30 days (automatic renewal on reconnection)</p>
+            <p><strong>Storage Location:</strong> Device local storage (encrypted) + server-side validation</p>
+            <p><strong>Security:</strong> Tokens are signed using industry-standard HS256 algorithm with a 32+ character secret key</p>
+            
+            <div class="box-success">
+                <strong>🔒 Token Security:</strong> JWT tokens are encrypted and cannot be reverse-engineered to extract your Player ID or personal information. They automatically expire after 30 days for security.
+            </div>
+            
+            <h3>3.9 Real-Time Multiplayer Data (WebSocket/Socket.IO)</h3>
+            
+            <h4><span class="emoji">🌐</span>WebSocket Connection</h4>
+            <p>During multiplayer matches, your device establishes a real-time WebSocket connection to our game server.</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data Type</th>
+                        <th>Details</th>
+                        <th>Retention</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>IP Address</td>
+                        <td>Used for WebSocket routing and connection management</td>
+                        <td>Session only</td>
+                    </tr>
+                    <tr>
+                        <td>Socket ID</td>
+                        <td>Temporary unique identifier for your WebSocket connection</td>
+                        <td>Until disconnect</td>
+                    </tr>
+                    <tr>
+                        <td>Room ID</td>
+                        <td>Temporary match identifier (shared with opponent)</td>
+                        <td>Until match ends</td>
+                    </tr>
+                    <tr>
+                        <td>Game Moves</td>
+                        <td>Row, column, value placed in real-time</td>
+                        <td>Match duration</td>
+                    </tr>
+                    <tr>
+                        <td>Player Stats</td>
+                        <td>Progress, combo, errors, energy (synced live)</td>
+                        <td>Match duration</td>
+                    </tr>
+                    <tr>
+                        <td>Heartbeat Signals</td>
+                        <td>Connection alive pings (every few seconds)</td>
+                        <td>Not stored</td>
+                    </tr>
+                    <tr>
+                        <td>Power-Up Events</td>
+                        <td>Type, duration, target player</td>
+                        <td>Match duration</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p><strong>Server:</strong> sudokupuzzle-server.fly.dev (Fly.io infrastructure, USA)</p>
+            <p><strong>Transport Security:</strong> WebSocket Secure (WSS) over TLS 1.3</p>
+            <p><strong>Legal Basis:</strong> Service contract (multiplayer functionality)</p>
+            <p><strong>Purpose:</strong> Enable real-time 1v1 synchronization</p>
+            
+            <div class="box-highlight">
+                <strong>⚡ Session-Based:</strong> All WebSocket data is deleted immediately when the match ends or a player disconnects. No persistent storage is performed.
+            </div>
+            
+            <div class="box-success">
+                <strong>🔒 Privacy:</strong> Your IP address is only used for connection routing and is never stored or shared with other players. Only your GPGS Player Name is visible to opponents.
+            </div>
+            
+            <h3>3.10 Backend Server Infrastructure</h3>
+            
+            <h4><span class="emoji">🏆</span>Leaderboard Backend Server</h4>
+            <ul>
+                <li><strong>Server URL:</strong> sudokupuzzle-leaderboards.fly.dev</li>
+                <li><strong>Location:</strong> Fly.io infrastructure (USA)</li>
+                <li><strong>Purpose:</strong> Store and rank player scores globally</li>
+                <li><strong>Data stored:</strong>
+                    <ul>
+                        <li>Player ID (GPGS)</li>
+                        <li>Player Name (GPGS)</li>
+                        <li>Total scores per category (solo/multi/daily)</li>
+                        <li>Games played count</li>
+                        <li>Last submission timestamp</li>
+                    </ul>
+                </li>
+                <li><strong>Security:</strong> JWT authentication (Bearer tokens)</li>
+                <li><strong>Retention:</strong> 90 days inactivity-based cleanup</li>
+            </ul>
+            
+            <h4><span class="emoji">💾</span>PostgreSQL Database (Neon)</h4>
+            <ul>
+                <li><strong>Purpose:</strong> Persistent storage for daily challenges, friends, leaderboards</li>
+                <li><strong>Location:</strong> Neon infrastructure (USA)</li>
+                <li><strong>Data stored:</strong>
+                    <ul>
+                        <li>Daily challenge scores and completion times</li>
+                        <li>Friend codes and friendships</li>
+                        <li>Friend invitations (60s expiry)</li>
+                        <li>Player statistics</li>
+                    </ul>
+                </li>
+                <li><strong>Security:</strong> Encrypted at rest (AES-256)</li>
+                <li><strong>Access:</strong> API requests only (no direct database access)</li>
+            </ul>
             
             <h2><span class="emoji">🎯</span>4. How We Use Your Data</h2>
             
@@ -577,6 +826,16 @@
                 </tbody>
             </table>
             
+            <h4><span class="emoji">🔄</span>Cloud Sync Conflict Resolution</h4>
+            <p>When syncing data between device and cloud (GPGS), we use a <strong>MAX merge strategy</strong>:</p>
+            <ul>
+                <li>For win counters: Highest value kept (prevents data loss)</li>
+                <li>For playtime: Longest time kept</li>
+                <li>For settings: Most recent timestamp wins</li>
+            </ul>
+            <p><strong>Example:</strong> If you have 10 wins locally and 15 wins in cloud, we keep 15.</p>
+            <p><strong>Rationale:</strong> This prevents accidental data loss from reinstalls or device changes.</p>
+            
             <h3>4.2 Data Sharing</h3>
             <p>Your data is <strong>NEVER sold</strong> to third parties.</p>
             <table>
@@ -614,80 +873,83 @@
                         <td>✅ Yes (PCI DSS)</td>
                     </tr>
                     <tr>
+                        <td><strong>PostgreSQL (Neon)</strong></td>
+                        <td>Scores, daily data, friends, challenges</td>
+                        <td>Persistent database storage</td>
+                        <td>✅ Yes (encrypted at rest)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>JWT Tokens (Local)</strong></td>
+                        <td>Authentication tokens (Player ID + Name)</td>
+                        <td>API authentication</td>
+                        <td>✅ Yes (30-day expiry, HS256 signed)</td>
+                    </tr>
+                    <tr>
                         <td><strong>Legal Authorities</strong></td>
                         <td>Relevant data</td>
                         <td>Legal obligation upon request</td>
                         <td>N/A</td>
                     </tr>
-                    <tr>
-    <td><strong>PostgreSQL (Neon)</strong></td>
-    <td>Scores, daily data, friends, challenges</td>
-    <td>Persistent database storage</td>
-    <td>✅ Yes (encrypted at rest)</td>
-</tr>
-<tr>
-    <td><strong>JWT Tokens (Local)</strong></td>
-    <td>Authentication tokens (Player ID + Name)</td>
-    <td>API authentication</td>
-    <td>✅ Yes (30-day expiry, HS256 signed)</td>
-</tr>
                 </tbody>
             </table>
             
             <h2><span class="emoji">⏳</span>5. Data Retention</h2>
-
-<h3>5.1 Game Data Retention</h3>
-<ul>
-    <li><strong>Solo Progression History:</strong> Retained as long as GPGS account exists + 12 months after deletion</li>
-    <li><strong>Multiplayer Scores:</strong> 90 days after last activity (inactivity-based cleanup)</li>
-    <li><strong>Daily Challenge Scores:</strong> Indefinite (for leaderboard integrity)</li>
-    <li><strong>Match Statistics:</strong> 2 years (classic/powerup/timeAttack match history)</li>
-    <li><strong>Technical Logs:</strong> 30 days (crash reports, error logs)</li>
-</ul>
-
-<h3>5.2 Payment Data Retention</h3>
-<ul>
-    <li><strong>Completed Transactions:</strong> 7 years (tax compliance requirement - France & EU)</li>
-    <li><strong>Failed Transactions:</strong> 30 days (then permanently deleted)</li>
-    <li><strong>Purchase History:</strong> Indefinite via Google Play Store (managed by Google)</li>
-    <li><strong>Purchase Tokens:</strong> 90 days after last validation (server-side)</li>
-</ul>
-
-<h3>5.3 Profile & Preference Data</h3>
-<ul>
-    <li><strong>GPGS Data:</strong> As long as your Google account exists (managed by Google)</li>
-    <li><strong>Preference Settings:</strong> As long as GPGS account exists + 90 days after deletion</li>
-    <li><strong>Cookies/Analytics:</strong> 2 years (automatic reset)</li>
-    <li><strong>JWT Tokens:</strong> 30 days (automatic expiration)</li>
-</ul>
-
-<h3>5.4 Friends & Social Data</h3>
-<ul>
-    <li><strong>Friend Codes:</strong> As long as GPGS account exists</li>
-    <li><strong>Friendships:</strong> Until manually deleted by user OR 12 months after GPGS account deletion</li>
-    <li><strong>Friend Invitations (Pending):</strong> 60 seconds maximum (auto-expire)</li>
-    <li><strong>Friend Invitations (Declined):</strong> Immediately deleted upon decline</li>
-    <li><strong>Challenge Invitations:</strong> 60 seconds maximum (auto-expire), no persistent storage</li>
-</ul>
-
-<div class="box-highlight">
-    <strong>⚠️ Important:</strong> Friend codes and friendships are tied to your Google Play Games account. If you delete your GPGS account, all associated friend data will be deleted within 12 months.
-</div>
+            
+            <h3>5.1 Game Data Retention</h3>
+            <ul>
+                <li><strong>Solo Progression History:</strong> Retained as long as GPGS account exists + 12 months after deletion</li>
+                <li><strong>Multiplayer Scores:</strong> 90 days after last activity (inactivity-based cleanup)</li>
+                <li><strong>Daily Challenge Scores:</strong> Indefinite (for leaderboard integrity)</li>
+                <li><strong>Match Statistics:</strong> 2 years (classic/powerup/timeAttack match history)</li>
+                <li><strong>Technical Logs:</strong> 30 days (crash reports, error logs)</li>
+            </ul>
+            
+            <h3>5.2 Payment Data Retention</h3>
+            <ul>
+                <li><strong>Completed Transactions:</strong> 7 years (tax compliance requirement - France & EU)</li>
+                <li><strong>Failed Transactions:</strong> 30 days (then permanently deleted)</li>
+                <li><strong>Purchase History:</strong> Indefinite via Google Play Store (managed by Google)</li>
+                <li><strong>Purchase Tokens:</strong> 90 days after last validation (server-side)</li>
+            </ul>
+            
+            <h3>5.3 Profile & Preference Data</h3>
+            <ul>
+                <li><strong>GPGS Data:</strong> As long as your Google account exists (managed by Google)</li>
+                <li><strong>Preference Settings:</strong> As long as GPGS account exists + 90 days after deletion</li>
+                <li><strong>Cookies/Analytics:</strong> 2 years (automatic reset)</li>
+                <li><strong>JWT Tokens:</strong> 30 days (automatic expiration)</li>
+            </ul>
+            
+            <h3>5.4 Friends & Social Data</h3>
+            <ul>
+                <li><strong>Friend Codes:</strong> As long as GPGS account exists</li>
+                <li><strong>Friendships:</strong> Until manually deleted by user OR 12 months after GPGS account deletion</li>
+                <li><strong>Friend Invitations (Pending):</strong> 60 seconds maximum (auto-expire)</li>
+                <li><strong>Friend Invitations (Declined):</strong> Immediately deleted upon decline</li>
+                <li><strong>Challenge Invitations:</strong> 60 seconds maximum (auto-expire), no persistent storage</li>
+            </ul>
+            
+            <div class="box-highlight">
+                <strong>⚠️ Important:</strong> Friend codes and friendships are tied to your Google Play Games account. If you delete your GPGS account, all associated friend data will be deleted within 12 months.
+            </div>
             
             <h2><span class="emoji">🔐</span>6. Data Security</h2>
             
             <h3>6.1 Technical Measures</h3>
             <ul>
-                <li><strong>Encryption in Transit:</strong> HTTPS/TLS 1.2+ for all transfers</li>
+                <li><strong>Encryption in Transit:</strong> HTTPS/TLS 1.3 for all transfers</li>
                 <li><strong>Encryption at Rest:</strong> Local data encrypted via Hive encryption</li>
                 <li><strong>Server Isolation:</strong> Fly.io infrastructure with network isolation</li>
                 <li><strong>No Payment Storage:</strong> Payment data remains with Google (never stored locally)</li>
                 <li><strong>Input Validation:</strong> Protection against SQL injection, XSS attacks</li>
                 <li><strong>JWT Authentication:</strong> Secure tokens with 30-day expiration, HS256 signature algorithm</li>
-<li><strong>PostgreSQL Encryption:</strong> Data encrypted at rest via Neon infrastructure (AES-256)</li>
-<li><strong>Friend Code Hashing:</strong> Non-reversible deterministic hashing (cannot be traced back to Player ID)</li>
-<li><strong>Challenge Data Volatility:</strong> Challenges stored in RAM only (60s max), never written to disk</li>
-<li><strong>Purchase Token Validation:</strong> Tokens sent to server over HTTPS/TLS 1.3, validated once, then discarded</li>
+                <li><strong>PostgreSQL Encryption:</strong> Data encrypted at rest via Neon infrastructure (AES-256)</li>
+                <li><strong>Friend Code Hashing:</strong> Non-reversible deterministic hashing (cannot be traced back to Player ID)</li>
+                <li><strong>Challenge Data Volatility:</strong> Challenges stored in RAM only (60s max), never written to disk</li>
+                <li><strong>Purchase Token Validation:</strong> Tokens sent to server over HTTPS/TLS 1.3, validated once, then discarded</li>
+                <li><strong>Request Retry Logic:</strong> 3 automatic retries with exponential backoff (3s, 6s) on server errors</li>
+                <li><strong>Request Timeouts:</strong> 15 seconds maximum per API request (prevents hanging)</li>
+                <li><strong>Cold Start Handling:</strong> Extended timeout (12s) on server wake-up (Fly.io sleep mode)</li>
             </ul>
             
             <h3>6.2 Organizational Measures</h3>
@@ -838,6 +1100,15 @@
                 <li>Customize (granular control per category)</li>
             </ul>
             
+            <div class="box-success">
+                <strong>📄 Privacy Policy Access:</strong> The full privacy policy is accessible via:
+                <ul style="margin-top: 10px;">
+                    <li>Direct link in consent modal (first launch)</li>
+                    <li>Settings > Privacy & Security > View Privacy Policy</li>
+                    <li>Permanent URL: <a href="https://thecatsizer-dev.github.io/SudokuPuzzle-PrivacyPolicy/" target="_blank">https://thecatsizer-dev.github.io/SudokuPuzzle-PrivacyPolicy/</a></li>
+                </ul>
+            </div>
+            
             <h3>9.2 Managing Your Preferences</h3>
             <p>Modify consent anytime via: <strong>Settings > Privacy & Security</strong></p>
             <table>
@@ -958,7 +1229,7 @@
             <ul>
                 <li><strong>Europe:</strong> Google Cloud (Frankfurt/Ireland)</li>
                 <li><strong>Outside EU:</strong> Data shared with Google (USA-based)</li>
-                <li><strong>Fly.io:</strong> Decentralized CDN infrastructure</li>
+                <li><strong>Fly.io:</strong> Decentralized CDN infrastructure (USA)</li>
             </ul>
             
             <h3>12.2 Legal Safeguards</h3>
@@ -995,28 +1266,33 @@
                 <li><strong>Acceptance:</strong> New consent required for major changes</li>
             </ul>
             
-           <h3>13.3 Version History</h3>
-<table class="version-table">
-    <thead>
-        <tr>
-            <th>Version</th>
-            <th>Date</th>
-            <th>Changes</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>1.0</td>
-            <td>December 19, 2024</td>
-            <td>Initial publication</td>
-        </tr>
-        <tr>
-            <td>1.1</td>
-            <td>December 20, 2024</td>
-            <td>Added: Daily Challenge system, Friends system, Challenge system, JWT tokens, PostgreSQL database, Purchase validation details</td>
-        </tr>
-    </tbody>
-</table>
+            <h3>13.3 Version History</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Version</th>
+                        <th>Date</th>
+                        <th>Changes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1.0</td>
+                        <td>December 19, 2024</td>
+                        <td>Initial publication</td>
+                    </tr>
+                    <tr>
+                        <td>1.1</td>
+                        <td>December 20, 2024</td>
+                        <td>Added: Daily Challenge system, Friends system, Challenge system, JWT tokens, PostgreSQL database, Purchase validation details</td>
+                    </tr>
+                    <tr>
+                        <td>1.2</td>
+                        <td>December 27, 2024</td>
+                        <td>Added: Socket.IO (WebSocket) real-time data, Backend server infrastructure details (Fly.io, Neon PostgreSQL), Rewarded/Interstitial ads timing, Audio preferences, Achievement tracking, Cloud sync conflict resolution, Request retry logic, Private GPGS leaderboards, Friend code validation format, Purchase restoration process, Vibration permission clarification</td>
+                    </tr>
+                </tbody>
+            </table>
             
             <h2><span class="emoji">📞</span>14. Contact & Complaints</h2>
             
@@ -1079,7 +1355,6 @@
             </ul>
             <p>Please review their privacy policies separately.</p>
             
-            
             <h2><span class="emoji">⚡</span>16. Final Provisions</h2>
             
             <h3>16.1 Complete Agreement</h3>
@@ -1141,6 +1416,18 @@
                     Backend hosting platform with global CDN
                 </div>
                 <div style="margin: 15px 0; padding: 15px; background: #f8f9fa; border-radius: 6px;">
+                    <strong style="color: #667eea;">Socket.IO</strong><br>
+                    Real-time WebSocket library for multiplayer synchronization
+                </div>
+                <div style="margin: 15px 0; padding: 15px; background: #f8f9fa; border-radius: 6px;">
+                    <strong style="color: #667eea;">JWT</strong><br>
+                    JSON Web Token - Secure authentication token format
+                </div>
+                <div style="margin: 15px 0; padding: 15px; background: #f8f9fa; border-radius: 6px;">
+                    <strong style="color: #667eea;">PostgreSQL (Neon)</strong><br>
+                    Serverless PostgreSQL database provider
+                </div>
+                <div style="margin: 15px 0; padding: 15px; background: #f8f9fa; border-radius: 6px;">
                     <strong style="color: #667eea;">Consent</strong><br>
                     Explicit user agreement to data processing
                 </div>
@@ -1148,11 +1435,18 @@
             
             <h2 style="margin-top: 50px;"><span class="emoji">❤️</span>Thank You</h2>
             <p>Thank you for taking the time to read our privacy policy. Your trust is important to us.</p>
+            
+            <div class="box-success" style="margin-top: 40px;">
+                <strong>✅ PRIVACY POLICY COMPLETE</strong>
+                <p style="margin-top: 15px;">This document contains the complete Privacy Policy for Sudoku Puzzle by Catsizer Lab.</p>
+                <p style="margin-top: 10px;"><strong>Total Sections:</strong> 17 complete sections covering all data collection, processing, security, and user rights.</p>
+                <p style="margin-top: 10px;"><strong>Last Updated:</strong> December 27, 2024 (Version 1.2)</p>
+            </div>
         </main>
         
         <footer>
             <p><strong>Sudoku Puzzle - Privacy Policy</strong></p>
-            <p>Last Updated: December 19, 2024</p>
+            <p>Version 1.2 - Last Updated: December 27, 2024</p>
             <p>For inquiries: <a href="mailto:contact.thecatsizerlab@gmail.com">contact.thecatsizerlab@gmail.com</a></p>
             <p>© 2024 Catsizer Lab. All rights reserved.</p>
         </footer>
