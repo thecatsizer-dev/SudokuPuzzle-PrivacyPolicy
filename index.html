@@ -988,85 +988,164 @@
             </ul>
             
             <h3 id="data-deletion">7.3 Right to Erasure (GDPR Article 17)</h3>
-            <p>You can request deletion of your personal data associated with your Google Play Games account.</p>
-            
-            <div class="box-highlight">
-                <strong>⚠️ Important:</strong> Sudoku Puzzle does NOT have its own account system. All player data is tied to your <strong>Google Play Games Services (GPGS) Player ID</strong>. We can only delete data stored on our servers, not your Google account data.
-            </div>
-            
-            <h4><span class="emoji">📧</span>How to Request Data Deletion</h4>
-            <p>Send an email to <a href="mailto:contact.thecatsizerlab@gmail.com?subject=Data%20Deletion%20Request%20-%20Sudoku%20Puzzle">contact.thecatsizerlab@gmail.com</a> with the following information:</p>
-            <ul>
-                <li><strong>Subject:</strong> "Data Deletion Request - Sudoku Puzzle"</li>
-                <li><strong>Your Google Play Games Player ID</strong> (find it in: App Settings > Account > Player ID)</li>
-                <li><strong>Your display name</strong> shown in the app</li>
-                <li><strong>Scope of deletion:</strong>
-                    <ul>
-                        <li>All data (complete deletion)</li>
-                        <li>Specific data only (e.g., leaderboards, friends, daily challenges)</li>
-                    </ul>
-                </li>
-            </ul>
-            
-            <p><strong>Processing Time:</strong> Maximum 30 days</p>
-            <p><strong>Confirmation:</strong> You will receive an email confirmation once deletion is complete.</p>
-            
-            <h4><span class="emoji">🗑️</span>What Gets Deleted from Our Servers</h4>
-            <ul>
-                <li>✅ All game scores (solo, multiplayer, daily challenges) from our leaderboards database</li>
-                <li>✅ Your progression data and statistics stored on our servers</li>
-                <li>✅ Friend codes and friendships in our database</li>
-                <li>✅ Daily challenge submissions and rankings</li>
-                <li>✅ Match history records</li>
-                <li>✅ JWT authentication tokens</li>
-                <li>⚠️ Purchase transaction records (kept 7 years for tax compliance - France & EU legal requirement)</li>
-            </ul>
-            
-            <h4><span class="emoji">❌</span>What We CANNOT Delete (Managed by Google)</h4>
-            <p>The following data is managed by Google and cannot be deleted by Catsizer Lab:</p>
-            <ul>
-                <li>❌ Your Google Play Games profile (Player ID, display name, avatar)</li>
-                <li>❌ GPGS achievements and leaderboards managed by Google</li>
-                <li>❌ GPGS cloud save data (stored on Google servers)</li>
-                <li>❌ Google Play Store purchase history</li>
-                <li>❌ Google AdMob advertising data</li>
-                <li>❌ Firebase Analytics data (if collected)</li>
-            </ul>
-            <p><em>To delete these, you must manage them through your Google Account settings or contact Google directly.</em></p>
-            
-            <h4><span class="emoji">🔄</span>How to Delete Google-Managed Data</h4>
-            <p><strong>To delete your Google Play Games data:</strong></p>
-            <ol>
-                <li>Open the <strong>Google Play Games</strong> app on your device</li>
-                <li>Tap your profile icon (top right) > <strong>Settings</strong></li>
-                <li>Scroll to <strong>Delete Play Games account & data</strong></li>
-                <li>Follow the instructions to permanently delete your GPGS profile</li>
-            </ol>
-            <p><strong>Or visit:</strong> <a href="https://support.google.com/googleplay/answer/9469245" target="_blank">Google Play Games Help - Delete your Play Games profile</a></p>
-            
-            <p><strong>To delete Google Advertising data:</strong></p>
-            <ul>
-                <li>Go to <a href="https://myaccount.google.com/data-and-privacy" target="_blank">myaccount.google.com/data-and-privacy</a></li>
-                <li>Navigate to <strong>Ad settings</strong> > Manage or delete ad data</li>
-            </ul>
-            
-            <p><strong>To uninstall the app and delete local data:</strong></p>
-            <ol>
-                <li>Long-press the Sudoku Puzzle app icon</li>
-                <li>Select <strong>Uninstall</strong></li>
-                <li>Confirm deletion (this removes all local device data)</li>
-            </ol>
-            
-            <div class="box-warning">
-                <strong>⚠️ Permanent Action:</strong> Data deletion from our servers is <strong>permanent and irreversible</strong>. You will lose:
-                <ul style="margin-top: 10px;">
-                    <li>All leaderboard rankings and scores</li>
-                    <li>Friend connections and friend codes</li>
-                    <li>Daily challenge history and records</li>
-                    <li>Match statistics and progression data</li>
-                </ul>
-                <p style="margin-top: 10px;"><strong>Note:</strong> Premium purchases remain tied to your Google account and can be restored if you reinstall the app.</p>
-            </div>
+<p>You can request deletion of your personal data. However, certain data must be retained for the app to function properly.</p>
+
+<h4><span class="emoji">🗑️</span>What Can Be Deleted</h4>
+<table>
+    <thead>
+        <tr>
+            <th>Data Type</th>
+            <th>Deletion Method</th>
+            <th>Effect</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Google Play Games Profile</strong></td>
+            <td>Delete GPGS account via Google Settings</td>
+            <td>Complete account removal from GPGS (managed by Google)</td>
+        </tr>
+        <tr>
+            <td><strong>Local Device Data</strong></td>
+            <td>Uninstall app or Clear Data in Android Settings</td>
+            <td>All local progress deleted</td>
+        </tr>
+        <tr>
+            <td><strong>Specific Friendships</strong></td>
+            <td>Settings > Friends > Remove Friend</td>
+            <td>Individual friend removed from your list</td>
+        </tr>
+        <tr>
+            <td><strong>JWT Tokens</strong></td>
+            <td>Automatic after 30 days OR manual logout</td>
+            <td>Re-authentication required</td>
+        </tr>
+        <tr>
+            <td><strong>Temporary Game Backups</strong></td>
+            <td>Automatic after 1 hour</td>
+            <td>No manual action needed</td>
+        </tr>
+    </tbody>
+</table>
+
+<h4><span class="emoji">🔒</span>What CANNOT Be Deleted (Service Integrity)</h4>
+<p>The following data is <strong>essential for the app to function</strong> and cannot be deleted while you maintain an active account:</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Data Type</th>
+            <th>Reason for Retention</th>
+            <th>Legal Basis (GDPR)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Leaderboard Scores</strong></td>
+            <td>Required for competitive ranking integrity. Deleting scores would artificially boost other players' ranks.</td>
+            <td>Article 17.3.b (Public Interest) + Article 6.1.b (Contract)</td>
+        </tr>
+        <tr>
+            <td><strong>Player Profile Statistics</strong><br>(games played, win rate, etc.)</td>
+            <td>Core functionality of your account. Without stats, profile features are non-functional.</td>
+            <td>Article 6.1.b (Contract - necessary for service provision)</td>
+        </tr>
+        <tr>
+            <td><strong>Friend Connections</strong></td>
+            <td>Social feature foundation. Your friends list is part of your account data.</td>
+            <td>Article 6.1.b (Contract) + Article 6.1.a (Consent - given when adding friends)</td>
+        </tr>
+        <tr>
+            <td><strong>Friend Code</strong></td>
+            <td>Unique identifier for friend system. Required for other players to find you.</td>
+            <td>Article 6.1.b (Contract)</td>
+        </tr>
+        <tr>
+            <td><strong>Daily Challenge History</strong></td>
+            <td>Historical leaderboard integrity. Past rankings cannot be retroactively altered.</td>
+            <td>Article 17.3.b (Public Interest)</td>
+        </tr>
+        <tr>
+            <td><strong>Match History</strong></td>
+            <td>Used for matchmaking balancing and anti-cheat systems.</td>
+            <td>Article 6.1.f (Legitimate Interest - fraud prevention)</td>
+        </tr>
+        <tr>
+            <td><strong>Premium Purchases</strong></td>
+            <td>Legal requirement for tax records and fraud prevention.</td>
+            <td>Article 17.3.b (Legal Obligation - 7 years retention, France/EU law)</td>
+        </tr>
+        <tr>
+            <td><strong>Player Name (GPGS)</strong></td>
+            <td>Managed by Google Play Games Services. We cannot delete GPGS data.</td>
+            <td>Third-party service (see Google's Privacy Policy)</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="box-warning">
+    <strong>⚠️ Important Understanding:</strong> Sudoku Puzzle is a <strong>competitive multiplayer game with persistent rankings</strong>. The "Right to Erasure" under GDPR has exceptions when:
+    <ul style="margin-top: 10px;">
+        <li>Data is necessary for contract performance (Article 6.1.b) ✅</li>
+        <li>Data serves a public interest (leaderboard integrity - Article 17.3.b) ✅</li>
+        <li>Data is required by law (tax records - Article 17.3.b) ✅</li>
+    </ul>
+    <p style="margin-top: 10px;"><strong>Your choice:</strong> Keep your account with all features OR delete your Google Play Games account (removes everything via Google).</p>
+</div>
+
+<h4><span class="emoji">🔄</span>How to Completely Remove Your Data</h4>
+<p>If you want to completely erase your presence from the app, you must:</p>
+
+<ol>
+    <li><strong>Delete Your Google Play Games Account</strong>
+        <ul>
+            <li>Open Google Play Games app</li>
+            <li>Tap Profile > Settings</li>
+            <li>Select "Delete Play Games account & data"</li>
+            <li><strong>Effect:</strong> All GPGS data deleted within 30 days (managed by Google)</li>
+        </ul>
+    </li>
+    <li><strong>Uninstall Sudoku Puzzle</strong>
+        <ul>
+            <li>Long-press app icon > Uninstall</li>
+            <li><strong>Effect:</strong> All local device data deleted immediately</li>
+        </ul>
+    </li>
+    <li><strong>Request Server Data Cleanup</strong> (Optional)
+        <ul>
+            <li>Email <a href="mailto:contact.thecatsizerlab@gmail.com">contact.thecatsizerlab@gmail.com</a></li>
+            <li>Provide proof of GPGS account deletion</li>
+            <li><strong>We will delete:</strong> Orphaned server records (scores, friendships, etc.) within 90 days</li>
+            <li><strong>We will retain:</strong> Purchase records (7 years - legal requirement)</li>
+        </ul>
+    </li>
+</ol>
+
+<div class="box-highlight">
+    <strong>📧 Manual Deletion Request:</strong> If you've deleted your GPGS account and want us to expedite server cleanup, email us with:
+    <ul style="margin-top: 10px;">
+        <li>Your former Player ID (if known)</li>
+        <li>Your former display name</li>
+        <li>Screenshot of GPGS account deletion confirmation</li>
+    </ul>
+    <p style="margin-top: 10px;"><strong>Processing time:</strong> 30 days maximum</p>
+</div>
+
+<h4><span class="emoji">⚖️</span>GDPR Compliance Justification</h4>
+<p>We comply with GDPR while maintaining service integrity through these legal bases:</p>
+
+<ul>
+    <li><strong>Article 6.1.b (Contract Necessity):</strong> Your game data, stats, and friends are <em>necessary to provide the service you signed up for</em>. Deleting them would render your account non-functional.</li>
+    <li><strong>Article 17.3.b (Public Interest):</strong> Leaderboard integrity is a public interest for all competitive players. Retroactive score deletion would unfairly manipulate rankings.</li>
+    <li><strong>Article 17.3.b (Legal Obligation):</strong> Purchase records must be retained 7 years for tax compliance (French/EU law).</li>
+    <li><strong>Article 6.1.f (Legitimate Interest):</strong> Match history used for anti-cheat and matchmaking balance.</li>
+</ul>
+
+<p><strong>Conclusion:</strong> If you want to stop using the app but keep your GPGS account active, simply uninstall the app. If you want complete erasure, you must delete your Google Play Games account (which we don't control).</p>
+
+<div class="box-success">
+    <strong>✅ Your Rights Protected:</strong> You can stop using the service anytime (uninstall). Complete data erasure requires closing your Google account (standard industry practice for games).
+</div>
             
             <h3>7.3.1 Partial Data Deletion</h3>
             <p>You can request deletion of specific types of data without deleting everything:</p>
