@@ -302,17 +302,88 @@
             </ul>
             <p><strong>Legal Basis:</strong> Service contract | <strong>Purpose:</strong> Save progression, populate leaderboards, improve gameplay</p>
             
-            <h4><span class="emoji">👥</span>Multiplayer Data</h4>
-            <ul>
-                <li>Opponent's display name</li>
-                <li>Real-time game progression</li>
-                <li>Match statistics (correct moves, errors, combo)</li>
-                <li>Match results</li>
-                <li>Energy and power-ups used</li>
-                <li>Friends list and friend codes</li>
-                <li>Pending friend invitations</li>
-            </ul>
-            <p><strong>Legal Basis:</strong> Service contract | <strong>Purpose:</strong> Real-time multiplayer sync, leaderboards, game balancing</p>
+           <h4><span class="emoji">👥</span>Multiplayer Data</h4>
+<ul>
+    <li>Opponent's display name</li>
+    <li>Real-time game progression</li>
+    <li>Match statistics (correct moves, errors, combo)</li>
+    <li>Match results</li>
+    <li>Energy and power-ups used</li>
+    <li>Friends list and friend codes</li>
+    <li>Pending friend invitations</li>
+</ul>
+<p><strong>Legal Basis:</strong> Service contract | <strong>Purpose:</strong> Real-time multiplayer sync, leaderboards, game balancing</p>
+
+<h5><span class="emoji">💾</span>Match Details Backup (Local)</h5>
+<ul>
+    <li>Last 5 matches stored in device SharedPreferences</li>
+    <li>Includes: opponent name, scores, victory/defeat, reason, timestamp</li>
+</ul>
+<p><strong>Purpose:</strong> Display recent match history offline</p>
+<p><strong>Retention:</strong> Until manual app data clear</p>
+<p><strong>Storage:</strong> Encrypted SharedPreferences (JSON format)</p>
+
+<h5><span class="emoji">⏱️</span>Deferred Game Results (Backup System)</h5>
+
+<p><strong>Purpose:</strong> Prevent lost match results due to disconnects during game_over event</p>
+
+<p><strong>Storage:</strong></p>
+<ul>
+    <li>PostgreSQL database (Neon) - table: finished_games</li>
+    <li>Columns stored:
+        <ul>
+            <li>room_id (UNIQUE) - Match identifier</li>
+            <li>winner_id, winner_name, winner_score</li>
+            <li>loser_id, loser_name, loser_score</li>
+            <li>reason (completed, abandoned, timeout, too_many_errors)</li>
+            <li>winner_delivered (BOOLEAN) - Has winner retrieved result?</li>
+            <li>loser_delivered (BOOLEAN) - Has loser retrieved result?</li>
+            <li>created_at (TIMESTAMP)</li>
+        </ul>
+    </li>
+</ul>
+
+<p><strong>Dual-Flag Delivery System:</strong></p>
+<ol>
+    <li>When a player is offline at match end, result is stored with their delivery flag = FALSE</li>
+    <li>When player reconnects and retrieves result via GET /api/game_over/check/{playerId}, their flag becomes TRUE</li>
+    <li>Row is ONLY deleted when BOTH winner_delivered AND loser_delivered are TRUE</li>
+    <li>This ensures both players receive their match result exactly once</li>
+</ol>
+
+<p><strong>API Endpoints:</strong></p>
+<ul>
+    <li>POST /api/game_over/batch - Store results for multiple disconnected players (atomic batch insert)</li>
+    <li>GET /api/game_over/check/{playerId} - Atomic retrieval sequence:
+        <ul>
+            <li>SELECT FOR UPDATE SKIP LOCKED (prevents race conditions)</li>
+            <li>UPDATE delivery flag for requesting player (winner_delivered or loser_delivered)</li>
+            <li>DELETE row if both flags are TRUE</li>
+            <li>Returns match result in single transaction</li>
+        </ul>
+    </li>
+</ul>
+
+<p><strong>Retention:</strong></p>
+<ul>
+    <li>Until both players retrieve result (automatic deletion after dual-confirmation)</li>
+    <li>Auto-cleanup: Results older than 1 hour are deleted (even if not retrieved)</li>
+    <li>Cleanup runs every hour via scheduled job</li>
+</ul>
+
+<p><strong>Privacy:</strong></p>
+<ul>
+    <li>Stored in encrypted PostgreSQL (Neon) with SSL/TLS connections</li>
+    <li>No persistent retention after both players confirm delivery</li>
+    <li>Maximum retention: 1 hour (hard limit via cleanup job)</li>
+</ul>
+
+<p><strong>Security:</strong></p>
+<ul>
+    <li>Atomic database operations prevent duplicate delivery</li>
+    <li>SKIP LOCKED prevents concurrent retrieval conflicts</li>
+    <li>Transaction rollback on any error ensures data consistency</li>
+</ul>
             
             <h4><span class="emoji">⚙️</span>Preference Data</h4>
             <ul>
@@ -376,27 +447,69 @@
             <p><strong>Sync:</strong> Synced with Google Play Games when achievements are unlocked</p>
             <p><strong>Retention:</strong> As long as app is installed</p>
             
-            <h4><span class="emoji">📊</span>Player Profile Statistics</h4>
-            <ul>
-                <li>Total games played (solo + multiplayer)</li>
-                <li>Games won/lost (per game mode)</li>
-                <li>Win rate percentage (automatically calculated)</li>
-                <li>Last game timestamp</li>
-                <li>Profile creation date</li>
-            </ul>
-            <p><strong>Legal Basis:</strong> Service contract</p>
-            <p><strong>Purpose:</strong> Display player performance statistics</p>
-            <p><strong>Visibility:</strong> Private (only visible to you)</p>
-            <p><strong>Retention:</strong> As long as GPGS account exists + 90 days after deletion</p>
-            
-            <div class="box-success">
-                <strong>📢 Note on Privacy Policy Access:</strong> The full privacy policy is permanently accessible via:
-                <ul style="margin-top: 10px;">
-                    <li>Direct link in consent modal (first launch)</li>
-                    <li>Settings > Privacy & Security > View Privacy Policy</li>
-                    <li>Permanent URL: <a href="https://thecatsizer-dev.github.io/SudokuPuzzle-PrivacyPolicy/" target="_blank">https://thecatsizer-dev.github.io/SudokuPuzzle-PrivacyPolicy/</a></li>
-                </ul>
-            </div>
+           <h4><span class="emoji">📊</span>Player Profile Statistics</h4>
+<ul>
+    <li>Total games played (solo + multiplayer)</li>
+    <li>Games won/lost (per game mode)</li>
+    <li>Win rate percentage (automatically calculated)</li>
+    <li>Last game timestamp</li>
+    <li>Profile creation date</li>
+</ul>
+<p><strong>Legal Basis:</strong> Service contract</p>
+<p><strong>Purpose:</strong> Display player performance statistics</p>
+<p><strong>Visibility:</strong> Private (only visible to you)</p>
+<p><strong>Retention:</strong> As long as GPGS account exists + 90 days after deletion</p>
+
+<h5><span class="emoji">💾</span>Profile Statistics Storage (PostgreSQL)</h5>
+
+<p><strong>Storage Structure:</strong></p>
+<ul>
+    <li><strong>Solo Statistics Table</strong> (player_profile_solo):
+        <ul>
+            <li>games_played (INTEGER)</li>
+            <li>games_won (INTEGER)</li>
+            <li>games_lost (INTEGER)</li>
+            <li>last_game_at (TIMESTAMP - last solo match completed)</li>
+            <li>created_at / updated_at (TIMESTAMP)</li>
+        </ul>
+    </li>
+    <li><strong>Multiplayer Statistics Table</strong> (player_profile_multi):
+        <ul>
+            <li>games_played (INTEGER)</li>
+            <li>games_won (INTEGER)</li>
+            <li>games_lost (INTEGER)</li>
+            <li>last_game_at (TIMESTAMP - last multiplayer match completed)</li>
+            <li>created_at / updated_at (TIMESTAMP)</li>
+        </ul>
+    </li>
+</ul>
+
+<p><strong>Calculation:</strong></p>
+<ul>
+    <li>Win rate: (games_won / games_played) × 100</li>
+    <li>Calculated server-side on each API request</li>
+</ul>
+
+<p><strong>API Endpoints:</strong></p>
+<ul>
+    <li>GET /api/profile/stats?gameMode=solo - Retrieve solo statistics</li>
+    <li>GET /api/profile/stats?gameMode=multi - Retrieve multiplayer statistics</li>
+    <li>POST /api/profile/update - Updates statistics after each match completion</li>
+</ul>
+
+<p><strong>Storage Location:</strong> PostgreSQL (Neon) - encrypted at rest (AES-256)</p>
+<p><strong>Retention:</strong> As long as GPGS account exists + 90 days after deletion</p>
+<p><strong>Privacy:</strong> Statistics are private and only visible to the account owner</p>
+
+<h5><span class="emoji">📊</span>Profile Statistics Cache (In-Memory)</h5>
+<ul>
+    <li>Solo/Multi stats cached in RAM (not persistent storage)</li>
+    <li>Auto-refresh from server on app resume</li>
+    <li>Cached data: gamesPlayed, gamesWon, gamesLost, winrate, lastGameAt, updatedAt</li>
+</ul>
+<p><strong>Purpose:</strong> Reduce API calls, improve performance</p>
+<p><strong>Storage:</strong> Volatile memory (lost on app close)</p>
+<p><strong>Retention:</strong> Session only (cleared when app is closed)</p>
             
             <h3>3.2 Data Collected Automatically</h3>
             
@@ -510,33 +623,113 @@
             <p><strong>Legal Basis:</strong> Consent (compliant with Google policy) | <strong>Purpose:</strong> Personalized ad delivery, app monetization</p>
             <p><strong>Manage Ad Preferences:</strong> Go to Settings > Google > Manage your Google Account > Data & Privacy > Ad Settings</p>
             
-            <h4><span class="emoji">🎬</span>Rewarded Video Ads</h4>
-            <ul>
-                <li>Ad impression timestamps</li>
-                <li>Ad completion status (watched fully vs skipped)</li>
-                <li>Rewards earned (continue game, bonus hints)</li>
-                <li>Ad unit IDs shown</li>
-                <li>Frequency capping data</li>
-            </ul>
-            <p><strong>Legal Basis:</strong> Consent (Google ToS)</p>
-            <p><strong>Purpose:</strong> Provide optional rewards in exchange for ad views</p>
-            <p><strong>Provider:</strong> Google AdMob</p>
-            <p><strong>Control:</strong> You can refuse to watch ads (feature unavailable without viewing)</p>
-            
-            <h4><span class="emoji">⏱️</span>Interstitial Ad Frequency Control</h4>
-            <ul>
-                <li>Last ad display timestamp (stored locally)</li>
-                <li>Games played since last ad (counter)</li>
-                <li>Cooldown timer (3 minutes minimum between ads)</li>
-                <li>Ad display frequency (1 ad per 3 games completed)</li>
-            </ul>
-            <p><strong>Storage:</strong> Device local storage (SharedPreferences)</p>
-            <p><strong>Purpose:</strong> Limit ad annoyance, respect user experience</p>
-            <p><strong>Control:</strong> Premium subscription removes all interstitial ads</p>
-            
-            <div class="box-success">
-                <strong>✅ User-Friendly:</strong> Ads are limited to once every 3 minutes AND after 3 completed games to avoid disrupting gameplay.
-            </div>
+            <h4><span class="emoji">⚡</span>Power-Up Cooldown & Energy Management</h4>
+
+<p><strong>Cooldown System:</strong></p>
+<ul>
+    <li>5 seconds minimum between power-up activations</li>
+    <li>Last activation timestamp stored in RAM (player.lastPowerUpTime)</li>
+    <li>Throttle protection: 100ms minimum between trigger_power events (spam prevention)</li>
+</ul>
+
+<p><strong>Energy Deduction:</strong></p>
+<ul>
+    <li>Energy cost: 1 point per power-up activation</li>
+    <li>Deducted BEFORE power-up validation (prevents race conditions)</li>
+    <li>Automatic refund if power-up fails execution</li>
+</ul>
+
+<p><strong>Refund Scenarios (Energy returned to player):</strong></p>
+<ul>
+    <li>Opponent disconnected at activation time</li>
+    <li>No valid cells to erase (cell_eraser power-up on empty grid)</li>
+    <li>Self-target on invalid grid state</li>
+    <li>Invalid game state (match already finished)</li>
+    <li>Power-up activation during cooldown period</li>
+</ul>
+
+<p><strong>Power-Up Targeting:</strong></p>
+<ul>
+    <li>80% chance: Targets opponent</li>
+    <li>20% chance: Targets yourself (random server-side selection)</li>
+    <li>Randomization performed server-side for fairness</li>
+</ul>
+
+<p><strong>Storage:</strong> RAM only (session-based, not persistent)</p>
+<p><strong>Purpose:</strong> Prevent power-up spam, ensure fair energy consumption, maintain game balance</p>
+<p><strong>Retention:</strong> Until match ends or player disconnects (volatile memory)</p>
+
+<h4><span class="emoji">⚡</span>Power-Up Cooldown & Energy Management</h4>
+
+<p><strong>Cooldown System:</strong></p>
+<ul>
+    <li>5 seconds minimum between power-up activations</li>
+    <li>Last activation timestamp stored in RAM (player.lastPowerUpTime)</li>
+    <li>Throttle protection: 100ms minimum between trigger_power events (spam prevention)</li>
+</ul>
+
+<p><strong>Energy Deduction:</strong></p>
+<ul>
+    <li>Energy cost: 1 point per power-up activation</li>
+    <li>Deducted BEFORE power-up validation (prevents race conditions)</li>
+    <li>Automatic refund if power-up fails execution</li>
+</ul>
+
+<p><strong>Refund Scenarios (Energy returned to player):</strong></p>
+<ul>
+    <li>Opponent disconnected at activation time</li>
+    <li>No valid cells to erase (cell_eraser power-up on empty grid)</li>
+    <li>Self-target on invalid grid state</li>
+    <li>Invalid game state (match already finished)</li>
+    <li>Power-up activation during cooldown period</li>
+</ul>
+
+<p><strong>Power-Up Targeting:</strong></p>
+<ul>
+    <li>80% chance: Targets opponent</li>
+    <li>20% chance: Targets yourself (random server-side selection)</li>
+    <li>Randomization performed server-side for fairness</li>
+</ul>
+
+<p><strong>Storage:</strong> RAM only (session-based, not persistent)</p>
+<p><strong>Purpose:</strong> Prevent power-up spam, ensure fair energy consumption, maintain game balance</p>
+<p><strong>Retention:</strong> Until match ends or player disconnects (volatile memory)</p>
+
+<h4><span class="emoji">🎬</span>Rewarded Video Ads</h4>
+<ul>
+    <li>Ad impression timestamps</li>
+    <li>Ad completion status (watched fully vs skipped)</li>
+    <li>Rewards earned (continue game, bonus hints)</li>
+    <li>Ad unit IDs shown</li>
+    <li>Frequency capping data</li>
+</ul>
+<p><strong>Legal Basis:</strong> Consent (Google ToS)</p>
+<p><strong>Purpose:</strong> Provide optional rewards in exchange for ad views</p>
+<p><strong>Provider:</strong> Google AdMob</p>
+<p><strong>Control:</strong> You can refuse to watch ads (feature unavailable without viewing)</p>
+
+<h4><span class="emoji">⏱️</span>Rewarded Ad Cooldown</h4>
+<ul>
+    <li>Last ad view timestamp stored locally</li>
+    <li>Minimum 3 minutes cooldown between rewarded ads</li>
+</ul>
+<p><strong>Purpose:</strong> Prevent ad spam exploitation</p>
+<p><strong>Control:</strong> Premium subscription removes ads entirely</p>
+
+<h4><span class="emoji">⏱️</span>Interstitial Ad Frequency Control</h4>
+<ul>
+    <li>Last ad display timestamp (stored locally)</li>
+    <li>Games played since last ad (counter)</li>
+    <li>Cooldown timer (3 minutes minimum between ads)</li>
+    <li>Ad display frequency (1 ad per 3 games completed)</li>
+</ul>
+<p><strong>Storage:</strong> Device local storage (SharedPreferences)</p>
+<p><strong>Purpose:</strong> Limit ad annoyance, respect user experience</p>
+<p><strong>Control:</strong> Premium subscription removes all interstitial ads</p>
+
+<div class="box-success">
+    <strong>✅ User-Friendly:</strong> Ads are limited to once every 3 minutes AND after 3 completed games to avoid disrupting gameplay.
+</div>
             
             <h4><span class="emoji">🏆</span>Google Play Games Services (Leaderboards & Achievements)</h4>
             <ul>
@@ -588,6 +781,34 @@
             <div class="box-highlight">
                 <strong>📢 Public Data Notice:</strong> When you complete a Daily Challenge, your player name, score, and completion time will be publicly visible in the global leaderboard. This data is shared with all users of the application.
             </div>
+            <h4><span class="emoji">🔒</span>Duplicate Submission Prevention</h4>
+
+<p><strong>Server-Side Validation:</strong></p>
+<ul>
+    <li>Before accepting a score, server checks if player already completed today's challenge</li>
+    <li>SQL query: <code>SELECT COUNT(*) WHERE player_id = $1 AND challenge_date = $2</code></li>
+    <li>HTTP 409 Conflict error returned if already completed</li>
+    <li>Prevents score manipulation and duplicate submissions</li>
+</ul>
+
+<p><strong>Client-Side Check:</strong></p>
+<ul>
+    <li>GET /api/daily/check-completed - Returns boolean completion status</li>
+    <li>Called on app launch to disable "Play" button if already completed</li>
+    <li>Local cache updated after successful submission</li>
+</ul>
+
+<p><strong>Purpose:</strong> Ensure fair leaderboards, prevent score manipulation, maintain competitive integrity</p>
+<p><strong>Legal Basis:</strong> Legitimate interest (fraud prevention - GDPR Article 6.1.f)</p>
+
+<h4><span class="emoji">📊</span>Anti-Cheat Validation</h4>
+<ul>
+    <li>Maximum score limit: 9500 points (server-side enforcement)</li>
+    <li>Time validation: Must be positive integer (in seconds)</li>
+    <li>Hints validation: 0-2 hints only (expert difficulty allows max 2 hints)</li>
+    <li>Scores exceeding limits are rejected with HTTP 400 Bad Request</li>
+    <li>Suspicious submissions flagged for review (see Section 6.1)</li>
+</ul>
             
             <h3>3.6 Friends System Data</h3>
             
@@ -670,70 +891,136 @@
                 <strong>🔒 Token Security:</strong> JWT tokens are encrypted and cannot be reverse-engineered to extract your Player ID or personal information. They automatically expire after 30 days for security.
             </div>
             
-            <h3>3.9 Real-Time Multiplayer Data (WebSocket/Socket.IO)</h3>
-            
-            <h4><span class="emoji">🌐</span>WebSocket Connection</h4>
-            <p>During multiplayer matches, your device establishes a real-time WebSocket connection to our game server.</p>
-            
-            <table>
-                <thead>
-                    <tr>
-                        <th>Data Type</th>
-                        <th>Details</th>
-                        <th>Retention</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>IP Address</td>
-                        <td>Used for WebSocket routing and connection management</td>
-                        <td>Session only</td>
-                    </tr>
-                    <tr>
-                        <td>Socket ID</td>
-                        <td>Temporary unique identifier for your WebSocket connection</td>
-                        <td>Until disconnect</td>
-                    </tr>
-                    <tr>
-                        <td>Room ID</td>
-                        <td>Temporary match identifier (shared with opponent)</td>
-                        <td>Until match ends</td>
-                    </tr>
-                    <tr>
-                        <td>Game Moves</td>
-                        <td>Row, column, value placed in real-time</td>
-                        <td>Match duration</td>
-                    </tr>
-                    <tr>
-                        <td>Player Stats</td>
-                        <td>Progress, combo, errors, energy (synced live)</td>
-                        <td>Match duration</td>
-                    </tr>
-                    <tr>
-                        <td>Heartbeat Signals</td>
-                        <td>Connection alive pings (every few seconds)</td>
-                        <td>Not stored</td>
-                    </tr>
-                    <tr>
-                        <td>Power-Up Events</td>
-                        <td>Type, duration, target player</td>
-                        <td>Match duration</td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <p><strong>Server:</strong> sudokupuzzle-server.fly.dev (Fly.io infrastructure, USA)</p>
-            <p><strong>Transport Security:</strong> WebSocket Secure (WSS) over TLS 1.3</p>
-            <p><strong>Legal Basis:</strong> Service contract (multiplayer functionality)</p>
-            <p><strong>Purpose:</strong> Enable real-time 1v1 synchronization</p>
-            
-            <div class="box-highlight">
-                <strong>⚡ Session-Based:</strong> All WebSocket data is deleted immediately when the match ends or a player disconnects. No persistent storage is performed.
-            </div>
-            
-            <div class="box-success">
-                <strong>🔒 Privacy:</strong> Your IP address is only used for connection routing and is never stored or shared with other players. Only your GPGS Player Name is visible to opponents.
-            </div>
+           <h3>3.9 Real-Time Multiplayer Data (WebSocket/Socket.IO)</h3>
+
+<h4><span class="emoji">🌐</span>WebSocket Connection</h4>
+<p>During multiplayer matches, your device establishes a real-time WebSocket connection to our game server.</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Data Type</th>
+            <th>Details</th>
+            <th>Retention</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>IP Address</td>
+            <td>Used for WebSocket routing and connection management</td>
+            <td>Session only</td>
+        </tr>
+        <tr>
+            <td>Socket ID</td>
+            <td>Temporary unique identifier for your WebSocket connection</td>
+            <td>Until disconnect</td>
+        </tr>
+        <tr>
+            <td>Room ID</td>
+            <td>Temporary match identifier (shared with opponent)</td>
+            <td>Until match ends</td>
+        </tr>
+        <tr>
+            <td>Game Moves</td>
+            <td>Row, column, value placed in real-time</td>
+            <td>Match duration</td>
+        </tr>
+        <tr>
+            <td>Player Stats</td>
+            <td>Progress, combo, errors, energy (synced live)</td>
+            <td>Match duration</td>
+        </tr>
+        <tr>
+            <td>Heartbeat Signals</td>
+            <td>Connection alive pings (throttled to max 1 per 3 seconds)</td>
+            <td>Not stored</td>
+        </tr>
+        <tr>
+            <td>Power-Up Events</td>
+            <td>Type, duration, target player</td>
+            <td>Match duration</td>
+        </tr>
+        <tr>
+            <td>Match Start Timestamp</td>
+            <td>Unix timestamp (ms) when room was created (startTime)</td>
+            <td>Session only</td>
+        </tr>
+        <tr>
+            <td>Server Timestamp</td>
+            <td>Current server time (ms) for client synchronization (serverTime)</td>
+            <td>Not stored</td>
+        </tr>
+        <tr>
+            <td>Time Consumed (Time Attack)</td>
+            <td>Elapsed time in seconds (calculated from personalEndTime - currentTime)</td>
+            <td>Session only</td>
+        </tr>
+    </tbody>
+</table>
+
+<p><strong>Timestamp Synchronization:</strong></p>
+<ul>
+    <li><strong>startTime:</strong> Match creation timestamp (UTC) - used to calculate elapsed time</li>
+    <li><strong>serverTime:</strong> Current server timestamp (UTC) - sent on matchFound to sync client clock</li>
+    <li><strong>Usage:</strong> Calculate elapsedSeconds = (currentTime - startTime) / 1000</li>
+    <li><strong>Time Attack:</strong> Sync personalEndTime countdown timers across devices</li>
+    <li><strong>Privacy Note:</strong> Timestamps are in UTC (no timezone data sent), but difference between server and client time may indirectly reveal timezone</li>
+</ul>
+
+<p><strong>Time Attack - Time Consumed:</strong></p>
+<ul>
+    <li>Calculated when match ends or timer expires: <code>timeConsumed = (timeLimit - timeRemaining) / 1000</code></li>
+    <li>Stored temporarily in player object (RAM) during match</li>
+    <li>Sent in game_over event to both players</li>
+    <li><strong>Purpose:</strong> Display actual time taken to complete puzzle (performance tracking)</li>
+    <li><strong>Storage:</strong> Not persisted to database (session-only data)</li>
+</ul>
+
+<p><strong>Server:</strong> sudokupuzzle-server.fly.dev (Fly.io infrastructure, USA)</p>
+<p><strong>Transport Security:</strong> WebSocket Secure (WSS) over TLS 1.3</p>
+<p><strong>Legal Basis:</strong> Service contract (multiplayer functionality)</p>
+<p><strong>Purpose:</strong> Enable real-time 1v1 synchronization</p>
+
+<div class="box-highlight">
+    <strong>⚡ Session-Based:</strong> All WebSocket data is deleted immediately when the match ends or a player disconnects. No persistent storage is performed.
+</div>
+
+<div class="box-success">
+    <strong>🔒 Privacy:</strong> Your IP address is only used for connection routing and is never stored or shared with other players. Only your GPGS Player Name is visible to opponents.
+</div>
+
+<h4><span class="emoji">🔄</span>Reconnection Dialog</h4>
+<p>When you reconnect after temporary disconnect (within 60 seconds), server sends:</p>
+<ul>
+    <li>Current grid state (your puzzle with filled cells)</li>
+    <li>Initial puzzle (frozen state at match start)</li>
+    <li>Solution grid (complete puzzle reference)</li>
+    <li>Opponent progress (percentage completion 0-81)</li>
+    <li>Your stats:
+        <ul>
+            <li>correctMoves (validated placements)</li>
+            <li>errors (incorrect placements)</li>
+            <li>combo (current streak)</li>
+            <li>energy (power-up charges available)</li>
+            <li>energyCombo (progress toward next energy point)</li>
+            <li>currentScore (recalculated at reconnection)</li>
+            <li>drainRate (Classic/PowerUp only)</li>
+        </ul>
+    </li>
+    <li>Elapsed time since match start (in seconds): <code>elapsedSeconds = Math.floor((Date.now() - room.startTime) / 1000)</code></li>
+    <li>personalEndTime (Time Attack only - your timer deadline in Unix timestamp ms)</li>
+    <li>startTime (match creation timestamp - used to recalculate elapsed time client-side)</li>
+</ul>
+
+<p><strong>Score Recalculation on Reconnection:</strong></p>
+<ul>
+    <li><strong>Classic/PowerUp:</strong> <code>score = initialPool - (elapsedSeconds × drainRate) + (correctMoves × basePoints) - (errors × errorPenalty)</code></li>
+    <li><strong>Time Attack:</strong> <code>score = currentScore</code> (accumulated points, no recalculation needed)</li>
+    <li>Ensures fair scoring even after disconnect/reconnect</li>
+</ul>
+
+<p><strong>Data Source:</strong> All data retrieved from server RAM (rooms object), no database queries</p>
+<p><strong>Retention:</strong> Sent once on reconnection, not stored client-side beyond session</p>
             
             <h3>3.10 Backend Server Infrastructure</h3>
             
@@ -935,22 +1222,107 @@
             
             <h2><span class="emoji">🔐</span>6. Data Security</h2>
             
-            <h3>6.1 Technical Measures</h3>
-            <ul>
-                <li><strong>Encryption in Transit:</strong> HTTPS/TLS 1.3 for all transfers</li>
-                <li><strong>Encryption at Rest:</strong> Local data encrypted via Hive encryption</li>
-                <li><strong>Server Isolation:</strong> Fly.io infrastructure with network isolation</li>
-                <li><strong>No Payment Storage:</strong> Payment data remains with Google (never stored locally)</li>
-                <li><strong>Input Validation:</strong> Protection against SQL injection, XSS attacks</li>
-                <li><strong>JWT Authentication:</strong> Secure tokens with 30-day expiration, HS256 signature algorithm</li>
-                <li><strong>PostgreSQL Encryption:</strong> Data encrypted at rest via Neon infrastructure (AES-256)</li>
-                <li><strong>Friend Code Hashing:</strong> Non-reversible deterministic hashing (cannot be traced back to Player ID)</li>
-                <li><strong>Challenge Data Volatility:</strong> Challenges stored in RAM only (60s max), never written to disk</li>
-                <li><strong>Purchase Token Validation:</strong> Tokens sent to server over HTTPS/TLS 1.3, validated once, then discarded</li>
-                <li><strong>Request Retry Logic:</strong> 3 automatic retries with exponential backoff (3s, 6s) on server errors</li>
-                <li><strong>Request Timeouts:</strong> 15 seconds maximum per API request (prevents hanging)</li>
-                <li><strong>Cold Start Handling:</strong> Extended timeout (12s) on server wake-up (Fly.io sleep mode)</li>
-            </ul>
+         <h3>6.1 Technical Measures</h3>
+<ul>
+    <li><strong>Encryption in Transit:</strong> HTTPS/TLS 1.3 for all transfers</li>
+    <li><strong>Encryption at Rest:</strong> Local data encrypted via Hive encryption</li>
+    <li><strong>Server Isolation:</strong> Fly.io infrastructure with network isolation</li>
+    <li><strong>No Payment Storage:</strong> Payment data remains with Google (never stored locally)</li>
+    <li><strong>Input Validation:</strong> Protection against SQL injection, XSS attacks</li>
+    <li><strong>JWT Authentication:</strong> Secure tokens with 30-day expiration, HS256 signature algorithm</li>
+    <li><strong>PostgreSQL Encryption:</strong> Data encrypted at rest via Neon infrastructure (AES-256)</li>
+    <li><strong>Friend Code Hashing:</strong> Non-reversible deterministic hashing (cannot be traced back to Player ID)</li>
+    <li><strong>Challenge Data Volatility:</strong> Challenges stored in RAM only (60s max), never written to disk</li>
+    <li><strong>Purchase Token Validation:</strong> Tokens sent to server over HTTPS/TLS 1.3, validated once, then discarded</li>
+    <li><strong>Request Timeouts:</strong> 15 seconds maximum per API request (prevents hanging)</li>
+    <li><strong>Cold Start Handling:</strong> Extended timeout (12s) on server wake-up (Fly.io sleep mode)</li>
+</ul>
+
+<h4><span class="emoji">🔄</span>WebSocket Connection Retry Logic</h4>
+<ul>
+    <li><strong>Connection Timeout:</strong> 30 seconds maximum (60 attempts × 500ms intervals)</li>
+    <li><strong>Retry Mechanism:</strong> Automatic retry every 500ms until connected or timeout</li>
+    <li><strong>Reconnection Window:</strong> 60 seconds grace period after disconnect before match abandonment</li>
+</ul>
+<p><strong>Purpose:</strong> Handle temporary network interruptions, prevent match loss due to brief disconnects</p>
+
+<h4><span class="emoji">🛡️</span>Rate Limiting</h4>
+
+<p><strong>Protection Levels:</strong></p>
+<ul>
+    <li><strong>General API:</strong> 100 requests/minute per IP address</li>
+    <li><strong>Score Submission:</strong> 50 requests/minute per IP address</li>
+    <li><strong>Friend System:</strong> 30 requests/minute per IP address</li>
+    <li><strong>Auth Endpoints:</strong> 5 requests/minute per IP address (failed attempts counted)</li>
+</ul>
+
+<p><strong>Data Collected for Rate Limiting:</strong></p>
+<ul>
+    <li>IP address (temporary tracking for rate limit enforcement only)</li>
+    <li>Request counters per IP (rolling window)</li>
+    <li>Timestamp of first request in current window</li>
+</ul>
+
+<p><strong>Implementation:</strong></p>
+<ul>
+    <li>Express-rate-limit middleware (server-side)</li>
+    <li>Rolling window algorithm (resets every 60 seconds)</li>
+    <li>HTTP 429 "Too Many Requests" response when limit exceeded</li>
+</ul>
+
+<p><strong>Retention:</strong> 60 seconds (rolling window), then automatically cleared</p>
+<p><strong>Purpose:</strong> Prevent API abuse, DDoS attacks, score manipulation via spam</p>
+<p><strong>Legal Basis:</strong> Legitimate interest (security - GDPR Article 6.1.f)</p>
+
+<h4><span class="emoji">🚨</span>Anti-Cheat - Suspicious Score Flagging</h4>
+
+<p><strong>Detection Criteria:</strong></p>
+<ul>
+    <li>Scores exceeding maximum thresholds:
+        <ul>
+            <li>Solo Easy: > 5000 points</li>
+            <li>Solo Medium: > 8000 points</li>
+            <li>Solo Hard: > 10000 points</li>
+            <li>Solo Expert: > 15000 points</li>
+            <li>Multi Classic: > 7000 points</li>
+            <li>Multi PowerUp: > 12000 points</li>
+            <li>Time Attack Classic: > 6000 points</li>
+            <li>Time Attack PowerUp: > 10000 points</li>
+        </ul>
+    </li>
+    <li>Negative scores (impossible under normal gameplay)</li>
+    <li>Invalid difficulty/mode combinations</li>
+    <li>Submission rate anomalies (via rate limiting)</li>
+</ul>
+
+<p><strong>Flagging Process:</strong></p>
+<ul>
+    <li>Suspicious scores are logged to PostgreSQL table: <code>suspicious_scores</code></li>
+    <li>Data stored: player_id, score, game_type, difficulty, reason (validation failure message), flagged_at (timestamp)</li>
+    <li>Flagged scores are rejected (HTTP 400 Bad Request) - NOT saved to leaderboards</li>
+    <li>Console log generated: <code>🚨 Score suspect: {playerId} - {score} pts ({reason})</code></li>
+</ul>
+
+<p><strong>Storage & Retention:</strong></p>
+<ul>
+    <li><strong>Database:</strong> PostgreSQL (Neon) - table: suspicious_scores</li>
+    <li><strong>Retention:</strong> Indefinite (for fraud investigation and pattern analysis)</li>
+    <li><strong>Access:</strong> Internal review only (not shared with third parties)</li>
+</ul>
+
+<p><strong>Your Rights:</strong></p>
+<ul>
+    <li>Request deletion of flagged records via email: contact.thecatsizerlab@gmail.com</li>
+    <li>Appeal false positives with evidence (screenshots, gameplay videos)</li>
+    <li>GDPR Right to Erasure applies (Article 17) - unless fraud investigation ongoing</li>
+</ul>
+
+<p><strong>Purpose:</strong> Detect and prevent score manipulation, maintain leaderboard integrity, protect fair play</p>
+<p><strong>Legal Basis:</strong> Legitimate interest (fraud prevention - GDPR Article 6.1.f)</p>
+
+<div class="box-warning">
+    <strong>⚠️ Fair Play Policy:</strong> Repeatedly flagged scores may result in account review. Proven cheating may lead to leaderboard removal or account suspension.
+</div>
             
             <h3>6.2 Organizational Measures</h3>
             <ul>
@@ -1350,7 +1722,7 @@
                 <li>Emailing us at contact.thecatsizerlab@gmail.com</li>
                 <li>Disabling services in Google Privacy Dashboard</li>
             </ol>
-            <p>Withdrawal is effective immediately. Previously collected data remains processed per this policy.</p>
+            <p>Withdrawal is effective immediately. Previously collected data remains processed per this policy.</p>a
             
             <h2><span class="emoji">🍪</span>10. Cookies & Tracking Technologies</h2>
             
