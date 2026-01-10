@@ -535,7 +535,7 @@
                 <li>Connection type (WiFi vs cellular)</li>
                 <li>App launch frequency</li>
             </ul>
-            <p><strong>Legal Basis:</strong> Legitimate interest (analytics) | <strong>Purpose:</strong> Service improvement, usage analysis</p>
+            <p><strong>Legal Basis:</strong> Legitimate interest (analytics - collecte obligatoire) | <strong>Purpose:</strong> Service improvement, usage analysis, performance monitoring</p>
             
             <h4><span class="emoji">⚠️</span>Crash and Error Data</h4>
             <ul>
@@ -1617,10 +1617,7 @@
                         <td>✅ Personalized Ads</td>
                         <td>Allow AdMob to show targeted advertisements</td>
                     </tr>
-                    <tr>
-                        <td>✅ Analytics</td>
-                        <td>Allow collection of gameplay analytics</td>
-                    </tr>
+                
                     <tr>
                         <td>✅ Game Data</td>
                         <td>Allow cloud synchronization of progression</td>
@@ -1663,11 +1660,11 @@
                         <td>Generic ads instead of targeted</td>
                         <td>✅ Yes</td>
                     </tr>
-                    <tr>
-                        <td>Game Analytics</td>
-                        <td>No gameplay data collection</td>
-                        <td>✅ Yes</td>
-                    </tr>
+                   <tr>
+    <td>Game Analytics</td>
+    <td>Collecte automatique (requis pour le fonctionnement)</td>
+    <td>❌ No</td>
+</tr>
                     <tr>
                         <td>Cloud Sync</td>
                         <td>Local storage only</td>
@@ -1712,8 +1709,8 @@
 
 <p>Technically these are not "cookies" but persistent local files.</p>
             
-            <h3>10.2 Firebase & Google Analytics</h3>
-            <p>If Analytics is enabled, Google Firebase collects:</p>
+           <h3>10.2 Firebase & Google Analytics</h3>
+<p>Google Firebase collecte automatiquement (non désactivable dans l'app) :</p>
             <ul>
                 <li>Game events (match start, victory, abandonment)</li>
                 <li>Crash reports (automatic)</li>
@@ -1721,11 +1718,10 @@
                 <li>User properties (cohorts)</li>
             </ul>
             <p><strong>Storage:</strong> Anonymized, retained 14 months by Google</p>
-            <p><strong>Opt-Out:</strong></p>
-            <ul>
-                <li>Settings > Privacy > Disable Analytics</li>
-                <li>Device Settings > Google > Manage Account > Privacy > Analytics</li>
-            </ul>
+           <p><strong>Opt-Out:</strong></p>
+<ul>
+    <li>Device Settings > Google > Manage Account > Privacy > Analytics (uniquement pour les données Google)</li>
+</ul>
             
             <h3>10.3 Google Advertising ID</h3>
             <p>Google assigns you a unique advertising ID for:</p>
