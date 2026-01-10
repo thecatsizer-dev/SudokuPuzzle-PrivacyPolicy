@@ -537,15 +537,46 @@
             </ul>
             <p><strong>Legal Basis:</strong> Legitimate interest (analytics - collecte obligatoire) | <strong>Purpose:</strong> Service improvement, usage analysis, performance monitoring</p>
             
-            <h4><span class="emoji">⚠️</span>Crash and Error Data</h4>
-            <ul>
-                <li>Automatic error reports</li>
-                <li>Stack traces</li>
-                <li>Application state at crash time</li>
-                <li>Associated user identifier</li>
-                <li>Console logs</li>
-            </ul>
-            <p><strong>Legal Basis:</strong> Legitimate interest (technical maintenance) | <strong>Purpose:</strong> Bug resolution, app stability</p>
+           <h4><span class="emoji">⚠️</span>Crash and Error Data (Firebase Crashlytics)</h4>
+<p><strong>Automatic Collection:</strong> Firebase Crashlytics automatically captures and sends crash reports when the app crashes.</p>
+<ul>
+    <li><strong>Crash reports:</strong> Automatic fatal error reports with stack traces</li>
+    <li><strong>Non-fatal errors:</strong> Logged exceptions (manually recorded by developers)</li>
+    <li><strong>Stack traces:</strong> Full error trace for debugging</li>
+    <li><strong>Application state:</strong> Memory usage, device orientation, free disk space at crash time</li>
+    <li><strong>Device information:</strong> Model, OS version, manufacturer</li>
+    <li><strong>Session data:</strong> App version, crash timestamp, time since app launch</li>
+    <li><strong>Custom logs:</strong> Developer-added breadcrumbs for debugging context</li>
+</ul>
+
+<p><strong>Data NOT collected by Crashlytics:</strong></p>
+<ul>
+    <li>❌ User identifiers (Player ID, GPGS name) - NOT automatically linked</li>
+    <li>❌ IP addresses</li>
+    <li>❌ Personal data from game state (grid content, scores)</li>
+</ul>
+
+<p><strong>Storage & Retention:</strong></p>
+<ul>
+    <li><strong>Storage:</strong> Firebase servers (Google Cloud, USA)</li>
+    <li><strong>Retention:</strong> 90 days (automatic deletion after)</li>
+    <li><strong>Encryption:</strong> Data encrypted in transit (HTTPS/TLS 1.3) and at rest (AES-256)</li>
+</ul>
+
+<p><strong>Legal Basis:</strong> Legitimate interest (GDPR Article 6.1.f - technical maintenance, security, app stability)</p>
+<p><strong>Purpose:</strong> Detect and fix crashes, improve app stability, prevent future errors</p>
+
+<div class="box-success">
+    <strong>🔒 Privacy Protection:</strong> Crash reports are anonymized and contain only technical data. No personal information (scores, game data, Player ID) is sent unless explicitly logged by developers for debugging.
+</div>
+
+<div class="box-highlight">
+    <strong>⚙️ Opt-Out:</strong> Crashlytics cannot be disabled within the app as it's essential for technical maintenance. However, you can:
+    <ul style="margin-top: 10px;">
+        <li>Uninstall the app to stop all data collection</li>
+        <li>Request crash data deletion via email (see Section 7.3)</li>
+    </ul>
+</div>
             
             <h4><span class="emoji">🔐</span>Android Permissions</h4>
             <p>The Application requests the following Android permissions:</p>
@@ -623,6 +654,29 @@
             </ul>
             <p><strong>Legal Basis:</strong> Consent (compliant with Google policy) | <strong>Purpose:</strong> Personalized ad delivery, app monetization</p>
             <p><strong>Manage Ad Preferences:</strong> Go to Settings > Google > Manage your Google Account > Data & Privacy > Ad Settings</p>
+            <h4><span class="emoji">🔥</span>Firebase Services (Google)</h4>
+
+<h5>Firebase Analytics</h5>
+<ul>
+    <li>Automatic screen view tracking</li>
+    <li>Session duration and frequency</li>
+    <li>Device type, OS version, app version</li>
+    <li>Custom events logged by developers (game_start, game_end, purchase, etc.)</li>
+</ul>
+<p><strong>Provider:</strong> Google LLC</p>
+<p><strong>Privacy Policy:</strong> <a href="https://firebase.google.com/support/privacy" target="_blank">firebase.google.com/support/privacy</a></p>
+
+<h5>Firebase Crashlytics</h5>
+<ul>
+    <li>Crash reports (fatal errors only)</li>
+    <li>Stack traces for debugging</li>
+    <li>Device state at crash time (memory, storage, battery)</li>
+    <li>NO personal data (Player ID, game scores) unless manually logged</li>
+</ul>
+<p><strong>Provider:</strong> Google LLC</p>
+<p><strong>Privacy Policy:</strong> <a href="https://firebase.google.com/support/privacy/crashlytics" target="_blank">firebase.google.com/support/privacy/crashlytics</a></p>
+<p><strong>Legal Basis:</strong> Legitimate interest (GDPR Article 6.1.f)</p>
+<p><strong>Retention:</strong> 90 days (Crashlytics), 14 months (Analytics)</p>
             
 
 <h4><span class="emoji">⚡</span>Power-Up Cooldown & Energy Management</h4>
@@ -1709,18 +1763,39 @@
 
 <p>Technically these are not "cookies" but persistent local files.</p>
             
-           <h3>10.2 Firebase & Google Analytics</h3>
-<p>Google Firebase collecte automatiquement (non désactivable dans l'app) :</p>
-            <ul>
-                <li>Game events (match start, victory, abandonment)</li>
-                <li>Crash reports (automatic)</li>
-                <li>App performance metrics</li>
-                <li>User properties (cohorts)</li>
-            </ul>
-            <p><strong>Storage:</strong> Anonymized, retained 14 months by Google</p>
-           <p><strong>Opt-Out:</strong></p>
+          <h3>10.2 Firebase Analytics & Crashlytics</h3>
+
+<h4><span class="emoji">📊</span>Firebase Analytics</h4>
+<p>Google Firebase Analytics collects usage data automatically:</p>
 <ul>
-    <li>Device Settings > Google > Manage Account > Privacy > Analytics (uniquement pour les données Google)</li>
+    <li><strong>Game events:</strong> Match start, victory, defeat, abandonment (manually logged via code)</li>
+    <li><strong>App performance metrics:</strong> Session duration, screen views, app startup time</li>
+    <li><strong>User properties:</strong> Device type, OS version, app version, user cohorts</li>
+    <li><strong>Ad interaction events:</strong> Ad impressions, clicks, rewarded ad completions</li>
+</ul>
+
+<p><strong>Storage:</strong> Anonymized and aggregated, retained 14 months by Google</p>
+<p><strong>Legal Basis:</strong> Legitimate interest (GDPR Article 6.1.f - analytics for service improvement)</p>
+
+<h4><span class="emoji">⚠️</span>Firebase Crashlytics</h4>
+<p>Automatic crash reporting system (see Section 3.2 for full details):</p>
+<ul>
+    <li><strong>Crash reports:</strong> Fatal errors with stack traces</li>
+    <li><strong>Device state:</strong> Memory, storage, battery at crash time</li>
+    <li><strong>Session data:</strong> App version, crash timestamp</li>
+</ul>
+
+<p><strong>Storage:</strong> Firebase servers (Google Cloud, USA), retained 90 days</p>
+<p><strong>Legal Basis:</strong> Legitimate interest (technical maintenance)</p>
+
+<div class="box-highlight">
+    <strong>🔒 Privacy:</strong> Both services are managed by Google and comply with Google's Privacy Policy. Data is anonymized and cannot be traced back to individual users without explicit identifiers (which we don't send).
+</div>
+
+<p><strong>Opt-Out:</strong></p>
+<ul>
+    <li><strong>Analytics:</strong> Device Settings > Google > Manage Account > Privacy > Analytics</li>
+    <li><strong>Crashlytics:</strong> Cannot be disabled (required for technical maintenance)</li>
 </ul>
             
             <h3>10.3 Google Advertising ID</h3>
