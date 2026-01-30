@@ -571,11 +571,13 @@
 </div>
 
 <div class="box-highlight">
-    <strong>⚙️ Opt-Out:</strong> Crashlytics cannot be disabled within the app as it's essential for technical maintenance. However, you can:
-    <ul style="margin-top: 10px;">
-        <li>Uninstall the app to stop all data collection</li>
-        <li>Request crash data deletion via email (see Section 7.3)</li>
-    </ul>
+   <p><strong>User Controls:</strong></p>
+<ul>
+    <li><strong>In-app controls:</strong> The Application does not provide an in-app switch to disable essential diagnostics or basic usage measurement.</li>
+    <li><strong>Google/Android controls:</strong> Some advertising-related controls (such as ad personalization preferences and Advertising ID controls) may be available through your Google account and Android settings.</li>
+    <li><strong>Stop collection:</strong> Uninstalling the Application stops data collection from the app.</li>
+</ul>
+
 </div>
             
             <h4><span class="emoji">🔐</span>Android Permissions</h4>
@@ -652,6 +654,7 @@
                 <li>Ad clicks</li>
                 <li>App usage patterns</li>
             </ul>
+            <p><strong>Regional Notice:</strong> In certain regions (such as the EEA, UK, and Switzerland), Google may require a consent message for personalized ads. When required, consent is handled according to Google's requirements and supported consent solutions.</p>
             <p><strong>Legal Basis:</strong> Consent (compliant with Google policy) | <strong>Purpose:</strong> Personalized ad delivery, app monetization</p>
             <p><strong>Manage Ad Preferences:</strong> Go to Settings > Google > Manage your Google Account > Data & Privacy > Ad Settings</p>
             <h4><span class="emoji">🔥</span>Firebase Services (Google)</h4>
@@ -676,7 +679,7 @@
 <p><strong>Provider:</strong> Google LLC</p>
 <p><strong>Privacy Policy:</strong> <a href="https://firebase.google.com/support/privacy/crashlytics" target="_blank">firebase.google.com/support/privacy/crashlytics</a></p>
 <p><strong>Legal Basis:</strong> Legitimate interest (GDPR Article 6.1.f)</p>
-<p><strong>Retention:</strong> 90 days (Crashlytics), 14 months (Analytics)</p>
+<p><strong>Retention:</strong> Retention periods are controlled by Google's Firebase policies and configuration. We do not implement custom deletion routines for Firebase Analytics or Crashlytics data.</p>
             
 
 <h4><span class="emoji">⚡</span>Power-Up Cooldown & Energy Management</h4>
@@ -1201,44 +1204,21 @@
             </table>
             
             <h2><span class="emoji">⏳</span>5. Data Retention</h2>
-            
-            <h3>5.1 Game Data Retention</h3>
-            <ul>
-                <li><strong>Solo Progression History:</strong> Retained as long as GPGS account exists + 12 months after deletion</li>
-                <li><strong>Multiplayer Scores:</strong> 90 days after last activity (inactivity-based cleanup)</li>
-                <li><strong>Daily Challenge Scores:</strong> Indefinite (for leaderboard integrity)</li>
-                <li><strong>Match Statistics:</strong> 2 years (classic/powerup/timeAttack match history)</li>
-                <li><strong>Technical Logs:</strong> 30 days (crash reports, error logs)</li>
-            </ul>
-            
-            <h3>5.2 Payment Data Retention</h3>
-            <ul>
-                <li><strong>Completed Transactions:</strong> 7 years (tax compliance requirement - France & EU)</li>
-                <li><strong>Failed Transactions:</strong> 30 days (then permanently deleted)</li>
-                <li><strong>Purchase History:</strong> Indefinite via Google Play Store (managed by Google)</li>
-                <li><strong>Purchase Tokens:</strong> 90 days after last validation (server-side)</li>
-            </ul>
-            
-            <h3>5.3 Profile & Preference Data</h3>
-            <ul>
-                <li><strong>GPGS Data:</strong> As long as your Google account exists (managed by Google)</li>
-                <li><strong>Preference Settings:</strong> As long as GPGS account exists + 90 days after deletion</li>
-                <li><strong>Cookies/Analytics:</strong> 2 years (automatic reset)</li>
-                <li><strong>JWT Tokens:</strong> 30 days (automatic expiration)</li>
-            </ul>
-            
-            <h3>5.4 Friends & Social Data</h3>
-            <ul>
-                <li><strong>Friend Codes:</strong> As long as GPGS account exists</li>
-                <li><strong>Friendships:</strong> Until manually deleted by user OR 12 months after GPGS account deletion</li>
-                <li><strong>Friend Invitations (Pending):</strong> 60 seconds maximum (auto-expire)</li>
-                <li><strong>Friend Invitations (Declined):</strong> Immediately deleted upon decline</li>
-                <li><strong>Challenge Invitations:</strong> 60 seconds maximum (auto-expire), no persistent storage</li>
-            </ul>
-            
-            <div class="box-highlight">
-                <strong>⚠️ Important:</strong> Friend codes and friendships are tied to your Google Play Games account. If you delete your GPGS account, all associated friend data will be deleted within 12 months.
-            </div>
+
+<p>We retain data only for as long as necessary to provide the Application, maintain competitive integrity (such as leaderboards), prevent abuse, and comply with legal obligations.</p>
+
+<h3>5.1 Local Device Data</h3>
+<p>Some preferences and gameplay-related data may be stored locally on your device (e.g., settings, cached data, recent matches). This data remains on your device until you clear the app data or uninstall the Application.</p>
+
+<h3>5.2 Server Data (Game Features)</h3>
+<p>Where server-side features are provided (such as multiplayer, friends, and leaderboards), related records may be retained as long as needed for the operation and integrity of these features and for security/fraud prevention.</p>
+
+<h3>5.3 Third-Party Services (Google)</h3>
+<p>Some data is processed by third-party services such as Google Play Games Services, Google AdMob, and Firebase (Analytics/Crash reporting). Retention for those services is governed by their policies and configuration. We do not implement custom deletion routines for data stored and retained by these third-party services.</p>
+
+<h3>5.4 Legal and Accounting</h3>
+<p>Where required by law (for example, for accounting, taxation, or fraud prevention), certain transaction-related records may be retained for the legally required period.</p>
+
             
             <h2><span class="emoji">🔐</span>6. Data Security</h2>
             
@@ -1716,7 +1696,7 @@
     <li><strong>Ad interaction events:</strong> Ad impressions, clicks, rewarded ad completions</li>
 </ul>
 
-<p><strong>Storage:</strong> Anonymized and aggregated, retained 14 months by Google</p>
+<p><strong>Storage & Retention:</strong> Analytics data is processed and retained under Google's Firebase Analytics policies and configuration. Retention settings may vary and are managed by Google.</p>
 <p><strong>Legal Basis:</strong> Legitimate interest (GDPR Article 6.1.f - analytics for service improvement)</p>
 
 <h4><span class="emoji">⚠️</span>Firebase Crashlytics</h4>
