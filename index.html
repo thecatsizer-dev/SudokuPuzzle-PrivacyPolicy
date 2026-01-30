@@ -459,7 +459,8 @@
 <p><strong>Legal Basis:</strong> Service contract</p>
 <p><strong>Purpose:</strong> Display player performance statistics</p>
 <p><strong>Visibility:</strong> Private (only visible to you)</p>
-<p><strong>Retention:</strong> As long as GPGS account exists + 90 days after deletion</p>
+<p><strong>Retention:</strong> As long as needed to provide the service and maintain integrity of features, subject to security and legal requirements.</p>
+
 
 <h5><span class="emoji">💾</span>Profile Statistics Storage (PostgreSQL)</h5>
 
@@ -499,7 +500,8 @@
 </ul>
 
 <p><strong>Storage Location:</strong> PostgreSQL (Neon) - encrypted at rest (AES-256)</p>
-<p><strong>Retention:</strong> As long as GPGS account exists + 90 days after deletion</p>
+<p><strong>Retention:</strong> As long as needed to provide the service and maintain integrity of features, subject to security and legal requirements.</p>
+
 <p><strong>Privacy:</strong> Statistics are private and only visible to the account owner</p>
 
 <h5><span class="emoji">📊</span>Profile Statistics Cache (In-Memory)</h5>
@@ -535,7 +537,7 @@
                 <li>Connection type (WiFi vs cellular)</li>
                 <li>App launch frequency</li>
             </ul>
-            <p><strong>Legal Basis:</strong> Legitimate interest (analytics - collecte obligatoire) | <strong>Purpose:</strong> Service improvement, usage analysis, performance monitoring</p>
+            <p><strong>Legal Basis:</strong> Legitimate interest (service improvement and performance monitoring) | <strong>Purpose:</strong> Service improvement, usage analysis, performance monitoring</p>
             
            <h4><span class="emoji">⚠️</span>Crash and Error Data (Firebase Crashlytics)</h4>
 <p><strong>Automatic Collection:</strong> Firebase Crashlytics automatically captures and sends crash reports when the app crashes.</p>
@@ -558,16 +560,17 @@
 
 <p><strong>Storage & Retention:</strong></p>
 <ul>
-    <li><strong>Storage:</strong> Firebase servers (Google Cloud, USA)</li>
-    <li><strong>Retention:</strong> 90 days (automatic deletion after)</li>
-    <li><strong>Encryption:</strong> Data encrypted in transit (HTTPS/TLS 1.3) and at rest (AES-256)</li>
+    <li><strong>Storage:</strong> Firebase services operated by Google.</li>
+<li><strong>Retention:</strong> Crash reports are retained according to Google's Firebase retention policies and settings. We do not implement custom server-side deletion for Crashlytics data.</li>
+<li><strong>Security:</strong> Data is encrypted in transit (TLS) and handled under Google's security controls.</li>
+
 </ul>
 
 <p><strong>Legal Basis:</strong> Legitimate interest (GDPR Article 6.1.f - technical maintenance, security, app stability)</p>
 <p><strong>Purpose:</strong> Detect and fix crashes, improve app stability, prevent future errors</p>
 
 <div class="box-success">
-    <strong>🔒 Privacy Protection:</strong> Crash reports are anonymized and contain only technical data. No personal information (scores, game data, Player ID) is sent unless explicitly logged by developers for debugging.
+   <strong>🔒 Privacy Protection:</strong> Crash reports are intended to contain technical diagnostics (such as stack traces and device/app state). We do not intentionally send direct identifiers like your GPGS Player ID within Crashlytics.
 </div>
 
 <div class="box-highlight">
@@ -1462,7 +1465,7 @@
         <li>Data serves a public interest (leaderboard integrity - Article 17.3.b) ✅</li>
         <li>Data is required by law (tax records - Article 17.3.b) ✅</li>
     </ul>
-    <p style="margin-top: 10px;"><strong>Your choice:</strong> Keep your account with all features OR delete your Google Play Games account (removes everything via Google).</p>
+   <p style="margin-top: 10px;"><strong>Note:</strong> Deleting data linked to Google Play Games is managed by Google through Google Play Games settings. For our own server-side records, we can delete or anonymize where feasible, subject to integrity and legal obligations.</p>
 </div>
 
 <h4><span class="emoji">🔄</span>How to Completely Remove Your Data</h4>
@@ -1474,7 +1477,7 @@
             <li>Open Google Play Games app</li>
             <li>Tap Profile > Settings</li>
             <li>Select "Delete Play Games account & data"</li>
-            <li><strong>Effect:</strong> All GPGS data deleted within 30 days (managed by Google)</li>
+            <li><strong>Effect:</strong> Google manages deletion timelines according to its own policies and processes.</li>
         </ul>
     </li>
     <li><strong>Uninstall Sudoku Puzzle</strong>
@@ -1513,10 +1516,11 @@
     <li><strong>Article 6.1.f (Legitimate Interest):</strong> Match history used for anti-cheat and matchmaking balance.</li>
 </ul>
 
-<p><strong>Conclusion:</strong> If you want to stop using the app but keep your GPGS account active, simply uninstall the app. If you want complete erasure, you must delete your Google Play Games account (which we don't control).</p>
-
 <div class="box-success">
-    <strong>✅ Your Rights Protected:</strong> You can stop using the service anytime (uninstall). Complete data erasure requires closing your Google account (standard industry practice for games).
+    <strong>✅ Practical Options:</strong>
+    <p style="margin-top: 10px;">You can stop app data collection by uninstalling the Application. You may also request deletion or anonymization of our server-side records where feasible, subject to leaderboard integrity and legal obligations. Data handled by Google services (Play Games / Firebase / AdMob) is managed under Google's controls.</p>
+</div>
+
 </div>
             
             <h3>7.3.1 Partial Data Deletion</h3>
@@ -1707,11 +1711,11 @@
     <li><strong>Session data:</strong> App version, crash timestamp</li>
 </ul>
 
-<p><strong>Storage:</strong> Firebase servers (Google Cloud, USA), retained 90 days</p>
+<p><strong>Storage & Retention:</strong> Crash reports are processed and retained under Google's Firebase Crashlytics policies and configuration. Retention settings may vary and are managed by Google.</p>
 <p><strong>Legal Basis:</strong> Legitimate interest (technical maintenance)</p>
 
 <div class="box-highlight">
-    <strong>🔒 Privacy:</strong> Both services are managed by Google and comply with Google's Privacy Policy. Data is anonymized and cannot be traced back to individual users without explicit identifiers (which we don't send).
+  <strong>🔒 Privacy:</strong> These services are provided by Google and operate under Google's policies. We do not intentionally include your GPGS Player ID in Analytics/Crash reports. Google may process device/app identifiers needed to provide these services.
 </div>
 
 <p><strong>User Controls:</strong></p>
