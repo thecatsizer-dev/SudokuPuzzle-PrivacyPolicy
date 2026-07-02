@@ -163,6 +163,14 @@
             margin: 25px 0;
             border-radius: 6px;
         }
+
+        .box-info {
+            background: #d1ecf1;
+            border-left: 5px solid #17a2b8;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 6px;
+        }
         
         .contact-box {
             background: linear-gradient(135deg, rgba(102,126,234,0.08) 0%, rgba(118,75,162,0.08) 100%);
@@ -244,7 +252,7 @@
             </div>
            <div class="metadata-item">
     <strong>Last Updated:</strong>
-    June 3, 2026
+    July 2, 2026
 </div>
             <div class="metadata-item">
                 <strong>Email:</strong>
@@ -260,6 +268,15 @@
             <h2><span class="emoji">📋</span>1. Introduction</h2>
             <p>Sudoku Battle ("the Application") is developed by TheCatsizerLab and available on Google Play Store. We respect your privacy and are committed to processing your personal data transparently and securely in accordance with GDPR and applicable data protection laws worldwide.</p>
             <p>This privacy policy explains how we collect, use, share, and protect your personal data when you use our Application.</p>
+
+            <div class="box-info">
+                <strong>ℹ️ Important Update (July 2, 2026):</strong> As of this version, the Application no longer integrates the Google Play Games Services (GPGS) SDK. All player identification, progression, leaderboards, and achievements are now handled through a device-based identifier and our own servers. See Section 1.1 below for details, and Section 3.1 for what previously applied under GPGS.
+            </div>
+
+            <h3>1.1 Historical Note — Google Play Games Services (GPGS)</h3>
+            <p>Prior to July 2, 2026, the Application offered optional sign-in through Google Play Games Services (GPGS) for returning players, alongside the device-based identifier used for guest players. GPGS was used at that time for authentication, cloud save synchronization, leaderboards, and achievements, as described in earlier versions of this policy.</p>
+            <p>The Application has since removed the GPGS SDK entirely. It is no longer bundled with the Application, and no data is sent to or received from Google Play Games Services. Players who previously connected via GPGS were automatically and transparently migrated to the device-based identifier system, preserving their existing server-side statistics (scores, progression, achievements) without any action required on their part.</p>
+            <p>Any section of this policy that previously described GPGS-specific data collection (Player ID, display name, profile picture, cloud saves, GPGS leaderboards, GPGS achievements) no longer applies going forward. Where relevant, we have retained a short historical note rather than removing all references, for transparency about what was previously collected.</p>
             
             <h2><span class="emoji">👤</span>2. Data Controller</h2>
             <div class="contact-box">
@@ -281,14 +298,16 @@
             
             <h3>3.1 Data Collected Directly from You</h3>
             
-            <h4><span class="emoji">🎮</span>Google Play Games Services (GPGS)</h4>
+            <h4><span class="emoji">🎮</span>Player Identification (formerly Google Play Games Services)</h4>
+            <div class="box-info">
+                <strong>ℹ️ Historical note:</strong> Prior to July 2, 2026, this section described data collected via Google Play Games Services (Player ID, display name, profile picture, cloud-synced progression). GPGS is no longer integrated into the Application. The information below reflects the current system.
+            </div>
             <ul>
-                <li>Unique player identifier (Player ID)</li>
-                <li>Display name</li>
-                <li>Profile picture (optional)</li>
-                <li>Game progression data synchronized via Google Cloud</li>
+                <li>A locally generated device identifier (see "Device Identifier" below), used as your unique player identifier</li>
+                <li>A display name you choose or that is assigned by default</li>
+                <li>Game progression data stored on our own servers (Fly.io / Neon PostgreSQL)</li>
             </ul>
-            <p><strong>Legal Basis:</strong> Consent (explicit upon connection) | <strong>Purpose:</strong> Authentication, cloud sync, leaderboards, achievements</p>
+            <p><strong>Legal Basis:</strong> Service contract | <strong>Purpose:</strong> Authentication, server-side sync, leaderboards, achievements</p>
             
             <h4><span class="emoji">🎯</span>Game Data</h4>
             <ul>
@@ -384,18 +403,18 @@
     <li>SKIP LOCKED prevents concurrent retrieval conflicts</li>
     <li>Transaction rollback on any error ensures data consistency</li>
 </ul>
-           <h4><span class="emoji">📱</span>Device Identifier (Guest Users)</h4>
+           <h4><span class="emoji">📱</span>Device Identifier</h4>
 <ul>
     <li>A unique device identifier generated locally on your device</li>
-    <li>Used as a player identifier when you are not signed in to Google Play Games Services</li>
-    <li>Not linked to your real identity, name, or Google account</li>
+    <li>Used as your player identifier for all game features</li>
+    <li>Not linked to your real identity, name, or any external account</li>
     <li>Stored locally (SharedPreferences) and sent to our servers for game features (leaderboards, multiplayer, daily challenges)</li>
 </ul>
-<p><strong>Legal Basis:</strong> Service contract (Article 6.1.b) | <strong>Purpose:</strong> Enable core game features for users not signed in to GPGS</p>
+<p><strong>Legal Basis:</strong> Service contract (Article 6.1.b) | <strong>Purpose:</strong> Enable core game features for all players</p>
 <p><strong>Storage:</strong> Device local storage (SharedPreferences) + server-side (Fly.io / Neon PostgreSQL)</p>
 <p><strong>Retention:</strong> As long as needed to provide the service and maintain integrity of features, subject to security and legal requirements</p>
 <div class="box-highlight">
-    <strong>⚠️ Guest Mode Notice:</strong> If you use the Application without signing in to Google Play Games Services, a device-based identifier is used instead of your GPGS Player ID. This identifier is not tied to your personal identity but is associated with your device. Resetting your device or clearing app data will generate a new identifier, and your previous progress may not be recoverable.
+    <strong>⚠️ Device Identifier Notice:</strong> This identifier is not tied to your personal identity but is associated with your device. Resetting your device or clearing app data will generate a new identifier, and your previous progress may not be recoverable. If you previously used Google Play Games Services before July 2, 2026, your prior progress was automatically migrated to this identifier upon your first launch after the update.
 </div> 
            <h4><span class="emoji">⚙️</span>Preference Data</h4>
 <ul>
@@ -419,27 +438,9 @@
             <p><strong>Legal Basis:</strong> Service contract</p>
             <p><strong>Purpose:</strong> Remember your audio settings across sessions</p>
             
-            <h4><span class="emoji">☁️</span>Cloud Game Save (GPGS)</h4>
-            <ul>
-                <li>Current grid state (9x9 array of numbers)</li>
-                <li>Initial puzzle grid (unmodified)</li>
-                <li>Solution grid (complete puzzle)</li>
-                <li>Difficulty level (easy/medium/hard/expert)</li>
-                <li>Elapsed time (in seconds)</li>
-                <li>Error count</li>
-                <li>Continues used (if game restarted after loss)</li>
-                <li>Current score</li>
-                <li>Cell notes (9x9 array of note arrays)</li>
-                <li>Hints remaining</li>
-            </ul>
-            <p><strong>Storage:</strong> Google Play Games Saved Games</p>
-            <p><strong>Legal Basis:</strong> Service contract (cloud sync)</p>
-            <p><strong>Purpose:</strong> Resume game across devices</p>
-            <p><strong>Retention:</strong> As long as GPGS account exists</p>
-            <p><strong>Sync:</strong> Automatic when GPGS is connected</p>
-            
-            <div class="box-highlight">
-                <strong>🔒 Privacy:</strong> Cloud saves are encrypted by Google Play Games and only accessible by your account.
+            <h4><span class="emoji">☁️</span>Cloud Game Save (Historical — GPGS, discontinued)</h4>
+            <div class="box-info">
+                <strong>ℹ️ No longer applicable.</strong> Prior to July 2, 2026, the Application offered cloud save synchronization via Google Play Games Saved Games for signed-in players. This feature relied on the GPGS SDK, which has been removed. Game state (grid, progression, hints, score) is now preserved through our own servers as described in "Player Profile Statistics" and "Game Data" above, tied to your device identifier.
             </div>
             
             <h4><span class="emoji">🏅</span>Achievement Progress Tracking (Local)</h4>
@@ -457,7 +458,7 @@
             <p><strong>Storage:</strong> Device local storage (SharedPreferences)</p>
             <p><strong>Legal Basis:</strong> Service contract</p>
             <p><strong>Purpose:</strong> Track achievement unlock progress</p>
-            <p><strong>Sync:</strong> Synced with Google Play Games when achievements are unlocked</p>
+            <p><strong>Sync:</strong> Synced with our own servers when achievements are unlocked</p>
             <p><strong>Retention:</strong> As long as app is installed</p>
             
            <h4><span class="emoji">📊</span>Player Profile Statistics</h4>
@@ -565,7 +566,7 @@
 
 <p><strong>Data NOT collected by Crashlytics:</strong></p>
 <ul>
-    <li>❌ User identifiers (Player ID, GPGS name) - NOT automatically linked</li>
+    <li>❌ User identifiers (Player ID) - NOT automatically linked</li>
     <li>❌ IP addresses</li>
     <li>❌ Personal data from game state (grid content, scores)</li>
 </ul>
@@ -582,7 +583,7 @@
 <p><strong>Purpose:</strong> Detect and fix crashes, improve app stability, prevent future errors</p>
 
 <div class="box-success">
-   <strong>🔒 Privacy Protection:</strong> Crash reports are intended to contain technical diagnostics (such as stack traces and device/app state). We do not intentionally send direct identifiers like your GPGS Player ID within Crashlytics.
+   <strong>🔒 Privacy Protection:</strong> Crash reports are intended to contain technical diagnostics (such as stack traces and device/app state). We do not intentionally send direct identifiers like your player ID within Crashlytics.
 </div>
 
 <div class="box-highlight">
@@ -769,29 +770,21 @@
     <strong>✅ User-Friendly:</strong> Ads are limited to once every 3 minutes AND after 3 completed games to avoid disrupting gameplay.
 </div>
             
-            <h4><span class="emoji">🏆</span>Google Play Games Services (Leaderboards & Achievements)</h4>
+            <h4><span class="emoji">🏆</span>Leaderboards & Achievements (formerly Google Play Games Services)</h4>
+            <div class="box-info">
+                <strong>ℹ️ Historical note:</strong> Prior to July 2, 2026, public leaderboards, achievement badges, and public profile information were managed through Google Play Games Services. GPGS is no longer integrated. Leaderboards and achievements are now managed entirely through our own servers (Fly.io / Neon PostgreSQL), tied to your device identifier.
+            </div>
             <ul>
                 <li>Public scores on leaderboards</li>
                 <li>Unlocked achievement badges</li>
-                <li>Public profile information</li>
+                <li>Public display name</li>
             </ul>
             <p><strong>Legal Basis:</strong> Service contract | <strong>Purpose:</strong> Leaderboards, social features</p>
             
-            <h4><span class="emoji">📊</span>Private Statistics Leaderboards (GPGS)</h4>
-            <p>In addition to public leaderboards, we maintain private leaderboards for internal tracking:</p>
-            <ul>
-                <li>Total playtime (cumulative seconds)</li>
-                <li>Games played (all modes combined)</li>
-                <li>Total wins (all difficulties)</li>
-            </ul>
-            <p><strong>Visibility:</strong> Private (only visible to you via GPGS)</p>
-            <p><strong>Status:</strong> These leaderboards are coded in the app but currently disabled in the Google Play Console (for internal use only)</p>
-            <p><strong>Google Play IDs:</strong></p>
-            <ul>
-                <li>CgkIzuudz8UbEAIQAg (playtime)</li>
-                <li>CgkIzuudz8UbEAIQAw (games played)</li>
-                <li>CgkIzuudz8UbEAIQBA (total wins)</li>
-            </ul>
+            <h4><span class="emoji">📊</span>Private Statistics Leaderboards (Historical — GPGS, discontinued)</h4>
+            <div class="box-info">
+                <strong>ℹ️ No longer applicable.</strong> Prior to July 2, 2026, the Application additionally maintained private leaderboards via Google Play Games Services for internal tracking of total playtime, games played, and total wins. These leaderboards were already disabled in the Google Play Console for internal use only, and the underlying GPGS integration has since been removed entirely along with the SDK. The associated Google Play leaderboard IDs (previously referenced here) are no longer in use.
+            </div>
             
             <h3>3.5 Daily Challenge Data</h3>
             
@@ -862,9 +855,9 @@
             <p><strong>Legal Basis:</strong> Consent + Service contract | <strong>Purpose:</strong> Social features, friend-to-friend matching</p>
             
             <h4><span class="emoji">🔐</span>Friend Code Generation</h4>
-            <p>Your friend code is generated using a deterministic, non-reversible hash algorithm based on your Player ID. This means:</p>
+            <p>Your friend code is generated using a deterministic, non-reversible hash algorithm based on your player identifier. This means:</p>
             <ul>
-                <li>The code cannot be traced back to your Player ID</li>
+                <li>The code cannot be traced back to your player identifier</li>
                 <li>It remains the same across all your sessions</li>
                 <li>No personally identifiable information is embedded in the code</li>
             </ul>
@@ -884,7 +877,7 @@
             </div>
             
             <div class="box-highlight">
-                <strong>⚠️ Important:</strong> Friend codes and friendships are tied to your Google Play Games account. If you delete your GPGS account, all associated friend data will be deleted within 12 months.
+                <strong>⚠️ Important:</strong> Friend codes and friendships are tied to your player identifier (device-based). Uninstalling the Application and clearing app data will disconnect you from your existing friendships, as described in Section 7.3.
             </div>
             
             <h3>3.7 Challenge System Data</h3>
@@ -911,7 +904,7 @@
             <ul>
                 <li>JWT tokens (JSON Web Tokens) containing:
                     <ul>
-                        <li>Player ID — either your GPGS Player ID (if signed in) or your device identifier (if guest) (encrypted)</li>
+                        <li>Player ID — your device identifier (encrypted)</li>
                         <li>Player Name (encrypted)</li>
                         <li>Expiration timestamp (30 days)</li>
                     </ul>
@@ -1024,7 +1017,7 @@
 </div>
 
 <div class="box-success">
-    <strong>🔒 Privacy:</strong> Your IP address is only used for connection routing and is never stored or shared with other players. Only your GPGS Player Name is visible to opponents.
+    <strong>🔒 Privacy:</strong> Your IP address is only used for connection routing and is never stored or shared with other players. Only your display name is visible to opponents.
 </div>
 
 <h4><span class="emoji">🔄</span>Reconnection Dialog</h4>
@@ -1069,8 +1062,8 @@
                 <li><strong>Purpose:</strong> Store and rank player scores globally</li>
                 <li><strong>Data stored:</strong>
                     <ul>
-                        <li>Player ID (GPGS)</li>
-                        <li>Player Name (GPGS)</li>
+                        <li>Player ID (device identifier)</li>
+                        <li>Player Name</li>
                         <li>Total scores per category (solo/multi/daily)</li>
                         <li>Games played count</li>
                         <li>Last submission timestamp</li>
@@ -1114,7 +1107,7 @@
                         <td>Contract</td>
                     </tr>
                     <tr>
-                        <td>Cloud synchronization</td>
+                        <td>Server-side synchronization</td>
                         <td>Progression data</td>
                         <td>Contract</td>
                     </tr>
@@ -1151,15 +1144,10 @@
                 </tbody>
             </table>
             
-            <h4><span class="emoji">🔄</span>Cloud Sync Conflict Resolution</h4>
-            <p>When syncing data between device and cloud (GPGS), we use a <strong>MAX merge strategy</strong>:</p>
-            <ul>
-                <li>For win counters: Highest value kept (prevents data loss)</li>
-                <li>For playtime: Longest time kept</li>
-                <li>For settings: Most recent timestamp wins</li>
-            </ul>
-            <p><strong>Example:</strong> If you have 10 wins locally and 15 wins in cloud, we keep 15.</p>
-            <p><strong>Rationale:</strong> This prevents accidental data loss from reinstalls or device changes.</p>
+            <h4><span class="emoji">🔄</span>Data Merge Strategy (Historical — GPGS cloud sync, discontinued)</h4>
+            <div class="box-info">
+                <strong>ℹ️ No longer applicable.</strong> Prior to July 2, 2026, when syncing data between a device and Google Play Games cloud saves, we used a MAX merge strategy (highest value kept for win counters and playtime, most recent timestamp for settings) to prevent data loss on reinstall or device change. Since GPGS cloud sync has been removed, progression is now stored solely on our own servers under your device identifier; no client/cloud merge is performed.
+            </div>
             
             <h3>4.2 Data Sharing</h3>
             <p>Your data is <strong>NEVER sold</strong> to third parties.</p>
@@ -1173,12 +1161,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><strong>Google Play Games</strong></td>
-                        <td>Player ID, name, scores</td>
-                        <td>Authentication & leaderboards</td>
-                        <td>✅ Yes (Google ToS)</td>
-                    </tr>
                     <tr>
                         <td><strong>Google AdMob</strong></td>
                         <td>Advertising ID</td>
@@ -1205,7 +1187,7 @@
                     </tr>
                     <tr>
                         <td><strong>JWT Tokens (Local)</strong></td>
-                        <td>Authentication tokens (GPGS Player ID or Device ID + Name)</td>
+                        <td>Authentication tokens (Device ID + Name)</td>
                         <td>API authentication</td>
                         <td>✅ Yes (30-day expiry, HS256 signed)</td>
                     </tr>
@@ -1217,6 +1199,9 @@
                     </tr>
                 </tbody>
             </table>
+            <div class="box-info">
+                <strong>ℹ️ Historical note:</strong> Prior to July 2, 2026, this table also listed Google Play Games (Player ID, name, scores shared for authentication and leaderboards). This row has been removed as GPGS is no longer integrated and no data is shared with it.
+            </div>
             
             <h2><span class="emoji">⏳</span>5. Data Retention</h2>
 
@@ -1229,7 +1214,7 @@
 <p>Where server-side features are provided (such as multiplayer, friends, and leaderboards), related records may be retained as long as needed for the operation and integrity of these features and for security/fraud prevention.</p>
 
 <h3>5.3 Third-Party Services (Google)</h3>
-<p>Some data is processed by third-party services such as Google Play Games Services, Google AdMob, and Firebase (Analytics/Crash reporting). Retention for those services is governed by their policies and configuration. We do not implement custom deletion routines for data stored and retained by these third-party services.</p>
+<p>Some data is processed by third-party services such as Google AdMob and Firebase (Analytics/Crash reporting). Retention for those services is governed by their policies and configuration. We do not implement custom deletion routines for data stored and retained by these third-party services.</p>
 
 <h3>5.4 Legal and Accounting</h3>
 <p>Where required by law (for example, for accounting, taxation, or fraud prevention), certain transaction-related records may be retained for the legally required period.</p>
@@ -1240,13 +1225,13 @@
         <h3>6.1 Technical Measures</h3>
 <ul>
     <li><strong>Encryption in Transit:</strong> HTTPS/TLS 1.3 for all transfers</li>
-    <li><strong>Encryption at Rest:</strong> Cloud data encrypted via GPGS, server data encrypted via PostgreSQL (AES-256)</li>
+    <li><strong>Encryption at Rest:</strong> Server data encrypted via PostgreSQL (AES-256)</li>
     <li><strong>Server Isolation:</strong> Fly.io infrastructure with network isolation</li>
     <li><strong>No Payment Storage:</strong> Payment data remains with Google (never stored locally)</li>
     <li><strong>Input Validation:</strong> Protection against SQL injection, XSS attacks</li>
     <li><strong>JWT Authentication:</strong> Secure tokens with 30-day expiration, HS256 signature algorithm</li>
     <li><strong>PostgreSQL Encryption:</strong> Data encrypted at rest via Neon infrastructure (AES-256)</li>
-    <li><strong>Friend Code Hashing:</strong> Non-reversible deterministic hashing (cannot be traced back to Player ID)</li>
+    <li><strong>Friend Code Hashing:</strong> Non-reversible deterministic hashing (cannot be traced back to your identifier)</li>
     <li><strong>Challenge Data Volatility:</strong> Challenges stored in RAM only (60s max), never written to disk</li>
     <li><strong>Purchase Token Validation:</strong> Tokens sent to server over HTTPS/TLS 1.3, validated once, then discarded</li>
     <li><strong>Request Timeouts:</strong> 15 seconds maximum per API request (prevents hanging)</li>
@@ -1362,7 +1347,6 @@
             </ul>
             <p><strong>Data Accessible Directly:</strong></p>
             <ul>
-                <li>GPGS Profile: Google Play Games > Settings</li>
                 <li>Purchase History: Google Play Store > Account > Payments and Subscriptions</li>
                 <li>Google Privacy Settings: myaccount.google.com</li>
             </ul>
@@ -1370,8 +1354,7 @@
             <h3>7.2 Right of Correction (GDPR Article 16)</h3>
             <p>You can correct inaccurate data about yourself.</p>
             <ul>
-                <li>Edit your GPGS profile directly in Google Play Games</li>
-                <li>Update preferences within the Application settings</li>
+                <li>Update your display name and preferences within the Application settings</li>
             </ul>
             
             <h3 id="data-deletion">7.3 Right to Erasure (GDPR Article 17)</h3>
@@ -1388,14 +1371,9 @@
     </thead>
     <tbody>
         <tr>
-            <td><strong>Google Play Games Profile</strong></td>
-            <td>Delete GPGS account via Google Settings</td>
-            <td>Complete account removal from GPGS (managed by Google)</td>
-        </tr>
-        <tr>
             <td><strong>Local Device Data</strong></td>
             <td>Uninstall app or Clear Data in Android Settings</td>
-            <td>All local progress deleted</td>
+            <td>All local progress deleted; a new device identifier will be generated on next launch</td>
         </tr>
         <tr>
             <td><strong>Specific Friendships</strong></td>
@@ -1463,13 +1441,8 @@
             <td>Article 17.3.b (Legal Obligation - 7 years retention, France/EU law)</td>
         </tr>
         <tr>
-            <td><strong>Player Name (GPGS)</strong></td>
-            <td>Managed by Google Play Games Services. We cannot delete GPGS data.</td>
-            <td>Third-party service (see Google's Privacy Policy)</td>
-        </tr>
-        <tr>
-            <td><strong>Device Identifier (Guest)</strong></td>
-            <td>Used as your player identifier when not signed in to GPGS. Required for leaderboard integrity and game feature continuity.</td>
+            <td><strong>Device Identifier</strong></td>
+            <td>Used as your player identifier for all game features. Required for leaderboard integrity and game feature continuity.</td>
             <td>Article 6.1.b (Contract) + Article 6.1.f (Legitimate Interest)</td>
         </tr>
     </tbody>
@@ -1482,21 +1455,13 @@
         <li>Data serves a public interest (leaderboard integrity - Article 17.3.b) ✅</li>
         <li>Data is required by law (tax records - Article 17.3.b) ✅</li>
     </ul>
-   <p style="margin-top: 10px;"><strong>Note:</strong> Deleting data linked to Google Play Games is managed by Google through Google Play Games settings. For our own server-side records, we can delete or anonymize where feasible, subject to integrity and legal obligations.</p>
+   <p style="margin-top: 10px;"><strong>Note:</strong> For our own server-side records, we can delete or anonymize where feasible, subject to integrity and legal obligations.</p>
 </div>
 
 <h4><span class="emoji">🔄</span>How to Completely Remove Your Data</h4>
 <p>If you want to completely erase your presence from the app, you must:</p>
 
 <ol>
-    <li><strong>Delete Your Google Play Games Account</strong>
-        <ul>
-            <li>Open Google Play Games app</li>
-            <li>Tap Profile > Settings</li>
-            <li>Select "Delete Play Games account & data"</li>
-            <li><strong>Effect:</strong> Google manages deletion timelines according to its own policies and processes.</li>
-        </ul>
-    </li>
     <li><strong>Uninstall Sudoku Battle</strong>
         <ul>
             <li>Long-press app icon > Uninstall</li>
@@ -1506,7 +1471,7 @@
     <li><strong>Request Server Data Cleanup</strong> (Optional)
         <ul>
             <li>Email <a href="mailto:contact.thecatsizerlab@gmail.com">contact.thecatsizerlab@gmail.com</a></li>
-            <li>Provide proof of GPGS account deletion</li>
+            <li>Provide your device identifier or display name if known</li>
             <li><strong>We will delete:</strong> Orphaned server records (scores, friendships, etc.) within 90 days</li>
             <li><strong>We will retain:</strong> Purchase records (7 years - legal requirement)</li>
         </ul>
@@ -1514,11 +1479,10 @@
 </ol>
 
 <div class="box-highlight">
-    <strong>📧 Manual Deletion Request:</strong> If you've deleted your GPGS account and want us to expedite server cleanup, email us with:
+    <strong>📧 Manual Deletion Request:</strong> To expedite server cleanup, email us with:
     <ul style="margin-top: 10px;">
-        <li>Your former Player ID (if known)</li>
+        <li>Your device identifier (if known)</li>
         <li>Your former display name</li>
-        <li>Screenshot of GPGS account deletion confirmation</li>
     </ul>
     <p style="margin-top: 10px;"><strong>Processing time:</strong> 30 days maximum</p>
 </div>
@@ -1535,10 +1499,9 @@
 
 <div class="box-success">
     <strong>✅ Practical Options:</strong>
-    <p style="margin-top: 10px;">You can stop app data collection by uninstalling the Application. You may also request deletion or anonymization of our server-side records where feasible, subject to leaderboard integrity and legal obligations. Data handled by Google services (Play Games / Firebase / AdMob) is managed under Google's controls.</p>
+    <p style="margin-top: 10px;">You can stop app data collection by uninstalling the Application. You may also request deletion or anonymization of our server-side records where feasible, subject to leaderboard integrity and legal obligations. Data handled by Google services (Firebase / AdMob) is managed under Google's controls.</p>
 </div>
 
-</div>
             
             <h3>7.3.1 Partial Data Deletion</h3>
             <p>You can request deletion of specific types of data without deleting everything:</p>
@@ -1578,19 +1541,9 @@
                         <td>All local progress and settings deleted</td>
                     </tr>
                     <tr>
-                        <td><strong>GPGS Cloud Saves</strong></td>
-                        <td>Google Play Games > Settings > Delete saved game</td>
-                        <td>Cloud backup removed (local data remains)</td>
-                    </tr>
-                    <tr>
                         <td><strong>Purchase History</strong></td>
                         <td>Cannot be deleted</td>
                         <td>Legal requirement (7 years retention)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>GPGS Achievements</strong></td>
-                        <td>Cannot be selectively deleted</td>
-                        <td>Must delete entire GPGS profile via Google</td>
                     </tr>
                 </tbody>
             </table>
@@ -1697,13 +1650,6 @@
     <li>Audio preferences (volume, enabled/disabled)</li>
 </ul>
 
-<p><strong>Cloud storage via Google Play Games Services for:</strong></p>
-<ul>
-    <li>Game progression (cloud saves, encrypted by Google)</li>
-    <li>Leaderboard scores</li>
-    <li>Unlocked achievements</li>
-</ul>
-
 <p>Technically these are not "cookies" but persistent local files.</p>
             
           <h3>10.2 Firebase Analytics & Crashlytics</h3>
@@ -1732,7 +1678,7 @@
 <p><strong>Legal Basis:</strong> Legitimate interest (technical maintenance)</p>
 
 <div class="box-highlight">
-  <strong>🔒 Privacy:</strong> These services are provided by Google and operate under Google's policies. We do not intentionally include your GPGS Player ID in Analytics/Crash reports. Google may process device/app identifiers needed to provide these services.
+  <strong>🔒 Privacy:</strong> These services are provided by Google and operate under Google's policies. We do not intentionally include your player ID in Analytics/Crash reports. Google may process device/app identifiers needed to provide these services.
 </div>
 
 <p><strong>User Controls:</strong></p>
@@ -1865,6 +1811,11 @@
             <td>June 3, 2026</td>
             <td>Added: Hybrid authentication system — device identifier support for guest users (non-GPGS), JWT token updated to reflect GPGS Player ID or Device ID</td>
         </tr>
+        <tr>
+            <td>1.5</td>
+            <td>July 2, 2026</td>
+            <td>Removed: Google Play Games Services (GPGS) integration entirely — the SDK is no longer bundled with the Application. Player identification, progression, leaderboards, and achievements now rely solely on the device-based identifier and our own servers. Existing GPGS players were transparently migrated. Historical notes added throughout Sections 1, 3, 4, and 7 to reflect this change while preserving transparency about prior data practices.</td>
+        </tr>
     </tbody>
 </table>
 
@@ -1980,7 +1931,7 @@
                 </div>
                 <div style="margin: 15px 0; padding: 15px; background: #f8f9fa; border-radius: 6px;">
                     <strong style="color: #667eea;">GPGS</strong><br>
-                    Google Play Games Services
+                    Google Play Games Services — a Google authentication and social gaming SDK formerly integrated in the Application. No longer in use as of July 2, 2026 (see Section 1.1).
                 </div>
                <div style="margin: 15px 0; padding: 15px; background: #f8f9fa; border-radius: 6px;">
     <strong style="color: #667eea;">SharedPreferences</strong><br>
@@ -2015,13 +1966,13 @@
                 <strong>✅ PRIVACY POLICY COMPLETE</strong>
                 <p style="margin-top: 15px;">This document contains the complete Privacy Policy for Sudoku Battle by TheCatsizerLab.</p>
                 <p style="margin-top: 10px;"><strong>Total Sections:</strong> 17 complete sections covering all data collection, processing, security, and user rights.</p>
-                <p style="margin-top: 10px;"><strong>Last Updated:</strong> June 3, 2026 (Version 1.4)</p>
+                <p style="margin-top: 10px;"><strong>Last Updated:</strong> July 2, 2026 (Version 1.5)</p>
             </div>
         </main>
         
         <footer>
             <p><strong>Sudoku Battle - Privacy Policy</strong></p>
-            <p>Version 1.4 - Last Updated: June 3, 2026</p>
+            <p>Version 1.5 - Last Updated: July 2, 2026</p>
             <p>For inquiries: <a href="mailto:contact.thecatsizerlab@gmail.com">contact.thecatsizerlab@gmail.com</a></p>
             <p>© 2026 TheCatsizerLab. All rights reserved.</p>
         </footer>
