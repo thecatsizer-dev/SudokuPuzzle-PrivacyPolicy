@@ -252,7 +252,7 @@
             </div>
            <div class="metadata-item">
     <strong>Last Updated:</strong>
-    July 2, 2026
+    July 11, 2026
 </div>
             <div class="metadata-item">
                 <strong>Email:</strong>
@@ -270,13 +270,18 @@
             <p>This privacy policy explains how we collect, use, share, and protect your personal data when you use our Application.</p>
 
             <div class="box-info">
-                <strong>ℹ️ Important Update (July 2, 2026):</strong> As of this version, the Application no longer integrates the Google Play Games Services (GPGS) SDK. All player identification, progression, leaderboards, and achievements are now handled through a device-based identifier and our own servers. See Section 1.1 below for details, and Section 3.1 for what previously applied under GPGS.
+                <strong>ℹ️ Important Update (July 11, 2026):</strong> As of this version, on first launch the Application asks you to explicitly choose how you want to identify yourself: sign in with a Google Account (via native Google Sign-In) or continue as a guest with a randomly generated identifier. See Section 1.1 below for details, and Section 3.1 for what previously applied under the earlier device-based-only system.
             </div>
 
-            <h3>1.1 Historical Note — Google Play Games Services (GPGS)</h3>
-            <p>Prior to July 2, 2026, the Application offered optional sign-in through Google Play Games Services (GPGS) for returning players, alongside the device-based identifier used for guest players. GPGS was used at that time for authentication, cloud save synchronization, leaderboards, and achievements, as described in earlier versions of this policy.</p>
-            <p>The Application has since removed the GPGS SDK entirely. It is no longer bundled with the Application, and no data is sent to or received from Google Play Games Services. Players who previously connected via GPGS were automatically and transparently migrated to the device-based identifier system, preserving their existing server-side statistics (scores, progression, achievements) without any action required on their part.</p>
-            <p>Any section of this policy that previously described GPGS-specific data collection (Player ID, display name, profile picture, cloud saves, GPGS leaderboards, GPGS achievements) no longer applies going forward. Where relevant, we have retained a short historical note rather than removing all references, for transparency about what was previously collected.</p>
+            <h3>1.1 Historical Note — Identification System Evolution</h3>
+            <p>Prior to July 2, 2026, the Application relied solely on a device-based identifier (derived from your device's Android ID) for all players, alongside an earlier, now-discontinued, optional integration with Google Play Games Services (GPGS). The GPGS SDK was fully removed from the Application on July 2, 2026, and no data is sent to or received from Google Play Games Services.</p>
+            <p>As of July 11, 2026, the Application introduced a new identification choice screen shown once, on first launch (or until a choice is made). Players can choose to:</p>
+            <ul>
+                <li><strong>Sign in with a Google Account</strong> — using native Google Sign-In (the <code>google_sign_in</code> Flutter package), separate from and unrelated to the previously removed Google Play Games Services; or</li>
+                <li><strong>Continue as a guest</strong> — using a randomly generated identifier stored only on your device, with no connection to your device hardware.</li>
+            </ul>
+            <p>Players who already had an account before this update (whether from the device-based system or the discontinued GPGS integration) are automatically and transparently migrated to their existing identifier if they choose "Continue as a guest," preserving their existing server-side statistics (scores, progression, achievements) without any action required on their part. This choice screen is shown only once; it does not reappear once a choice has been made.</p>
+            <p>Any section of this policy that previously described GPGS-specific data collection (Player ID, display name, profile picture, cloud saves, GPGS leaderboards, GPGS achievements) no longer applies. Where relevant, we have retained a short historical note rather than removing all references, for transparency about what was previously collected.</p>
             
             <h2><span class="emoji">👤</span>2. Data Controller</h2>
             <div class="contact-box">
@@ -297,13 +302,76 @@
             <h2><span class="emoji">📊</span>3. Data We Collect</h2>
             
             <h3>3.1 Data Collected Directly from You</h3>
-            
-            <h4><span class="emoji">🎮</span>Player Identification (formerly Google Play Games Services)</h4>
+
+            <h4><span class="emoji">🔀</span>Identification Choice (First Launch)</h4>
+            <p>On first launch of the Application (or until you make a choice), you are presented with a screen asking you to choose between two identification methods. This choice is required to continue using the Application, but the specific method you pick is entirely your decision.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>What Happens</th>
+                        <th>Data Involved</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Sign in with Google</strong></td>
+                        <td>Native Google Sign-In flow opens; your Google identity is verified with Google, then confirmed server-side</td>
+                        <td>Google account email address, Google account identifier (see "Google Sign-In" below)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Continue as guest</strong></td>
+                        <td>A random identifier is generated on your device (or your existing identifier is reused if you already played before)</td>
+                        <td>Randomly generated identifier only — no personal data, no device hardware data</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><strong>Legal Basis:</strong> Consent (Article 6.1.a) for the choice itself, Contract (Article 6.1.b) for the resulting identification | <strong>Purpose:</strong> Enable account identification, progression saving, leaderboards, and multiplayer features</p>
+            <p><strong>Frequency:</strong> This screen is shown once. Once a choice is made, it is remembered locally and the screen does not reappear, regardless of which option was chosen.</p>
+
+            <h4><span class="emoji">🔑</span>Google Sign-In</h4>
+            <p>If you choose to sign in with Google, the Application uses the official <code>google_sign_in</code> Flutter package to authenticate you through your device's Google account.</p>
+            <ul>
+                <li><strong>Data requested from Google:</strong> your email address and Google account identifier only (scope: <code>email</code>) — no extended profile data, no contacts, no other Google service data</li>
+                <li><strong>Your Google password is never accessed, seen, or stored by us</strong> — authentication is handled entirely by Google's sign-in flow</li>
+                <li>Google issues a short-lived ID token, which is sent to our game server and verified server-side using Google's official <code>google-auth-library</code> before your account is created or matched</li>
+                <li>Your resulting player identifier is derived from your verified Google account identifier (not your email address directly)</li>
+            </ul>
+            <p><strong>Legal Basis:</strong> Consent (Article 6.1.a) + Service contract (Article 6.1.b) | <strong>Purpose:</strong> Secure, persistent account identification across devices and reinstalls</p>
+            <p><strong>Storage:</strong> Verified account identifier and associated game data stored on our own servers (Fly.io / Neon PostgreSQL); the Google ID token itself is not stored after verification</p>
             <div class="box-info">
-                <strong>ℹ️ Historical note:</strong> Prior to July 2, 2026, this section described data collected via Google Play Games Services (Player ID, display name, profile picture, cloud-synced progression). GPGS is no longer integrated into the Application. The information below reflects the current system.
+                <strong>ℹ️ Distinct from Google Play Games Services:</strong> This Google Sign-In feature is a separate, standalone integration from the previously removed Google Play Games Services (GPGS) SDK described in Section 1.1. It does not use GPGS, and no data flows to or from GPGS.
+            </div>
+
+            <h4><span class="emoji">🆔</span>Guest Identifier (Randomly Generated)</h4>
+            <ul>
+                <li>If you choose "Continue as a guest," a random identifier (not derived from your device hardware, Android ID, or any personal data) is generated using a cryptographically secure random generator</li>
+                <li>This identifier is used as your player identifier for all game features (progression, leaderboards, multiplayer, daily challenges, friends)</li>
+                <li>It is not linked to your real identity, name, email, or any external account</li>
+                <li>If you already had an existing account on this device before this identification system was introduced, that existing identifier is reused automatically — no new identifier is created and no progress is lost</li>
+            </ul>
+            <p><strong>Legal Basis:</strong> Service contract (Article 6.1.b) | <strong>Purpose:</strong> Enable core game features for players who do not wish to sign in with Google</p>
+            <p><strong>Storage:</strong> Device local storage (SharedPreferences) + server-side (Fly.io / Neon PostgreSQL)</p>
+            <p><strong>Retention:</strong> As long as needed to provide the service and maintain integrity of features, subject to security and legal requirements</p>
+            <div class="box-highlight">
+                <strong>⚠️ Guest Identifier Notice:</strong> Since this identifier is stored only on your device and is not tied to your personal identity or any account, uninstalling the Application or clearing its data will make it unrecoverable — a new identifier will be generated on next launch, and previous progress cannot be restored unless you had linked a Google account beforehand. You can link a Google account at any time from your profile to secure your progress against this.
+            </div>
+            <p>As part of migrating existing players to this system, a device identifier previously derived from your Android device (used prior to July 11, 2026, see "Legacy Device Identifier" below) may still be read once, locally, purely to detect and preserve an existing account during migration. It is not used to create new identifiers going forward.</p>
+
+            <h4><span class="emoji">📱</span>Legacy Device Identifier (Migration Only)</h4>
+            <div class="box-info">
+                <strong>ℹ️ Applies only to accounts created before July 11, 2026.</strong> Earlier versions of the Application generated a device identifier by hashing your Android ID (SHA-256, never sent or stored in raw form). This mechanism is no longer used to create identifiers for new players. It is retained solely so that players with a pre-existing account can be recognized and their progress preserved when they choose "Continue as a guest" on the identification choice screen described above.
             </div>
             <ul>
-                <li>A locally generated device identifier (see "Device Identifier" below), used as your unique player identifier</li>
+                <li>Used only for reading/matching an existing pre-July 2026 account during the one-time migration described above</li>
+                <li>Never used to generate a new identifier for players who did not already have one</li>
+                <li>The raw Android ID itself is never transmitted to our servers — only a one-way SHA-256 hash derived from it</li>
+            </ul>
+            <p><strong>Legal Basis:</strong> Service contract (Article 6.1.b) — necessary to preserve existing players' progress during the migration | <strong>Purpose:</strong> Prevent data loss for existing players</p>
+
+            <h4><span class="emoji">🎮</span>Player Identification — General</h4>
+            <ul>
+                <li>Your resulting player identifier (from Google Sign-In or guest identifier, as described above)</li>
                 <li>A display name you choose or that is assigned by default</li>
                 <li>Game progression data stored on our own servers (Fly.io / Neon PostgreSQL)</li>
             </ul>
@@ -403,19 +471,7 @@
     <li>SKIP LOCKED prevents concurrent retrieval conflicts</li>
     <li>Transaction rollback on any error ensures data consistency</li>
 </ul>
-           <h4><span class="emoji">📱</span>Device Identifier</h4>
-<ul>
-    <li>A unique device identifier generated locally on your device</li>
-    <li>Used as your player identifier for all game features</li>
-    <li>Not linked to your real identity, name, or any external account</li>
-    <li>Stored locally (SharedPreferences) and sent to our servers for game features (leaderboards, multiplayer, daily challenges)</li>
-</ul>
-<p><strong>Legal Basis:</strong> Service contract (Article 6.1.b) | <strong>Purpose:</strong> Enable core game features for all players</p>
-<p><strong>Storage:</strong> Device local storage (SharedPreferences) + server-side (Fly.io / Neon PostgreSQL)</p>
-<p><strong>Retention:</strong> As long as needed to provide the service and maintain integrity of features, subject to security and legal requirements</p>
-<div class="box-highlight">
-    <strong>⚠️ Device Identifier Notice:</strong> This identifier is not tied to your personal identity but is associated with your device. Resetting your device or clearing app data will generate a new identifier, and your previous progress may not be recoverable. If you previously used Google Play Games Services before July 2, 2026, your prior progress was automatically migrated to this identifier upon your first launch after the update.
-</div> 
+            
            <h4><span class="emoji">⚙️</span>Preference Data</h4>
 <ul>
     <li>Selected visual theme</li>
@@ -440,7 +496,7 @@
             
             <h4><span class="emoji">☁️</span>Cloud Game Save (Historical — GPGS, discontinued)</h4>
             <div class="box-info">
-                <strong>ℹ️ No longer applicable.</strong> Prior to July 2, 2026, the Application offered cloud save synchronization via Google Play Games Saved Games for signed-in players. This feature relied on the GPGS SDK, which has been removed. Game state (grid, progression, hints, score) is now preserved through our own servers as described in "Player Profile Statistics" and "Game Data" above, tied to your device identifier.
+                <strong>ℹ️ No longer applicable.</strong> Prior to July 2, 2026, the Application offered cloud save synchronization via Google Play Games Saved Games for signed-in players. This feature relied on the GPGS SDK, which has been removed. Game state (grid, progression, hints, score) is now preserved through our own servers as described in "Player Profile Statistics" and "Game Data" above, tied to your player identifier (Google Sign-In or guest identifier).
             </div>
             
             <h4><span class="emoji">🏅</span>Achievement Progress Tracking (Local)</h4>
@@ -772,7 +828,7 @@
             
             <h4><span class="emoji">🏆</span>Leaderboards & Achievements (formerly Google Play Games Services)</h4>
             <div class="box-info">
-                <strong>ℹ️ Historical note:</strong> Prior to July 2, 2026, public leaderboards, achievement badges, and public profile information were managed through Google Play Games Services. GPGS is no longer integrated. Leaderboards and achievements are now managed entirely through our own servers (Fly.io / Neon PostgreSQL), tied to your device identifier.
+                <strong>ℹ️ Historical note:</strong> Prior to July 2, 2026, public leaderboards, achievement badges, and public profile information were managed through Google Play Games Services. GPGS is no longer integrated. Leaderboards and achievements are now managed entirely through our own servers (Fly.io / Neon PostgreSQL), tied to your player identifier (Google Sign-In or guest identifier, see Section 1.1).
             </div>
             <ul>
                 <li>Public scores on leaderboards</li>
@@ -877,7 +933,7 @@
             </div>
             
             <div class="box-highlight">
-                <strong>⚠️ Important:</strong> Friend codes and friendships are tied to your player identifier (device-based). Uninstalling the Application and clearing app data will disconnect you from your existing friendships, as described in Section 7.3.
+                <strong>⚠️ Important:</strong> Friend codes and friendships are tied to your player identifier (Google Sign-In account or guest identifier). Uninstalling the Application and clearing app data will disconnect you from your existing friendships unless your account is secured via Google Sign-In, as described in Section 7.3.
             </div>
             
             <h3>3.7 Challenge System Data</h3>
@@ -904,7 +960,7 @@
             <ul>
                 <li>JWT tokens (JSON Web Tokens) containing:
                     <ul>
-                        <li>Player ID — your device identifier (encrypted)</li>
+                        <li>Player ID — your Google Sign-In-derived or guest identifier (encrypted)</li>
                         <li>Player Name (encrypted)</li>
                         <li>Expiration timestamp (30 days)</li>
                     </ul>
@@ -1062,7 +1118,7 @@
                 <li><strong>Purpose:</strong> Store and rank player scores globally</li>
                 <li><strong>Data stored:</strong>
                     <ul>
-                        <li>Player ID (device identifier)</li>
+                        <li>Player ID (Google Sign-In or guest identifier)</li>
                         <li>Player Name</li>
                         <li>Total scores per category (solo/multi/daily)</li>
                         <li>Games played count</li>
@@ -1146,7 +1202,7 @@
             
             <h4><span class="emoji">🔄</span>Data Merge Strategy (Historical — GPGS cloud sync, discontinued)</h4>
             <div class="box-info">
-                <strong>ℹ️ No longer applicable.</strong> Prior to July 2, 2026, when syncing data between a device and Google Play Games cloud saves, we used a MAX merge strategy (highest value kept for win counters and playtime, most recent timestamp for settings) to prevent data loss on reinstall or device change. Since GPGS cloud sync has been removed, progression is now stored solely on our own servers under your device identifier; no client/cloud merge is performed.
+                <strong>ℹ️ No longer applicable.</strong> Prior to July 2, 2026, when syncing data between a device and Google Play Games cloud saves, we used a MAX merge strategy (highest value kept for win counters and playtime, most recent timestamp for settings) to prevent data loss on reinstall or device change. Since GPGS cloud sync has been removed, progression is now stored solely on our own servers under your player identifier; no client/cloud merge is performed. When an existing guest account is later linked to a Google Sign-In account, existing progress is merged (added) rather than overwritten — see Section 7.3.
             </div>
             
             <h3>4.2 Data Sharing</h3>
@@ -1161,6 +1217,12 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <tr>
+                        <td><strong>Google Sign-In</strong></td>
+                        <td>Email address, Google account identifier (ID token, verified server-side)</td>
+                        <td>Account authentication (optional, user choice)</td>
+                        <td>✅ Yes (Google ToS)</td>
+                    </tr>
                     <tr>
                         <td><strong>Google AdMob</strong></td>
                         <td>Advertising ID</td>
@@ -1187,7 +1249,7 @@
                     </tr>
                     <tr>
                         <td><strong>JWT Tokens (Local)</strong></td>
-                        <td>Authentication tokens (Device ID + Name)</td>
+                        <td>Authentication tokens (Player ID + Name)</td>
                         <td>API authentication</td>
                         <td>✅ Yes (30-day expiry, HS256 signed)</td>
                     </tr>
@@ -1200,7 +1262,7 @@
                 </tbody>
             </table>
             <div class="box-info">
-                <strong>ℹ️ Historical note:</strong> Prior to July 2, 2026, this table also listed Google Play Games (Player ID, name, scores shared for authentication and leaderboards). This row has been removed as GPGS is no longer integrated and no data is shared with it.
+                <strong>ℹ️ Historical note:</strong> Prior to July 2, 2026, this table also listed Google Play Games Services (Player ID, name, scores shared for authentication and leaderboards). This row has been removed as GPGS is no longer integrated and no data is shared with it. The "Google Sign-In" row above refers to a separate, unrelated native sign-in feature introduced July 11, 2026.
             </div>
             
             <h2><span class="emoji">⏳</span>5. Data Retention</h2>
@@ -1214,7 +1276,7 @@
 <p>Where server-side features are provided (such as multiplayer, friends, and leaderboards), related records may be retained as long as needed for the operation and integrity of these features and for security/fraud prevention.</p>
 
 <h3>5.3 Third-Party Services (Google)</h3>
-<p>Some data is processed by third-party services such as Google AdMob and Firebase (Analytics/Crash reporting). Retention for those services is governed by their policies and configuration. We do not implement custom deletion routines for data stored and retained by these third-party services.</p>
+<p>Some data is processed by third-party services such as Google Sign-In, Google AdMob and Firebase (Analytics/Crash reporting). Retention for those services is governed by their policies and configuration. We do not implement custom deletion routines for data stored and retained by these third-party services.</p>
 
 <h3>5.4 Legal and Accounting</h3>
 <p>Where required by law (for example, for accounting, taxation, or fraud prevention), certain transaction-related records may be retained for the legally required period.</p>
@@ -1228,6 +1290,7 @@
     <li><strong>Encryption at Rest:</strong> Server data encrypted via PostgreSQL (AES-256)</li>
     <li><strong>Server Isolation:</strong> Fly.io infrastructure with network isolation</li>
     <li><strong>No Payment Storage:</strong> Payment data remains with Google (never stored locally)</li>
+    <li><strong>Google Sign-In Verification:</strong> ID tokens are verified server-side against Google's public keys before any account is created or matched; your Google password is never transmitted to or seen by us</li>
     <li><strong>Input Validation:</strong> Protection against SQL injection, XSS attacks</li>
     <li><strong>JWT Authentication:</strong> Secure tokens with 30-day expiration, HS256 signature algorithm</li>
     <li><strong>PostgreSQL Encryption:</strong> Data encrypted at rest via Neon infrastructure (AES-256)</li>
@@ -1373,7 +1436,7 @@
         <tr>
             <td><strong>Local Device Data</strong></td>
             <td>Uninstall app or Clear Data in Android Settings</td>
-            <td>All local progress deleted; a new device identifier will be generated on next launch</td>
+            <td>All local progress deleted; if you were a guest (not signed in with Google), a new identifier will be generated on next launch and previous progress cannot be recovered</td>
         </tr>
         <tr>
             <td><strong>Specific Friendships</strong></td>
@@ -1392,6 +1455,10 @@
         </tr>
     </tbody>
 </table>
+
+<div class="box-success">
+    <strong>✅ Tip:</strong> If you signed in with Google, your progress is tied to your Google account and will not be lost on reinstall — simply sign in again with the same Google account. Guest players who want this protection can switch to Google Sign-In at any time from their profile.
+</div>
 
 <h4><span class="emoji">🔒</span>What CANNOT Be Deleted (Service Integrity)</h4>
 <p>The following data is <strong>essential for the app to function</strong> and cannot be deleted while you maintain an active account:</p>
@@ -1441,7 +1508,7 @@
             <td>Article 17.3.b (Legal Obligation - 7 years retention, France/EU law)</td>
         </tr>
         <tr>
-            <td><strong>Device Identifier</strong></td>
+            <td><strong>Player Identifier</strong><br>(Google Sign-In account identifier or guest identifier)</td>
             <td>Used as your player identifier for all game features. Required for leaderboard integrity and game feature continuity.</td>
             <td>Article 6.1.b (Contract) + Article 6.1.f (Legitimate Interest)</td>
         </tr>
@@ -1471,7 +1538,7 @@
     <li><strong>Request Server Data Cleanup</strong> (Optional)
         <ul>
             <li>Email <a href="mailto:contact.thecatsizerlab@gmail.com">contact.thecatsizerlab@gmail.com</a></li>
-            <li>Provide your device identifier or display name if known</li>
+            <li>Provide your player identifier, linked Google account email, or display name if known</li>
             <li><strong>We will delete:</strong> Orphaned server records (scores, friendships, etc.) within 90 days</li>
             <li><strong>We will retain:</strong> Purchase records (7 years - legal requirement)</li>
         </ul>
@@ -1481,7 +1548,7 @@
 <div class="box-highlight">
     <strong>📧 Manual Deletion Request:</strong> To expedite server cleanup, email us with:
     <ul style="margin-top: 10px;">
-        <li>Your device identifier (if known)</li>
+        <li>Your player identifier (if known)</li>
         <li>Your former display name</li>
     </ul>
     <p style="margin-top: 10px;"><strong>Processing time:</strong> 30 days maximum</p>
@@ -1499,7 +1566,7 @@
 
 <div class="box-success">
     <strong>✅ Practical Options:</strong>
-    <p style="margin-top: 10px;">You can stop app data collection by uninstalling the Application. You may also request deletion or anonymization of our server-side records where feasible, subject to leaderboard integrity and legal obligations. Data handled by Google services (Firebase / AdMob) is managed under Google's controls.</p>
+    <p style="margin-top: 10px;">You can stop app data collection by uninstalling the Application. You may also request deletion or anonymization of our server-side records where feasible, subject to leaderboard integrity and legal obligations. Data handled by Google services (Google Sign-In / Firebase / AdMob) is managed under Google's controls.</p>
 </div>
 
             
@@ -1623,7 +1690,14 @@
 
 <p><strong>Legal Basis:</strong> Legitimate Interest (GDPR Article 6.1.f) and/or Contract Necessity (GDPR Article 6.1.b), depending on the context and the data involved.</p>
 
-<h3>9.2 Advertising Controls (Google)</h3>
+<h3>9.2 Identification Choice Control</h3>
+<p>Unlike the essential services above, your identification method (Google Sign-In vs. guest) is a genuine choice you make on first launch, and you retain control over it afterward:</p>
+<ul>
+    <li>You can secure a guest account with Google Sign-In at any time from your profile settings, which links your existing progress to your Google account</li>
+    <li>Declining Google Sign-In does not prevent you from using the Application — the guest identifier provides full access to all game features</li>
+</ul>
+
+<h3>9.3 Advertising Controls (Google)</h3>
 <p>The Application displays ads using Google AdMob. Ad delivery and personalization preferences are primarily managed by Google through your device and Google account settings.</p>
 
 <ul>
@@ -1633,7 +1707,7 @@
 
 <p><strong>Note:</strong> The availability of certain ad controls depends on your region, device, and Google settings.</p>
 
-<h3>9.3 How to Stop Data Collection</h3>
+<h3>9.4 How to Stop Data Collection</h3>
 <p>You can stop all data collection from the Application by uninstalling it. You can also clear local data via Android Settings (this removes locally stored preferences and progress saved on the device).</p>
 
             
@@ -1648,6 +1722,7 @@
     <li>Match history (last 5 matches)</li>
     <li>Achievement progress tracking</li>
     <li>Audio preferences (volume, enabled/disabled)</li>
+    <li>Identification choice status (whether you have already chosen Google Sign-In or guest)</li>
 </ul>
 
 <p>Technically these are not "cookies" but persistent local files.</p>
@@ -1816,6 +1891,11 @@
             <td>July 2, 2026</td>
             <td>Removed: Google Play Games Services (GPGS) integration entirely — the SDK is no longer bundled with the Application. Player identification, progression, leaderboards, and achievements now rely solely on the device-based identifier and our own servers. Existing GPGS players were transparently migrated. Historical notes added throughout Sections 1, 3, 4, and 7 to reflect this change while preserving transparency about prior data practices.</td>
         </tr>
+        <tr>
+            <td>1.6</td>
+            <td>July 11, 2026</td>
+            <td>Added: New first-launch identification choice screen offering native Google Sign-In (separate from the previously removed GPGS) or a randomly generated guest identifier. Clarified that the guest identifier is no longer derived from the device's Android ID for new players (previous device-hash method retained only for migrating pre-existing accounts). Updated Sections 1.1, 3.1, 4.2, 5.3, 6.1, 7.3, and 9.2 accordingly.</td>
+        </tr>
     </tbody>
 </table>
 
@@ -1876,7 +1956,7 @@
             <p>This policy does NOT cover:</p>
             <ul>
                 <li>Google Play Store</li>
-                <li>Google Services (Gmail, YouTube, etc.)</li>
+                <li>Google Services (Gmail, YouTube, Google Sign-In account settings, etc.)</li>
                 <li>External websites</li>
             </ul>
             <p>Please review their privacy policies separately.</p>
@@ -1933,6 +2013,14 @@
                     <strong style="color: #667eea;">GPGS</strong><br>
                     Google Play Games Services — a Google authentication and social gaming SDK formerly integrated in the Application. No longer in use as of July 2, 2026 (see Section 1.1).
                 </div>
+                <div style="margin: 15px 0; padding: 15px; background: #f8f9fa; border-radius: 6px;">
+                    <strong style="color: #667eea;">Google Sign-In</strong><br>
+                    A standalone, native Google authentication feature (via the <code>google_sign_in</code> package) introduced July 11, 2026, allowing players to identify themselves with their Google account email and account identifier. Distinct from, and unrelated to, the previously removed Google Play Games Services (GPGS).
+                </div>
+                <div style="margin: 15px 0; padding: 15px; background: #f8f9fa; border-radius: 6px;">
+                    <strong style="color: #667eea;">Guest Identifier</strong><br>
+                    A randomly generated identifier (not derived from device hardware) assigned to players who choose not to sign in with Google, introduced July 11, 2026.
+                </div>
                <div style="margin: 15px 0; padding: 15px; background: #f8f9fa; border-radius: 6px;">
     <strong style="color: #667eea;">SharedPreferences</strong><br>
     Android local key-value storage system for app preferences
@@ -1966,13 +2054,13 @@
                 <strong>✅ PRIVACY POLICY COMPLETE</strong>
                 <p style="margin-top: 15px;">This document contains the complete Privacy Policy for Sudoku Battle by TheCatsizerLab.</p>
                 <p style="margin-top: 10px;"><strong>Total Sections:</strong> 17 complete sections covering all data collection, processing, security, and user rights.</p>
-                <p style="margin-top: 10px;"><strong>Last Updated:</strong> July 2, 2026 (Version 1.5)</p>
+                <p style="margin-top: 10px;"><strong>Last Updated:</strong> July 11, 2026 (Version 1.6)</p>
             </div>
         </main>
         
         <footer>
             <p><strong>Sudoku Battle - Privacy Policy</strong></p>
-            <p>Version 1.5 - Last Updated: July 2, 2026</p>
+            <p>Version 1.6 - Last Updated: July 11, 2026</p>
             <p>For inquiries: <a href="mailto:contact.thecatsizerlab@gmail.com">contact.thecatsizerlab@gmail.com</a></p>
             <p>© 2026 TheCatsizerLab. All rights reserved.</p>
         </footer>
